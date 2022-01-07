@@ -11,6 +11,7 @@
         <div>
             <h1>Inventory Tracking Application</h1>
         </div>
+        <asp:TextBox ID="txtOutput" runat="server" Height="385px" TextMode="MultiLine" Width="831px"></asp:TextBox>
     </form>
 </body>
 </html>
