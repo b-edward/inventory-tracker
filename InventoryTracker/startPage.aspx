@@ -11,7 +11,13 @@
         <div>
             <h1>Inventory Tracking Application</h1>
         </div>
-        <asp:TextBox ID="txtOutput" runat="server" Height="385px" TextMode="MultiLine" Width="831px"></asp:TextBox>
+        <asp:TextBox ID="txtOutput" runat="server" Height="303px" TextMode="MultiLine" Width="766px"></asp:TextBox>
+
+        <p>
+            <asp:Button ID="btnSelect" runat="server" OnClick="btnSelect_Click" Text="Select" />
+        </p>
+        <asp:Button ID="btnClear" runat="server" OnClick="btnClear_Click" Text="Clear" />
+
     </form>
 </body>
 </html>

@@ -39,8 +39,6 @@ namespace InventoryTracker
             {
                 connection.Open();
                 connected = true;
-
-                Select();
             }
             catch
             {
@@ -84,6 +82,16 @@ namespace InventoryTracker
             {
                 Console.WriteLine("[ERROR] - Could not select command: " + selectQuery);
             }
+        }
+
+        protected void btnSelect_Click(object sender, EventArgs e)
+        {
+            Select();
+        }
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            txtOutput.Text = ""; 
         }
     }
 }
