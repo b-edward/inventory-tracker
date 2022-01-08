@@ -80,8 +80,8 @@ namespace DataServer
 
             // Disconnect from client and log
             client.Close();
-            Console.WriteLine("[DISCONNECTED] - Connection from client closed");
-            serverLog.Log("[DISCONNECTED] - Connection from client closed");
+            Console.WriteLine("[DISCONNECTED] - Closed client connection");
+            serverLog.Log("[DISCONNECTED] - Closed client connection");
         }
     }
 }
