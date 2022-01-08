@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataServer", "DataServer.csproj", "{1BFB928A-D2E2-464E-9EBE-052A9B9BC7F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataServer.Tests", "..\DataServer.Tests\DataServer.Tests.csproj", "{6193587A-A4E6-42EB-BF61-979DA17FEF85}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BFB928A-D2E2-464E-9EBE-052A9B9BC7F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BFB928A-D2E2-464E-9EBE-052A9B9BC7F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BFB928A-D2E2-464E-9EBE-052A9B9BC7F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BFB928A-D2E2-464E-9EBE-052A9B9BC7F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6193587A-A4E6-42EB-BF61-979DA17FEF85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6193587A-A4E6-42EB-BF61-979DA17FEF85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6193587A-A4E6-42EB-BF61-979DA17FEF85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6193587A-A4E6-42EB-BF61-979DA17FEF85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9C33F13D-5330-4372-BF64-7D7DF5BCE2A5}
+	EndGlobalSection
+EndGlobal

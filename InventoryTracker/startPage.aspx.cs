@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Sockets;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,81 +13,61 @@ namespace InventoryTracker
 {
     public partial class startPage : System.Web.UI.Page
     {
-        private MySqlConnection connection;     // The connection
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            Connect();
         }
 
-        // login method
-        public bool Connect()
+        /*
+        *	NAME	:	SendToServer
+        *	PURPOSE	:	This method will establish a connection with the server, and build a package string to send a request.
+        *	            It will use the established package protocol to send and receive data from the server, then call a method
+        *	            to process the response.
+        *	INPUTS	:	None
+        *	RETURNS	:	void 
+        */
+        public void SendToServer(string stringToSend)
         {
-            bool connected = false;
-
-            // Get configurable database server settings from file
-            string serverName = "eb-inventory.mysql.database.azure.com";
-            string database = "quiz";
-            string username = "edward";
-            string password = "Nh&sJXOf@UTmz3j3bC%!P1lz%AwDj3w7hs5C04Ww7$xL!V$X&zJkB%7N65@xk4YamtY*F";
-
-            // create connection string and connection
-            string connectionString = "SERVER=" + serverName + ";DATABASE=" + database + ";UID=" + username + ";PASSWORD=" + password + ";";
-            connection = new MySqlConnection(connectionString);
-
-            // open connection using login info
             try
             {
-                connection.Open();
-                connected = true;
+                // Create a new TCP Client
+                TcpClient client = new TcpClient("13.92.120.219", 13000);
+
+                // Translate the passed message into ASCII and store it as a Byte array.
+                byte[] data = System.Text.Encoding.ASCII.GetBytes(stringToSend);
+
+                // Get a client stream for reading and writing.
+                NetworkStream stream = client.GetStream();
+
+                // Send the message to the connected TcpServer. 
+                stream.Write(data, 0, data.Length);
+
+                // Reset buffer to store the server response bytes.
+                data = new byte[32767];
+
+                // String to store the response ASCII representation.
+                string responseData = string.Empty;
+
+                // Read the first batch of the TcpServer response bytes.
+                Int32 bytes = stream.Read(data, 0, data.Length);
+                responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                string packageReceived = responseData;
+
+                // Close connection
+                stream.Close();
+                client.Close();
+
+                // Print the response
+                txtOutput.Text = packageReceived;
             }
             catch
             {
-                connected = false;
-                Console.WriteLine("[ERROR] - Could not log into the database");
-            }
-            return connected;
-        }
-
-
-        // method for select queries
-        public void Select()
-        {
-            DataTable selectedData = null;
-            string selectQuery = "SELECT * FROM `questions`;";
-
-            try
-            {
-                // create command and adapter
-                MySqlCommand selector = new MySqlCommand(selectQuery, connection);
-                MySqlDataAdapter selectAdaptor = new MySqlDataAdapter(selector);
-
-                // fill table
-                selectedData = new DataTable();
-                selectAdaptor.Fill(selectedData);
-
-
-                if (selectedData != null)
-                {
-                    // Check the correct questionID
-                    foreach (DataRow row in selectedData.Rows)
-                    {
-                        // print to screen
-                        txtOutput.Text += "questionText = " + row.Field<string>("questionText") + "\n";
-                        
-                    }
-                }
-
-            }
-            catch
-            {
-                Console.WriteLine("[ERROR] - Could not select command: " + selectQuery);
+                Console.WriteLine("[ERROR] - could not send to server");
             }
         }
 
         protected void btnSelect_Click(object sender, EventArgs e)
         {
-            Select();
+            SendToServer(txtOutput.Text);
         }
 
         protected void btnClear_Click(object sender, EventArgs e)
