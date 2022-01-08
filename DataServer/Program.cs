@@ -11,7 +11,7 @@ namespace DataServer
         static void Main(string[] args)
         {
             // Instantiate the server
-            Server gameServer = Server.getServerInstance;
+            Server dataServer = Server.GetServerInstance;
 
             Console.WriteLine("[SERVER INITIALIZED] - Listening for clients");
 

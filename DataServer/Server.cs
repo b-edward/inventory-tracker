@@ -26,29 +26,35 @@ namespace DataServer
     {
         public static volatile bool Done = false;                       // Volatile bool for start/stop
         private static readonly object lockServer = new object();       // Lock object to make critical code thread safe
-        private static Server gameServer = null;                        // A private instance of the server
+        private static Server dataServer = null;                        // A private instance of the server
+
         private static Logger serverLog;
+        private static RequestHandler handler;
 
         // Private constructor
         private Server()
         {
+            // Instantiate request handler
+            handler = new RequestHandler();
+
+            // Instantiate log file
             string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
             serverLog = new Logger(logFile);
         }
 
         // Method to create/return an instance, and only allow one instance
-        public static Server getServerInstance
+        public static Server GetServerInstance
         {
             get
             {
                 // make thread safe
                 lock (lockServer)
                 {
-                    if (gameServer == null)
+                    if (dataServer == null)
                     {
-                        gameServer = new Server();
+                        dataServer = new Server();
                     }
-                    return gameServer;
+                    return dataServer;
                 }
             }
         }
@@ -117,7 +123,7 @@ namespace DataServer
                         TcpClient client = server.AcceptTcpClient();
 
                         // Create a task and supply delegate
-                        Task processRequest = new Task(() => HandleRequest(client));
+                        Task processRequest = new Task(() => handler.HandleRequest(client));
                         // New task run by a thread while main thread returns to listening loop
                         processRequest.Start();
                     }
@@ -141,82 +147,5 @@ namespace DataServer
                 }
             }
         }
-
-
-        /*
-        *	NAME	:	HandleRequest
-        *	PURPOSE	:	This method will allow a single task thread to handle a client request in parallel.
-        *	INPUTS	:	Object clientObject - holds the TCPClient object that was connected to the client
-        *	RETURNS	:	void 
-        */
-        public static void HandleRequest(Object clientObject)
-        {
-            TcpClient client = (TcpClient)clientObject;
-            // Buffer for reading data
-            Byte[] bytes = new Byte[1024];
-            string packageReceived = null;
-
-            // Get a stream object for reading and writing
-            NetworkStream stream = client.GetStream();
-            // Log connection
-            Console.WriteLine("[CONNECTED] - Connected to client");
-            serverLog.Log("[CONNECTED] - Connected to client");
-
-            // Get data from socket and convert to string
-            try
-            {
-                // Convert bytes to ascii string.   
-                int numBytes = stream.Read(bytes, 0, bytes.Length);
-                packageReceived = System.Text.Encoding.ASCII.GetString(bytes, 0, numBytes);
-                // Log the received
-                serverLog.Log("[RECEIVED] - Data from client received: " + packageReceived);
-                Console.WriteLine("[RECEIVED] - Data from client received");
-            }
-            catch
-            {
-                // Log errors
-                serverLog.Log("[ERROR] Could not read data from client");
-                Console.WriteLine("[ERROR] Could not read data from client");
-            }
-
-            // Parse the received string
-            string packageToSend = ParseReceived(packageReceived);
-
-            // Send response back
-            try
-            {
-                // Convert string response to bytes and send to client
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(packageToSend);
-                stream.Write(msg, 0, msg.Length);
-                Console.WriteLine("[SENT] - Response sent to client");
-                serverLog.Log("[SENT] - Response sent to client: " + packageToSend);
-            }
-            catch
-            {
-                serverLog.Log("[ERROR] Could not write response to client");
-                Console.WriteLine("[ERROR] Could not write response to client");
-            }
-
-            // Disconnect from client and log
-            client.Close();
-            Console.WriteLine("[DISCONNECTED] - Connection from client closed");
-            serverLog.Log("[DISCONNECTED] - Connection from client closed");
-        }
-
-
-        /*
-        *	NAME	:	ParseReceived
-        *	PURPOSE	:	This method will take the received string, check what action needs to be taken, 
-        *	            and call method to handle it.
-        *	INPUTS	:	string received - the string from the client
-        *	RETURNS	:	string  responseToSend.ToString() - the returned response from the method that is called
-        */
-        public static string ParseReceived(string received)
-        {
-            StringBuilder responseToSend = new StringBuilder();
-            responseToSend.Append("This is my reply");
-            return responseToSend.ToString();
-        }
-
     }
 }
