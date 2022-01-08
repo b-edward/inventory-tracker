@@ -5,18 +5,12 @@ using System.Web;
 
 namespace InventoryTracker.Controller
 {
-    public class WarehouseInventoryController : IInventory
+    public class WarehouseInventoryController : InventoryController
     {
-        // Method to get the total inventory of all products
-        public int GetTotal()
-        {
-            return 0;
-        }
-
-        // Method to get the inventory for a single product
-        public int GetTotal(string productID)
-        {
-            return 0;
-        }
+        // Methods to assign products to warehouses from general inventory
+        // unnassign products from warehouse back to general inventory
+        // view products assigned to a warehouse vs general inventory
+        // view by warehouse inventory of its products
+        // view product and where it is assigned/located
     }
 }

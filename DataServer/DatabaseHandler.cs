@@ -1,10 +1,10 @@
 ﻿/*
- * FILE            : DatabaseHandler.cs
- * PROJECT         : Quiz_Server - Demo Day
- * PROGRAMMER     : Edward Boado
- * FIRST VERSION   : 2021 - 12 - 08
- * DESCRIPTION     : This file contains the DatabaseHandler class, which will connect to a MySQL database server. It will
- *                   take queries/commands, run them on the database, and then return the response data.
+ * FILE             : DatabaseHandler.cs
+ * PROJECT          : Quiz_Server - Demo Day
+ * PROGRAMMER       : Edward Boado
+ * FIRST VERSION    : 2021 - 12 - 08
+ * DESCRIPTION      : This file contains the DatabaseHandler class, which will connect to a MySQL database server. It will
+ *                    take queries/commands, run them on the database, and then return the response data.
  */
 
 using System;
@@ -103,7 +103,7 @@ namespace DataServer
             return closed;
         }
 
-        // method for executing commands
+        // method for executing Create, Update, Delete commands
         public bool Execute(string sqlCommand)
         {
             bool executed = false;
@@ -126,7 +126,7 @@ namespace DataServer
             return executed;
         }
 
-        // method for select queries
+        // method for Read queries
         public DataTable Select(string selectQuery)
         {
             DataTable selectedData = null;
