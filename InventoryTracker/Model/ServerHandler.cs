@@ -6,7 +6,7 @@ using System.Net.Sockets;
 
 namespace InventoryTracker
 {
-    public class ServerHandler
+    public class ServerHandler : IDatabaseCommand
     {
         public ServerHandler()
         {
@@ -61,6 +61,41 @@ namespace InventoryTracker
 
             // return the response
             return packageReceived;
+        }
+
+        // Create a new record in the database
+        public string Create(string newRecord)
+        {
+            string serverResponse = "";
+            return serverResponse;
+        }
+
+        // Overloaded method to read all records
+        public string Read()
+        {
+            string serverResponse = "";
+            return serverResponse;
+        }
+
+        // Overloaded method to read a single record
+        public string Read(string id)
+        {
+            string serverResponse = "";
+            return serverResponse;
+        }
+
+        // Modify an existing entry
+        public string Update(string id, string updates)
+        {
+            string serverResponse = "";
+            return serverResponse;
+        }
+
+        // Delete an existing entry
+        public string Delete(string id)
+        {
+            string serverResponse = "";
+            return serverResponse;
         }
     }
 }
