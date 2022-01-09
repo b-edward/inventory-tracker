@@ -6,20 +6,22 @@ using System.Text;
 using System.Threading.Tasks;
 using DataServer.Log;
 using DataServer.Interfaces;
+using System.Data;
+using System.Reflection;
 
 namespace DataServer.ServerClasses
 {
     public class RequestParser : IRequestParser
     {
         private static ILogger serverLog;           // The logger
-        private static IDataRequester dbAccess;      // Access to the database
+        private static IDataHandler dbAccess;      // Access to the database
 
         // Constructor
         public RequestParser()
         {
             string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
             serverLog = new Logger(logFile);
-            dbAccess = new DataRequester();
+            dbAccess = new DataHandler();
         }
 
 
@@ -32,20 +34,57 @@ namespace DataServer.ServerClasses
         */
         public string ParseReceived(string received)
         {
-            StringBuilder response = new StringBuilder();
+            DataTable data = new DataTable();
+            string response = "";
 
             if (received != null)
             {
-                response.Append("This is my reply");
+                if(received == "read")
+                {
+                    data = dbAccess.Read("query");
+                    response = ConvertDataTableToString(data);
+                }              
+                
             }
             else
             {
-                response.Append("error");
+                response = null;
             }
+            return response;
+        }
+
+
+        public string ConvertDataTableToString(DataTable datatable)
+        {
+            string response = "";
+            if (datatable != null)
+            {
+                response = ConvertDataTable<Product>(datatable);
+            }
+            else
+            {
+                serverLog.Log("[ERROR] - Could not convert DataTable to string");
+            }
+
             return response.ToString();
         }
 
-        //
 
+        private static string ConvertDataTable<T>(DataTable dt)
+        {
+            StringBuilder response = new StringBuilder();
+            foreach (DataRow row in dt.Rows)
+            {
+                int columns = row.ItemArray.Length;
+                for (int i = 0; i < columns; i++)
+                {
+                    response.Append(row.ItemArray[i] + ",");
+                }
+                response.Length--;
+                response.Append("&");
+            }
+            response.Append("/");
+            return response.ToString();
+        }
     }
 }

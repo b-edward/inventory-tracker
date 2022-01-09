@@ -87,15 +87,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\DatabaseHandler.cs" />
-    <Compile Include="Interfaces\IDataRequester.cs" />
+    <Compile Include="Interfaces\IDataHandler.cs" />
     <Compile Include="Interfaces\IDatabase.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Interfaces\IRequestHandler.cs" />
     <Compile Include="Interfaces\IRequestParser.cs" />
     <Compile Include="Log\Logger.cs" />
+    <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServerClasses\DataRequester.cs" />
+    <Compile Include="ServerClasses\DataHandler.cs" />
     <Compile Include="ServerClasses\RequestHandler.cs" />
     <Compile Include="ServerClasses\RequestParser.cs" />
     <Compile Include="ServerClasses\Server.cs" />

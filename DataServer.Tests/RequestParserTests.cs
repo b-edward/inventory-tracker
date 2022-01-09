@@ -8,28 +8,28 @@ namespace DataServer.Tests
     [TestClass]
     public class RequestParserTests
     {
-        [TestMethod]
-        public void TestParseReceivedHappy()
-        {
-            IRequestParser parser = new RequestParser();
+        //[TestMethod]
+        //public void TestParseReceivedHappy()
+        //{
+        //    IRequestParser parser = new RequestParser();
 
-            string request = "SELECT * FROM data";
+        //    string request = "SELECT * FROM data";
 
-            string response = parser.ParseReceived(request);
+        //    string response = parser.ParseReceived(request);
 
-            Assert.AreNotEqual(response, "error");
-        }
+        //    Assert.AreNotEqual(response, "error");
+        //}
 
-        [TestMethod]
-        public void TestParseReceivedException()
-        {
-            IRequestParser parser = new RequestParser();
+        //[TestMethod]
+        //public void TestParseReceivedException()
+        //{
+        //    IRequestParser parser = new RequestParser();
 
-            string request = null;
+        //    string request = null;
 
-            string response = parser.ParseReceived(request);
+        //    string response = parser.ParseReceived(request);
 
-            Assert.AreEqual(response, "error");
-        }
+        //    Assert.AreEqual(response, "error");
+        //}
     }
 }

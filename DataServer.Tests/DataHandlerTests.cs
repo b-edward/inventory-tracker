@@ -6,56 +6,48 @@ using DataServer.Interfaces;
 namespace DataServer.Tests
 {
     [TestClass]
-    public class DataRequesterTests
+    public class DataHandlerTests
     {
         [TestMethod]
         public void TestCreateHappy()
         {
-            IDataRequester dbAccess = new DataRequester();
+            IDataHandler dbAccess = new DataHandler();
 
             string query = "CREATE TABLE IF NOT EXISTS `Products` (`productID` INT NOT NULL AUTO_INCREMENT," +
                             "`productName` VARCHAR(255) NOT NULL, PRIMARY KEY(`productID`)) ENGINE = InnoDB " +
                             "DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;";
 
-            string response = dbAccess.Create(query);
-
-            Assert.AreNotEqual(response, "error");
+            Assert.IsTrue(dbAccess.Create(query));
         }
 
         [TestMethod]
         public void TestCreateQueryNull()
         {
-            IDataRequester dbAccess = new DataRequester();
+            IDataHandler dbAccess = new DataHandler();
 
             string query = null;
 
-            string response = dbAccess.Create(query);
-
-            Assert.AreEqual(response, "error");
+            Assert.IsFalse(dbAccess.Create(query));
         }
 
         [TestMethod]
         public void TestReadHappy()
         {
-            IDataRequester dbAccess = new DataRequester();
+            IDataHandler dbAccess = new DataHandler();
 
             string query = "SELECT * FROM `Products`;";
 
-            string response = dbAccess.Create(query);
-
-            Assert.AreNotEqual(response, "error");
+            Assert.IsTrue(dbAccess.Create(query));
         }
 
         [TestMethod]
         public void TestReadQueryNull()
         {
-            IDataRequester dbAccess = new DataRequester();
+            IDataHandler dbAccess = new DataHandler();
 
             string query = null;
 
-            string response = dbAccess.Create(query);
-
-            Assert.AreEqual(response, "error");
+            Assert.IsFalse(dbAccess.Create(query));
         }
     }
 }

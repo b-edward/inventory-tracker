@@ -7,68 +7,73 @@ using System.Threading.Tasks;
 using DataServer.Interfaces;
 using DataServer.DataAccess;
 using DataServer.Log;
-
+using System.Data;
 
 namespace DataServer.ServerClasses
 {
-    public class DataRequester : IDataRequester
+    public class DataHandler : IDataHandler
     {
         private static IDatabase db;            // Represents the MySQL database
         private static ILogger serverLog;       // The logger
 
-        public DataRequester()
+        public DataHandler()
         {
             db = new DatabaseHandler();
+            db.Connect();
             string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
             serverLog = new Logger(logFile);
         }
 
-        public string Create(string query)
+        public bool Create(string query)
         {
-            string response = "";
+            bool status = true;
 
             if(query == null)
             {
-                response = "error";
+                status = false;
             }
 
-            return response;
+            return status;
         }
 
-        public string Read(string query)
+        public DataTable Read(string query)
         {
-            string response = "";
+            DataTable data = new DataTable();
+
+            if (query != null)
+            {
+                data = db.Select("SELECT * FROM `Questions`;");
+            }
+            else
+            {
+                data = null;
+            }
+
+            return data;
+        }
+
+        public bool Update(string query)
+        {
+            bool status = true;
 
             if (query == null)
             {
-                response = "error";
+                status = false;
             }
 
-            return response;
+            return status;
         }
 
-        public string Update(string query)
+        public bool Delete(string query)
         {
-            string response = "";
+            bool status = true;
 
             if (query == null)
             {
-                response = "error";
+                status = false;
             }
 
-            return response;
-        }
-
-        public string Delete(string query)
-        {
-            string response = "";
-
-            if (query == null)
-            {
-                response = "error";
-            }
-
-            return response;
+            return status;
         }
 
     }

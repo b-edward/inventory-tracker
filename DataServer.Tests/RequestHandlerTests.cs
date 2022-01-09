@@ -31,15 +31,15 @@ namespace DataServer.Tests
             Assert.AreEqual(response, "error");
         }
 
-        [TestMethod]
-        public void TestSendResponseClientNull()
-        {
-            IRequestHandler handler = new RequestHandler();
+        //[TestMethod]
+        //public void TestSendResponseClientNull()
+        //{
+        //    IRequestHandler handler = new RequestHandler();
 
-            NetworkStream stream = null;
+        //    NetworkStream stream = null;
 
-            bool status = handler.SendResponse(stream, "This is the response");
-            Assert.IsFalse(status);
-        }
+        //    bool status = handler.SendResponse(stream, "This is the response");
+        //    Assert.IsFalse(status);
+        //}
     }
 }

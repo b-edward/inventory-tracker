@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Net.Sockets;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Data;
+using System.Text;
 
 namespace InventoryTracker
 {
@@ -46,7 +50,7 @@ namespace InventoryTracker
                     // String to store the response ASCII representation.
                     string responseData = string.Empty;
 
-                    // Read the first batch of the TcpServer response bytes.
+                    // Read the DataServer response bytes.
                     Int32 bytes = stream.Read(data, 0, data.Length);
                     responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
                     response = responseData;
@@ -64,7 +68,7 @@ namespace InventoryTracker
             else
             {
                 response = "There's nothing to send.";
-            } 
+            }
 
             // return the response
             return response;

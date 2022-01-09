@@ -126,7 +126,8 @@ namespace DataServer.ServerClasses
 
                         // Create a task and supply delegate
                         Task processRequest = new Task(() => handler.HandleRequest(client));
-                        // New task run by a thread while main thread returns to listening loop
+
+                        // Request handled by a thread while main thread returns to listening loop
                         processRequest.Start();
                     }
                     else
