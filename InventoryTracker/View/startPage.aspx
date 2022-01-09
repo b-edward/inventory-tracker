@@ -14,7 +14,7 @@
         <asp:TextBox ID="txtOutput" runat="server" Height="303px" TextMode="MultiLine" Width="766px"></asp:TextBox>
 
         <p>
-            <asp:Button ID="btnSelect" runat="server" OnClick="btnSelect_Click" Text="Select" />
+            <asp:Button ID="btnSelect" runat="server" OnClick="btnSelect_Click" Text="Get Answers" />
         </p>
         <asp:Button ID="btnClear" runat="server" OnClick="btnClear_Click" Text="Clear" />
 

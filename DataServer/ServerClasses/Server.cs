@@ -19,8 +19,10 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using DataServer.Log;
+using DataServer.Interfaces;
 
-namespace DataServer
+namespace DataServer.ServerClasses
 {
     public sealed class Server
     {
@@ -28,7 +30,7 @@ namespace DataServer
         private static readonly object lockServer = new object();       // Lock object to make critical code thread safe
         private static Server dataServer = null;                        // A private instance of the server
 
-        private static Logger serverLog;
+        private static ILogger serverLog;        // The logger
         private static RequestHandler handler;
 
         // Private constructor

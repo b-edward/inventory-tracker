@@ -4,19 +4,24 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataServer.Log;
+using DataServer.Interfaces;
 
-namespace DataServer
+namespace DataServer.ServerClasses
 {
-    class RequestParser
+    public class RequestParser : IRequestParser
     {
-        private static Logger serverLog;
+        private static ILogger serverLog;           // The logger
+        private static IDataRequester dbAccess;      // Access to the database
 
         // Constructor
         public RequestParser()
         {
             string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
             serverLog = new Logger(logFile);
+            dbAccess = new DataRequester();
         }
+
 
         /*
         *	NAME	:	ParseReceived
@@ -27,9 +32,20 @@ namespace DataServer
         */
         public string ParseReceived(string received)
         {
-            StringBuilder responseToSend = new StringBuilder();
-            responseToSend.Append("This is my reply");
-            return responseToSend.ToString();
+            StringBuilder response = new StringBuilder();
+
+            if (received != null)
+            {
+                response.Append("This is my reply");
+            }
+            else
+            {
+                response.Append("error");
+            }
+            return response.ToString();
         }
+
+        //
+
     }
 }

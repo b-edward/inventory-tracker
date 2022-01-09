@@ -47,9 +47,15 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestServer.cs" />
+    <Compile Include="DataRequesterTests.cs" />
+    <Compile Include="DatabaseHandlerTests.cs" />
+    <Compile Include="LoggerTests.cs" />
+    <Compile Include="RequestHandlerTests.cs" />
+    <Compile Include="RequestParserTests.cs" />
+    <Compile Include="ServerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -22,45 +22,52 @@ namespace InventoryTracker
         */
         public string SendToServer(string stringToSend)
         {
-            string packageReceived = "";
+            string response = "";
 
-            try
+            if(stringToSend.Length > 0)
             {
-                // Create a new TCP Client
-                TcpClient client = new TcpClient("127.0.0.1", 13000);
+                try
+                {
+                    // Create a new TCP Client
+                    TcpClient client = new TcpClient("127.0.0.1", 13000);
 
-                // Translate the passed message into ASCII and store it as a Byte array.
-                byte[] data = System.Text.Encoding.ASCII.GetBytes(stringToSend);
+                    // Translate the passed message into ASCII and store it as a Byte array.
+                    byte[] data = System.Text.Encoding.ASCII.GetBytes(stringToSend);
 
-                // Get a client stream for reading and writing.
-                NetworkStream stream = client.GetStream();
+                    // Get a client stream for reading and writing.
+                    NetworkStream stream = client.GetStream();
 
-                // Send the message to the connected TcpServer. 
-                stream.Write(data, 0, data.Length);
+                    // Send the message to the connected TcpServer. 
+                    stream.Write(data, 0, data.Length);
 
-                // Reset buffer to store the server response bytes.
-                data = new byte[32767];
+                    // Reset buffer to store the server response bytes.
+                    data = new byte[32767];
 
-                // String to store the response ASCII representation.
-                string responseData = string.Empty;
+                    // String to store the response ASCII representation.
+                    string responseData = string.Empty;
 
-                // Read the first batch of the TcpServer response bytes.
-                Int32 bytes = stream.Read(data, 0, data.Length);
-                responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-                packageReceived = responseData;
+                    // Read the first batch of the TcpServer response bytes.
+                    Int32 bytes = stream.Read(data, 0, data.Length);
+                    responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    response = responseData;
 
-                // Close connection
-                stream.Close();
-                client.Close();
+                    // Close connection
+                    stream.Close();
+                    client.Close();
 
+                }
+                catch
+                {
+                    Console.WriteLine("[ERROR] - could not send to server");
+                }
             }
-            catch
+            else
             {
-                Console.WriteLine("[ERROR] - could not send to server");
-            }
+                response = "There's nothing to send.";
+            } 
 
             // return the response
-            return packageReceived;
+            return response;
         }
 
         // Create a new record in the database

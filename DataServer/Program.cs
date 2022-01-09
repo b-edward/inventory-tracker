@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataServer.ServerClasses;
+using DataServer.Log;
+using System.Configuration;
 
 namespace DataServer
 {
@@ -13,13 +16,18 @@ namespace DataServer
             // Instantiate the server
             Server dataServer = Server.GetServerInstance;
 
-            Console.WriteLine("[SERVER INITIALIZED] - Listening for clients");
+            // Log startup
+            string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
+            ILogger serverLog = new Logger(logFile);
+            serverLog.Log("[SERVER INITIALIZED] - Listening for clients");
+            Console.WriteLine($"[SERVER INITIALIZED] - Listening for clients\nSee {logFile} for timestamped logs.");
 
             // Call method to start async listening
             Listen();
 
             Console.WriteLine("Press any key to exit...");
             Console.ReadKey();
+            serverLog.Log("[SERVER SHUTDOWN] - Program closed");
         }
 
 

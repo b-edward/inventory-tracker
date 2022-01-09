@@ -1,11 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using DataServer;
+using DataServer.ServerClasses;
 
 namespace DataServer.Tests
 {
     [TestClass]
-    public class TestServer
+    public class ServerTests
     {
         [TestMethod]
         public void TestSingletonServer()

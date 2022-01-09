@@ -15,38 +15,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using DataServer.Log;
 
-namespace DataServer
+namespace DataServer.DataAccess
 {
-    class DatabaseHandler
+    public class DatabaseHandler : IDatabase
     {
         // Data members
         private MySqlConnection connection;     // The connection
-
-        private string hostServer;              // The hostname/IP address to connect to
-        protected string HostServer { get { return hostServer; } set { hostServer = value; } }
-
-        private string databaseName;            // The name of the database 
-        protected string DatabaseName { get { return databaseName; } set { databaseName = value; } }
-
-        private string username;                // The username for MySQL access
-        protected string Username { get { return username; } set { username = value; } }
-
-        private string password;                // The password for MySQL access
-        protected string Password { get { return password; } set { password = value; } }
-
-        private Logger databaseLog = null;
+        private static ILogger serverLog;       // The logger
 
         // constructor
         public DatabaseHandler()
         {
-            hostServer = "";
-            databaseName = "";
-            username = "";
-            password = "";
             connection = null;
-            string logFile = ConfigurationManager.AppSettings.Get("dbLogFile");
-            databaseLog = new Logger(logFile);
+            string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
+            serverLog = new Logger(logFile);
         }
 
         // login method
@@ -56,7 +40,6 @@ namespace DataServer
 
             // Get configurable database server settings from file
             string ip = ConfigurationManager.AppSettings.Get("ip");
-            string port = ConfigurationManager.AppSettings.Get("dbPort");
             string database = ConfigurationManager.AppSettings.Get("database");
             string username = ConfigurationManager.AppSettings.Get("user");
             string password = ConfigurationManager.AppSettings.Get("password");
@@ -74,8 +57,7 @@ namespace DataServer
             catch
             {
                 connected = false;
-
-                databaseLog.Log("[ERROR] - Could not log into the database");
+                serverLog.Log("[ERROR] - Could not log into the database");
             }
             return connected;
         }
@@ -94,10 +76,7 @@ namespace DataServer
             catch
             {
                 closed = false;
-
-                string logFile = ConfigurationManager.AppSettings.Get("dbLogFile");
-                Logger databaseLog = new Logger(logFile);
-                databaseLog.Log("[ERROR] - Could not close the database");
+                serverLog.Log("[ERROR] - Could not close the database");
             }
 
             return closed;
@@ -111,22 +90,19 @@ namespace DataServer
             MySqlCommand command = new MySqlCommand(sqlCommand, connection);
             try
             {
-                command.ExecuteNonQuery();
-                executed = true;
+                if(command.ExecuteNonQuery() > 0)
+                {
+                    executed = true;
+                }
             }
             catch 
             {
-                executed = false;
-
-                string logFile = ConfigurationManager.AppSettings.Get("dbLogFile");
-                Logger databaseLog = new Logger(logFile);
-                databaseLog.Log("[ERROR] - Could not execute command: " + sqlCommand);
+                serverLog.Log("[ERROR] - Could not execute command: " + sqlCommand);
             }
-
             return executed;
         }
 
-        // method for Read queries
+        // Method for Read queries
         public DataTable Select(string selectQuery)
         {
             DataTable selectedData = null;
@@ -143,9 +119,7 @@ namespace DataServer
             }
             catch 
             {
-                string logFile = ConfigurationManager.AppSettings.Get("dbLogFile");
-                Logger databaseLog = new Logger(logFile);
-                databaseLog.Log("[ERROR] - Could not select command: " + selectQuery);
+                serverLog.Log("[ERROR] - Could not select command: " + selectQuery);
             }
             return selectedData;
         }
