@@ -59,8 +59,14 @@ namespace DataServer.ServerClasses
             // Get data from socket and convert to string
             packageReceived = GetRequest(stream);
 
-            // Parse the received string
-            string packageToSend = parser.ParseReceived(packageReceived);
+            string packageToSend = "";
+
+            // Validate the request had no errors
+            if (!packageReceived.Contains("400") && !packageReceived.Contains("500"))
+            {
+                // Parse the received request
+                packageToSend = parser.ParseReceived(packageReceived);
+            }
 
             // Send response back
             SendResponse(stream, packageToSend);
@@ -101,13 +107,13 @@ namespace DataServer.ServerClasses
                 }
                 else
                 {
-                    request = "error";
+                    request = "400\n";
                     Console.WriteLine("[ERROR] - No data received from client");
                 }
             }
             catch
             {
-                request = "error";
+                request = "500\n";
                 // Log errors
                 serverLog.Log("[ERROR] Could not read data from client");
                 Console.WriteLine("[ERROR] Could not read data from client");

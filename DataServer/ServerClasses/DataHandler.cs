@@ -19,7 +19,6 @@ namespace DataServer.ServerClasses
         public DataHandler()
         {
             db = new DatabaseHandler();
-            db.Connect();
             string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
             serverLog = new Logger(logFile);
         }
@@ -36,20 +35,27 @@ namespace DataServer.ServerClasses
             return status;
         }
 
-        public DataTable Read(string query)
+        public string Read(string query)
         {
             DataTable data = new DataTable();
+            string response = "";
 
             if (query != null)
             {
-                data = db.Select("SELECT * FROM `Product`;");
+                db.Connect();
+                data = db.Select(query);
+                if(data != null)
+                {
+                    response = DataTableConverter.ConvertDataTableToString(data);
+                    response.Insert(0, "200\n");
+                }
             }
             else
             {
-                data = null;
+                response = null;
             }
 
-            return data;
+            return response;
         }
 
         public bool Update(string query)
@@ -75,6 +81,5 @@ namespace DataServer.ServerClasses
 
             return status;
         }
-
     }
 }

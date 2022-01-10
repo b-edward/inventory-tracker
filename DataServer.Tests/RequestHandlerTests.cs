@@ -28,18 +28,20 @@ namespace DataServer.Tests
             NetworkStream stream = null;
 
             string response = handler.GetRequest(stream);
-            Assert.AreEqual(response, "error");
+
+            Assert.IsTrue(response.Contains("500"));
         }
 
         //[TestMethod]
-        //public void TestSendResponseClientNull()
-        //{
-        //    IRequestHandler handler = new RequestHandler();
+        public void TestSendResponseClientNull()
+        {
+            IRequestHandler handler = new RequestHandler();
 
-        //    NetworkStream stream = null;
+            NetworkStream stream = null;
 
-        //    bool status = handler.SendResponse(stream, "This is the response");
-        //    Assert.IsFalse(status);
-        //}
+            bool status = handler.SendResponse(stream, "This is the response");
+
+            Assert.IsFalse(status);
+        }
     }
 }

@@ -120,6 +120,7 @@ namespace DataServer.DataAccess
             catch 
             {
                 serverLog.Log("[ERROR] - Could not select command: " + selectQuery);
+                selectedData = null;
             }
             return selectedData;
         }

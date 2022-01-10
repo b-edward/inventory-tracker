@@ -14,14 +14,14 @@ namespace DataServer.ServerClasses
     public class RequestParser : IRequestParser
     {
         private static ILogger serverLog;           // The logger
-        private static IDataHandler dbAccess;      // Access to the database
+        private static IDataHandler dataHandler;      // Access to the database
 
         // Constructor
         public RequestParser()
         {
             string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
             serverLog = new Logger(logFile);
-            dbAccess = new DataHandler();
+            dataHandler = new DataHandler();
         }
 
 
@@ -34,57 +34,75 @@ namespace DataServer.ServerClasses
         */
         public string ParseReceived(string received)
         {
-            DataTable data = new DataTable();
             string response = "";
 
             if (received != null)
             {
-                if(received == "read")
+                // Parse the string to get the request command
+                string[] receivedFields = received.Split('\n');             // Zeroth index is the command
+                int lastIndex = receivedFields[0].Length - 1;   
+                string command = receivedFields[0].Substring(0, lastIndex);
+
+                // Call the method to handle the command
+                switch (command)                      
                 {
-                    data = dbAccess.Read("query");
-                    response = ConvertDataTableToString(data);
-                }              
-                
+                    case "PUT":
+                        response = ReceivedCreate(receivedFields[1]);      // First index is the query
+                        break;
+                    case "GET":
+                        response = ReceivedRead(receivedFields[1]);
+                        break;
+                    case "POST":
+                        response = ReceivedUpdate(receivedFields[1]);
+                        break;
+                    case "DELETE":
+                        response = ReceivedDelete(receivedFields[1]);
+                        break;
+                    default:
+                        response = "400\n";
+                        break;
+                }
             }
             else
             {
-                response = null;
+                response = "400\n";
             }
             return response;
         }
 
 
-        public string ConvertDataTableToString(DataTable datatable)
+        private string ReceivedCreate(string query)
         {
             string response = "";
-            if (datatable != null)
-            {
-                response = ConvertDataTable<Product>(datatable);
-            }
-            else
-            {
-                serverLog.Log("[ERROR] - Could not convert DataTable to string");
-            }
-
-            return response.ToString();
+            bool status = dataHandler.Create(query);
+            response = status.ToString();
+            return response;
         }
 
 
-        private static string ConvertDataTable<T>(DataTable dt)
+        private string ReceivedRead(string query)
         {
-            StringBuilder response = new StringBuilder();
-            foreach (DataRow row in dt.Rows)
-            {
-                int columns = row.ItemArray.Length;
-                for (int i = 0; i < columns; i++)
-                {
-                    response.Append(row.ItemArray[i] + ",");
-                }
-                response.Length--;
-                response.Append("&");
-            }
-            response.Length--;
-            return response.ToString();
+            string response = "";
+            response = dataHandler.Read(query);
+            return response;
+        }
+
+
+        private string ReceivedUpdate(string query)
+        {
+            string response = "";
+            bool status = dataHandler.Update(query);
+            response = status.ToString();
+            return response;
+        }
+
+
+        private string ReceivedDelete(string query)
+        {
+            string response = "";
+            bool status = dataHandler.Delete(query);
+            response = status.ToString();
+            return response;
         }
     }
 }

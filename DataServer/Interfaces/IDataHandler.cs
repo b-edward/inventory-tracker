@@ -10,7 +10,7 @@ namespace DataServer.Interfaces
     public interface IDataHandler
     {
         bool Create(string query);
-        DataTable Read(string query);
+        string Read(string query);
         bool Update(string query);
         bool Delete(string query);
     }
