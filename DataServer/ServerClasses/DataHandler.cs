@@ -42,7 +42,7 @@ namespace DataServer.ServerClasses
 
             if (query != null)
             {
-                data = db.Select("SELECT * FROM `Questions`;");
+                data = db.Select("SELECT * FROM `Product`;");
             }
             else
             {

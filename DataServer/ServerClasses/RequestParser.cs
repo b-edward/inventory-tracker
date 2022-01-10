@@ -83,7 +83,7 @@ namespace DataServer.ServerClasses
                 response.Length--;
                 response.Append("&");
             }
-            response.Append("/");
+            response.Length--;
             return response.ToString();
         }
     }
