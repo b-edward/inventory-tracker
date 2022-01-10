@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataServer.DataAccess
 {
-    public interface IDatabase
+    public interface IDatabaseHandler
     {
         bool Connect();
         bool Disconnect();

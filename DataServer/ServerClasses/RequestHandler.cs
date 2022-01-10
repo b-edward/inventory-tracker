@@ -13,13 +13,13 @@ namespace DataServer.ServerClasses
     public class RequestHandler : IRequestHandler
     {
         private static ILogger serverLog;        // The logger
-        public static IRequestParser parser;
+        public static IRequestParser requestParser;
 
         // Constructor
         public RequestHandler()
         {
             // Instantiate parser
-            parser = new RequestParser();
+            requestParser = new RequestParser();
 
             // Instantiate log file
             string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
@@ -65,7 +65,7 @@ namespace DataServer.ServerClasses
             if (!packageReceived.Contains("400") && !packageReceived.Contains("500"))
             {
                 // Parse the received request
-                packageToSend = parser.ParseReceived(packageReceived);
+                packageToSend = requestParser.ParseReceived(packageReceived);
             }
 
             // Send response back

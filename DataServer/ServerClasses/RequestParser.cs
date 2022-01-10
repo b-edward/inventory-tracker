@@ -10,7 +10,7 @@ namespace DataServer.ServerClasses
 {
     public class RequestParser : IRequestParser
     {
-        IResponseHandler responseHandler;
+        ResponseHandler responseHandler;
 
         // Constructor
         public RequestParser()
@@ -40,16 +40,16 @@ namespace DataServer.ServerClasses
                 switch (command.ToUpper())                      
                 {
                     case "PUT":
-                        response = responseHandler.ReceivedCreate(receivedFields[1]);      // First index is the query
+                        response = responseHandler.create(receivedFields[1]);      // First index is the query
                         break;
                     case "GET":
-                        response = responseHandler.ReceivedRead(receivedFields[1]);
+                        response = responseHandler.read(receivedFields[1]);
                         break;
                     case "POST":
-                        response = responseHandler.ReceivedUpdate(receivedFields[1]);
+                        response = responseHandler.update(receivedFields[1]);
                         break;
                     case "DELETE":
-                        response = responseHandler.ReceivedDelete(receivedFields[1]);
+                        response = responseHandler.delete(receivedFields[1]);
                         break;
                     default:
                         response = "400\n";

@@ -19,7 +19,7 @@ using DataServer.Log;
 
 namespace DataServer.DataAccess
 {
-    public class DatabaseHandler : IDatabase
+    public class DatabaseHandler : IDatabaseHandler
     {
         // Data members
         private MySqlConnection connection;     // The connection

@@ -13,7 +13,7 @@ namespace DataServer.ServerClasses
 {
     public class DataHandler : IDataHandler
     {
-        private static IDatabase databaseHandler;            // Represents the MySQL database
+        private static IDatabaseHandler databaseHandler;            // Represents the MySQL database
         private static ILogger serverLog;       // The logger
 
         public DataHandler()

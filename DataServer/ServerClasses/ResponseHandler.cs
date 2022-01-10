@@ -7,12 +7,20 @@ using DataServer.Log;
 using DataServer.Interfaces;
 using System.Configuration;
 
+public delegate string CrudHandler(string s);
+
 namespace DataServer.ServerClasses
 {
-    public class ResponseHandler : IResponseHandler
+    public class ResponseHandler 
     {
         private static ILogger serverLog;           // The logger
         private static IDataHandler dataHandler;      // Access to the database
+
+        // Delegate instances for handling CRUD commands
+        public CrudHandler create = new CrudHandler(ReceivedCreate);
+        public CrudHandler read = new CrudHandler(ReceivedRead);
+        public CrudHandler update = new CrudHandler(ReceivedUpdate);
+        public CrudHandler delete = new CrudHandler(ReceivedDelete);
 
         public ResponseHandler()
         {
@@ -21,7 +29,7 @@ namespace DataServer.ServerClasses
             dataHandler = new DataHandler();
         }
 
-        public string ReceivedCreate(string query)
+        public static string ReceivedCreate(string query)
         {
             string response = "";
             bool status = dataHandler.Create(query);
@@ -30,7 +38,7 @@ namespace DataServer.ServerClasses
         }
 
 
-        public string ReceivedRead(string query)
+        public static string ReceivedRead(string query)
         {
             string response = "";
             response = dataHandler.Read(query);
@@ -49,7 +57,7 @@ namespace DataServer.ServerClasses
         }
 
 
-        public string ReceivedUpdate(string query)
+        public static string ReceivedUpdate(string query)
         {
             string response = "";
             bool status = dataHandler.Update(query);
@@ -58,7 +66,7 @@ namespace DataServer.ServerClasses
         }
 
 
-        public string ReceivedDelete(string query)
+        public static string ReceivedDelete(string query)
         {
             string response = "";
             bool status = dataHandler.Delete(query);
@@ -67,7 +75,7 @@ namespace DataServer.ServerClasses
         }
 
 
-        private string AddStatusCode(bool status, string response)
+        private static string AddStatusCode(bool status, string response)
         {
             if(status)
             {

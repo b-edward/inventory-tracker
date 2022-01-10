@@ -31,13 +31,13 @@ namespace DataServer.ServerClasses
         private static Server dataServer = null;                        // A private instance of the server
 
         private static ILogger serverLog;        // The logger
-        private static RequestHandler handler;
+        private static RequestHandler requestHandler;
 
         // Private constructor
         private Server()
         {
             // Instantiate request handler
-            handler = new RequestHandler();
+            requestHandler = new RequestHandler();
 
             // Instantiate log file
             string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
@@ -125,7 +125,7 @@ namespace DataServer.ServerClasses
                         TcpClient client = server.AcceptTcpClient();
 
                         // Create a task and supply delegate
-                        Task processRequest = new Task(() => handler.HandleRequest(client));
+                        Task processRequest = new Task(() => requestHandler.HandleRequest(client));
 
                         // Request handled by a thread while main thread returns to listening loop
                         processRequest.Start();
