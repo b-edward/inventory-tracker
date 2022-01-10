@@ -1,29 +1,22 @@
-﻿using System;
+﻿using DataServer.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataServer.Log;
-using DataServer.Interfaces;
-using System.Data;
-using System.Reflection;
 
 namespace DataServer.ServerClasses
 {
     public class RequestParser : IRequestParser
     {
-        private static ILogger serverLog;           // The logger
-        private static IDataHandler dataHandler;      // Access to the database
+        IResponseHandler responseHandler;
 
         // Constructor
         public RequestParser()
         {
-            string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
-            serverLog = new Logger(logFile);
-            dataHandler = new DataHandler();
+            responseHandler = new ResponseHandler();
         }
-
 
         /*
         *	NAME	:	ParseReceived
@@ -44,19 +37,19 @@ namespace DataServer.ServerClasses
                 string command = receivedFields[0].Substring(0, lastIndex);
 
                 // Call the method to handle the command
-                switch (command)                      
+                switch (command.ToUpper())                      
                 {
                     case "PUT":
-                        response = ReceivedCreate(receivedFields[1]);      // First index is the query
+                        response = responseHandler.ReceivedCreate(receivedFields[1]);      // First index is the query
                         break;
                     case "GET":
-                        response = ReceivedRead(receivedFields[1]);
+                        response = responseHandler.ReceivedRead(receivedFields[1]);
                         break;
                     case "POST":
-                        response = ReceivedUpdate(receivedFields[1]);
+                        response = responseHandler.ReceivedUpdate(receivedFields[1]);
                         break;
                     case "DELETE":
-                        response = ReceivedDelete(receivedFields[1]);
+                        response = responseHandler.ReceivedDelete(receivedFields[1]);
                         break;
                     default:
                         response = "400\n";
@@ -67,41 +60,6 @@ namespace DataServer.ServerClasses
             {
                 response = "400\n";
             }
-            return response;
-        }
-
-
-        private string ReceivedCreate(string query)
-        {
-            string response = "";
-            bool status = dataHandler.Create(query);
-            response = status.ToString();
-            return response;
-        }
-
-
-        private string ReceivedRead(string query)
-        {
-            string response = "";
-            response = dataHandler.Read(query);
-            return response;
-        }
-
-
-        private string ReceivedUpdate(string query)
-        {
-            string response = "";
-            bool status = dataHandler.Update(query);
-            response = status.ToString();
-            return response;
-        }
-
-
-        private string ReceivedDelete(string query)
-        {
-            string response = "";
-            bool status = dataHandler.Delete(query);
-            response = status.ToString();
             return response;
         }
     }

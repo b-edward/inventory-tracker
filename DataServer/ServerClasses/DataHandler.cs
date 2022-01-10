@@ -13,25 +13,23 @@ namespace DataServer.ServerClasses
 {
     public class DataHandler : IDataHandler
     {
-        private static IDatabase db;            // Represents the MySQL database
+        private static IDatabase databaseHandler;            // Represents the MySQL database
         private static ILogger serverLog;       // The logger
 
         public DataHandler()
         {
-            db = new DatabaseHandler();
+            databaseHandler = new DatabaseHandler();
             string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
             serverLog = new Logger(logFile);
         }
 
         public bool Create(string query)
         {
-            bool status = true;
-
-            if(query == null)
+            bool status = false;
+            if (query != null)
             {
-                status = false;
+                status = ExecuteCUD(query);
             }
-
             return status;
         }
 
@@ -42,13 +40,11 @@ namespace DataServer.ServerClasses
 
             if (query != null)
             {
-                db.Connect();
-                data = db.Select(query);
-                if(data != null)
-                {
-                    response = DataTableConverter.ConvertDataTableToString(data);
-                    response.Insert(0, "200\n");
-                }
+                databaseHandler.Connect();
+                data = databaseHandler.Select(query);
+                databaseHandler.Disconnect();
+
+                response = DataTableConverter.ConvertDataTableToString(data);
             }
             else
             {
@@ -60,25 +56,33 @@ namespace DataServer.ServerClasses
 
         public bool Update(string query)
         {
-            bool status = true;
-
-            if (query == null)
+            bool status = false;
+            if (query != null)
             {
-                status = false;
+                status = ExecuteCUD(query);
             }
-
             return status;
         }
 
         public bool Delete(string query)
         {
-            bool status = true;
-
-            if (query == null)
+            bool status = false;
+            if (query != null)
             {
-                status = false;
+                status = ExecuteCUD(query);
             }
+            return status;
+        }
 
+        private bool ExecuteCUD(string query)
+        {
+            bool status = false;
+            if (query != null)
+            {
+                databaseHandler.Connect();
+                status = databaseHandler.Execute(query);
+                databaseHandler.Disconnect();
+            }
             return status;
         }
     }
