@@ -33,7 +33,7 @@ namespace InventoryTracker
                 try
                 {
                     // Create a new TCP Client
-                    TcpClient client = new TcpClient("127.0.0.1", 13000);
+                    TcpClient client = new TcpClient("13.92.120.219", 13000);
 
                     // Translate the passed message into ASCII and store it as a Byte array.
                     byte[] data = System.Text.Encoding.ASCII.GetBytes(stringToSend);

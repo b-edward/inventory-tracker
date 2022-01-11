@@ -116,7 +116,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="View\startPage.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="startPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -134,16 +135,17 @@
     <Compile Include="Models\WarehouseInventory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\ServerHandler.cs" />
-    <Compile Include="View\startPage.aspx.cs">
+    <Compile Include="startPage.aspx.cs">
       <DependentUpon>startPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="View\startPage.aspx.designer.cs">
+    <Compile Include="startPage.aspx.designer.cs">
       <DependentUpon>startPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\Inventory-Tracker - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\InventoryTracker - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

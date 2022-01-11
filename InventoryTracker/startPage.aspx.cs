@@ -25,17 +25,19 @@ namespace InventoryTracker
             serverHandler = new ServerHandler();
         }
 
-
-        protected void btnSelect_Click(object sender, EventArgs e)
-        {
-            string serverResponse = serverHandler.SendToServer(txtOutput.Text);
-            txtOutput.Text = serverResponse;
-        }
-
         protected void btnClear_Click(object sender, EventArgs e)
         {
             txtOutput.Text = ""; 
         }
 
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            //string serverResponse = "";
+            for (int i = 0; i < 100; i++)
+            {
+                txtOutput.Text += $"{i + 1})\n" + serverHandler.SendToServer(txtInput.Text) + "\n\n";
+            }
+            //txtOutput.Text = serverResponse;
+        }
     }
 }

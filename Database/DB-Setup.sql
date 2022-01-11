@@ -1,8 +1,6 @@
 CREATE DATABASE IF NOT EXISTS inventory;
 USE inventory;
 
--- InventoryAuditor, I<3Shopify
-
 -- Reset tables
 
 DROP TABLE IF EXISTS `WarehouseItem`;
