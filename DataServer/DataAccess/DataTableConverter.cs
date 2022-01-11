@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * FILE             : DataTableConverter.cs
+ * PROJECT          : DataServer for Inventory Tracker
+ * PROGRAMMER       : Edward Boado
+ * FIRST VERSION    : 2022 - 01 - 10
+ * DESCRIPTION      : This file contains the DataTableConverter class, which will convert a DataTable 
+ *                    into a string. It is a static class so it does not get instantiated.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -10,12 +19,16 @@ using DataServer.Interfaces;
 
 namespace DataServer.DataAccess
 {
-    static class DataTableConverter
+    public static class DataTableConverter
     {
         private static ILogger serverLog;           // The logger
 
-
-        // Method to check the datatable for conversion
+        /*
+        *	NAME	:	ConvertDataTableToString
+        *	PURPOSE	:	This method will validate the table before the conversion
+        *	INPUTS	:	DataTable datatable - the table to be converted to string
+        *	RETURNS	:	string response - the table as a string, or error code if invalid
+        */
         public static string ConvertDataTableToString(DataTable datatable)
         {
             string response = "";
@@ -31,19 +44,25 @@ namespace DataServer.DataAccess
                 string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
                 serverLog = new Logger(logFile);
                 serverLog.Log("[ERROR] - Could not convert DataTable to string");
+                response = "500\n";
             }
             // Return the converted data table as a string
             return response;
         }
 
 
-        // Method to extract the data from the table and build a string from it
-        private static string ConvertDataTable(DataTable dt)
+        /*
+        *	NAME	:	ConvertDataTable
+        *	PURPOSE	:	This method will extract the data from the table and build a string from it
+        *	INPUTS	:	DataTable datatable - the table to be converted to string
+        *	RETURNS	:	string response - the table data as a string
+        */
+        private static string ConvertDataTable(DataTable datatable)
         {
             StringBuilder response = new StringBuilder();
 
             // Iterate through each row 
-            foreach (DataRow row in dt.Rows)
+            foreach (DataRow row in datatable.Rows)
             {
                 int columns = row.ItemArray.Length;
                 // Iterate through each column
@@ -55,7 +74,6 @@ namespace DataServer.DataAccess
                 response.Length--;      // Clear the last comma
                 response.Append("&");   // Add an '&' to separate each row
             }
-            response.Length--;          // Clear the last '&'
 
             // Return the string that was built
             return response.ToString();

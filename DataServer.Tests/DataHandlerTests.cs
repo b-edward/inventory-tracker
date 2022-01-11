@@ -9,45 +9,44 @@ namespace DataServer.Tests
     public class DataHandlerTests
     {
         [TestMethod]
-        public void TestCreateHappy()
-        {
-            IDataHandler dbAccess = new DataHandler();
-
-            string query = "CREATE TABLE IF NOT EXISTS `Products` (`productID` INT NOT NULL AUTO_INCREMENT," +
-                            "`productName` VARCHAR(255) NOT NULL, PRIMARY KEY(`productID`)) ENGINE = InnoDB " +
-                            "DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;";
-
-            Assert.IsTrue(dbAccess.Create(query));
-        }
-
-        [TestMethod]
         public void TestCreateQueryNull()
         {
-            IDataHandler dbAccess = new DataHandler();
-
+            IDataHandler dataHandler = new DataHandler();
             string query = null;
-
-            Assert.IsFalse(dbAccess.Create(query));
-        }
-
-        [TestMethod]
-        public void TestReadHappy()
-        {
-            IDataHandler dbAccess = new DataHandler();
-
-            string query = "SELECT * FROM `Products`;";
-
-            Assert.IsTrue(dbAccess.Create(query));
+            Assert.IsFalse(dataHandler.Create(query));
         }
 
         [TestMethod]
         public void TestReadQueryNull()
         {
-            IDataHandler dbAccess = new DataHandler();
-
+            IDataHandler dataHandler = new DataHandler();
             string query = null;
+            string response = dataHandler.Read(query);
+            Assert.IsNull(response);
+        }
 
-            Assert.IsFalse(dbAccess.Create(query));
+        [TestMethod]
+        public void TestUpdateQueryNull()
+        {
+            IDataHandler dataHandler = new DataHandler();
+            string query = null;
+            Assert.IsFalse(dataHandler.Update(query));
+        }
+
+        [TestMethod]
+        public void TestDeleteQueryNull()
+        {
+            IDataHandler dataHandler = new DataHandler();
+            string query = null;
+            Assert.IsFalse(dataHandler.Delete(query));
+        }
+
+        [TestMethod]
+        public void ExecuteCUDHappyQueryNull()
+        {
+            DataHandler dataHandler = new DataHandler();
+            bool status = dataHandler.ExecuteCUD(null);
+            Assert.IsFalse(status);
         }
     }
 }

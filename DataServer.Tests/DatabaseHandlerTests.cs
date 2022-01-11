@@ -12,7 +12,7 @@ namespace DataServer.Tests
         [TestMethod]
         public void TestExecuteNullQuery()
         {
-            IDatabase db = new DatabaseHandler();
+            IDatabaseHandler db = new DatabaseHandler();
             db.Connect();
             bool status = db.Execute(null);
             Assert.IsFalse(status);
@@ -21,7 +21,7 @@ namespace DataServer.Tests
         [TestMethod]
         public void TestSelectNullQuery()
         {
-            IDatabase db = new DatabaseHandler();
+            IDatabaseHandler db = new DatabaseHandler();
             db.Connect();
             DataTable returnedData = db.Select(null);
             Assert.IsNull(returnedData);

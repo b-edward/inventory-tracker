@@ -20,7 +20,8 @@ namespace DataServer
             string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
             ILogger serverLog = new Logger(logFile);
             serverLog.Log("[SERVER INITIALIZED] - Listening for clients");
-            Console.WriteLine($"[SERVER INITIALIZED] - Listening for clients\nSee {logFile} for timestamped logs.");
+            Console.WriteLine($"[SERVER INITIALIZED] - Listening for clients\n" +
+                $"[NOTE] - See {logFile} for detailed logs.");
 
             // Call method to start async listening
             Listen();

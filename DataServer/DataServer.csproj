@@ -89,7 +89,7 @@
     <Compile Include="DataAccess\DatabaseHandler.cs" />
     <Compile Include="DataAccess\DataTableConverter.cs" />
     <Compile Include="Interfaces\IDataHandler.cs" />
-    <Compile Include="Interfaces\IDatabase.cs" />
+    <Compile Include="Interfaces\IDatabaseHandler.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Interfaces\IRequestHandler.cs" />
     <Compile Include="Interfaces\IRequestParser.cs" />

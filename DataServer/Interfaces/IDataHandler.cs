@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * FILE             : IDataHandler.cs
+ * PROJECT          : DataServer for Inventory Tracker
+ * PROGRAMMER       : Edward Boado
+ * FIRST VERSION    : 2022 - 01 - 09
+ * DESCRIPTION      : This file contains an interface for making CRUD requests.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;

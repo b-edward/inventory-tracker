@@ -31,17 +31,5 @@ namespace DataServer.Tests
 
             Assert.IsTrue(response.Contains("500"));
         }
-
-        //[TestMethod]
-        public void TestSendResponseClientNull()
-        {
-            IRequestHandler handler = new RequestHandler();
-
-            NetworkStream stream = null;
-
-            bool status = handler.SendResponse(stream, "This is the response");
-
-            Assert.IsFalse(status);
-        }
     }
 }
