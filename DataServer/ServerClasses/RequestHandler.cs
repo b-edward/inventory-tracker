@@ -12,14 +12,16 @@ namespace DataServer.ServerClasses
 {
     public class RequestHandler : IRequestHandler
     {
-        private static ILogger serverLog;        // The logger
-        public static IRequestParser requestParser;
+        private static ILogger serverLog;               // The logger
+        public static IRequestParser requestParser;     // Interface to parse the request
+        public static ResponseHandler responseHandler;  // Class to send the response
 
         // Constructor
         public RequestHandler()
         {
-            // Instantiate parser
+            // Instantiate interfaces
             requestParser = new RequestParser();
+            responseHandler = new ResponseHandler();
 
             // Instantiate log file
             string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
@@ -69,7 +71,7 @@ namespace DataServer.ServerClasses
             }
 
             // Send response back
-            SendResponse(stream, packageToSend);
+            responseHandler.SendResponse(stream, packageToSend);
 
             // Disconnect from client and log
             client.Close();
@@ -119,34 +121,6 @@ namespace DataServer.ServerClasses
                 Console.WriteLine("[ERROR] Could not read data from client");
             }
             return request;
-        }
-
-
-        /*
-        *	NAME	:	SendResponse
-        *	PURPOSE	:	This method will send the response to the client.
-        *	INPUTS	:	Object clientObject - holds the TCPClient object that was connected to the client
-        *	RETURNS	:	bool status - true if successful 
-        */
-        public bool SendResponse(Object networkObject, string response)
-        {
-            NetworkStream stream = (NetworkStream)networkObject;
-            bool status = true;
-            try
-            {
-                // Convert string response to bytes and send to client
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(response);
-                stream.Write(msg, 0, msg.Length);
-                Console.WriteLine("[SENT] - Response sent to client");
-                serverLog.Log("[SENT] - Response sent to client: " + response);
-            }
-            catch
-            {
-                serverLog.Log("[ERROR] Could not write response to client");
-                Console.WriteLine("[ERROR] Could not write response to client");
-                status = false;
-            }
-            return status;
         }
     }
 }

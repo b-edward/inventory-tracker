@@ -12,5 +12,6 @@ namespace DataServer.Interfaces
         string ReceivedRead(string query);
         string ReceivedUpdate(string query);
         string ReceivedDelete(string query);
+        bool SendResponse(Object networkObject, string response);
     }
 }

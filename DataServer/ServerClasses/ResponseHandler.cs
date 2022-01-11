@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataServer.Log;
 using DataServer.Interfaces;
 using System.Configuration;
+using System.Net.Sockets;
 
 public delegate string CrudHandler(string s);
 
@@ -32,8 +33,17 @@ namespace DataServer.ServerClasses
         public static string ReceivedCreate(string query)
         {
             string response = "";
-            bool status = dataHandler.Create(query);
-            response = AddStatusCode(status, response);
+
+            if (query.Length > 0)
+            {
+                bool status = dataHandler.Create(query);
+                response = AddStatusCode(status, response);
+            }
+            else
+            {
+                response = "400\n";
+            }
+
             return response;
         }
 
@@ -41,18 +51,30 @@ namespace DataServer.ServerClasses
         public static string ReceivedRead(string query)
         {
             string response = "";
-            response = dataHandler.Read(query);
 
-            // Add the status code
-            if(response != null)
+            if (query.Length > 0)
             {
-                response = AddStatusCode(true, response);
+                response = dataHandler.Read(query);
+                bool readResult = false;
+                // Set the bool true if read was okay
+                if (response != null)
+                {
+                    if(response == "")
+                    {
+                        response = "404\n";
+                    }
+                    else
+                    {
+                        readResult = true;
+                        // Add the status code
+                        response = AddStatusCode(readResult, response);
+                    }
+                }
             }
             else
             {
-                response = AddStatusCode(false, response);
+                response = "400\n";
             }
-
             return response;
         }
 
@@ -60,8 +82,15 @@ namespace DataServer.ServerClasses
         public static string ReceivedUpdate(string query)
         {
             string response = "";
-            bool status = dataHandler.Update(query);
-            response =  AddStatusCode(status, response);
+            if (query.Length > 0)
+            {
+                bool status = dataHandler.Update(query);
+                response = AddStatusCode(status, response);
+            }
+            else
+            {
+                response = "400\n";
+            }
             return response;
         }
 
@@ -69,8 +98,15 @@ namespace DataServer.ServerClasses
         public static string ReceivedDelete(string query)
         {
             string response = "";
-            bool status = dataHandler.Delete(query);
-            response = AddStatusCode(status, response);
+            if (query.Length > 0)
+            {
+                bool status = dataHandler.Delete(query);
+                response = AddStatusCode(status, response);
+            }
+            else
+            {
+                response = "400\n";
+            }
             return response;
         }
 
@@ -86,6 +122,34 @@ namespace DataServer.ServerClasses
                 response = response.Insert(0, "500\n");
             }
             return response;
+        }
+
+
+        /*
+        *	NAME	:	SendResponse
+        *	PURPOSE	:	This method will send the response to the client.
+        *	INPUTS	:	Object clientObject - holds the TCPClient object that was connected to the client
+        *	RETURNS	:	bool status - true if successful 
+        */
+        public bool SendResponse(Object networkObject, string response)
+        {
+            NetworkStream stream = (NetworkStream)networkObject;
+            bool status = true;
+            try
+            {
+                // Convert string response to bytes and send to client
+                byte[] responseBytes = System.Text.Encoding.ASCII.GetBytes(response);
+                stream.Write(responseBytes, 0, responseBytes.Length);
+                Console.WriteLine("[SENT] - Response sent to client");
+                serverLog.Log("[SENT] - Response sent to client: " + response);
+            }
+            catch
+            {
+                serverLog.Log("[ERROR] Could not write response to client");
+                Console.WriteLine("[ERROR] Could not write response to client");
+                status = false;
+            }
+            return status;
         }
     }
 }

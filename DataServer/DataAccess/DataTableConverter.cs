@@ -10,10 +10,9 @@ using DataServer.Interfaces;
 
 namespace DataServer.DataAccess
 {
-    static class DataTableConverter
+    public static class DataTableConverter
     {
         private static ILogger serverLog;           // The logger
-
 
         // Method to check the datatable for conversion
         public static string ConvertDataTableToString(DataTable datatable)
@@ -31,6 +30,7 @@ namespace DataServer.DataAccess
                 string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
                 serverLog = new Logger(logFile);
                 serverLog.Log("[ERROR] - Could not convert DataTable to string");
+                response = "500\n";
             }
             // Return the converted data table as a string
             return response;
@@ -38,12 +38,12 @@ namespace DataServer.DataAccess
 
 
         // Method to extract the data from the table and build a string from it
-        private static string ConvertDataTable(DataTable dt)
+        private static string ConvertDataTable(DataTable datatable)
         {
             StringBuilder response = new StringBuilder();
 
             // Iterate through each row 
-            foreach (DataRow row in dt.Rows)
+            foreach (DataRow row in datatable.Rows)
             {
                 int columns = row.ItemArray.Length;
                 // Iterate through each column
@@ -55,7 +55,6 @@ namespace DataServer.DataAccess
                 response.Length--;      // Clear the last comma
                 response.Append("&");   // Add an '&' to separate each row
             }
-            response.Length--;          // Clear the last '&'
 
             // Return the string that was built
             return response.ToString();

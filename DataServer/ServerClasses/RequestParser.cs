@@ -32,24 +32,31 @@ namespace DataServer.ServerClasses
             if (received != null)
             {
                 // Parse the string to get the request command
-                string[] receivedFields = received.Split('\n');             // Zeroth index is the command
-                int lastIndex = receivedFields[0].Length - 1;   
-                string command = receivedFields[0].Substring(0, lastIndex);
+                string[] receivedFields = received.Split('\n');             
+                string command = receivedFields[0];         // Zeroth index is the command
+                string query = receivedFields[1];           // First index is the query
+
+                // Remove \r if present
+                if (command.Contains("\r"))
+                {
+                    int lastIndex = command.Length - 1;
+                    command = command.Substring(0, lastIndex);
+                }                 
 
                 // Call the method to handle the command
                 switch (command.ToUpper())                      
                 {
                     case "PUT":
-                        response = responseHandler.create(receivedFields[1]);      // First index is the query
+                        response = responseHandler.create(query);      
                         break;
                     case "GET":
-                        response = responseHandler.read(receivedFields[1]);
+                        response = responseHandler.read(query);
                         break;
                     case "POST":
-                        response = responseHandler.update(receivedFields[1]);
+                        response = responseHandler.update(query);
                         break;
                     case "DELETE":
-                        response = responseHandler.delete(receivedFields[1]);
+                        response = responseHandler.delete(query);
                         break;
                     default:
                         response = "400\n";

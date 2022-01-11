@@ -52,9 +52,11 @@
   <ItemGroup>
     <Compile Include="DataHandlerTests.cs" />
     <Compile Include="DatabaseHandlerTests.cs" />
+    <Compile Include="DataTableConverterTests.cs" />
     <Compile Include="LoggerTests.cs" />
     <Compile Include="RequestHandlerTests.cs" />
     <Compile Include="RequestParserTests.cs" />
+    <Compile Include="ResponseHandlerTests.cs" />
     <Compile Include="ServerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

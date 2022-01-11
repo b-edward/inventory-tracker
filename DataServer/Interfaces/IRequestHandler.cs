@@ -10,6 +10,5 @@ namespace DataServer.Interfaces
     {
         bool HandleRequest(Object clientObject);
         string GetRequest(Object networkObject);
-        bool SendResponse(Object networkObject, string response);
     }
 }

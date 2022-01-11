@@ -44,7 +44,10 @@ namespace DataServer.ServerClasses
                 data = databaseHandler.Select(query);
                 databaseHandler.Disconnect();
 
-                response = DataTableConverter.ConvertDataTableToString(data);
+                if(data != null)
+                {
+                    response = DataTableConverter.ConvertDataTableToString(data);
+                }
             }
             else
             {
@@ -74,7 +77,7 @@ namespace DataServer.ServerClasses
             return status;
         }
 
-        private bool ExecuteCUD(string query)
+        public bool ExecuteCUD(string query)
         {
             bool status = false;
             if (query != null)
