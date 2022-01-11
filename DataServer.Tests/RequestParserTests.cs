@@ -13,11 +13,11 @@ namespace DataServer.Tests
         {
             IRequestParser requestParser = new RequestParser();
 
-            string request = null;
+            string request = "BREW\nEsspresso";
 
             string response = requestParser.ParseReceived(request);
 
-            Assert.IsTrue(response.Contains("400"));
+            Assert.IsTrue(response.Contains("405"));
         }
 }
 }

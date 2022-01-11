@@ -1,4 +1,13 @@
-﻿using DataServer.Interfaces;
+﻿/*
+ * FILE             : RequestParser.cs
+ * PROJECT          : DataServer for Inventory Tracker
+ * PROGRAMMER       : Edward Boado
+ * FIRST VERSION    : 2022 - 01 - 07
+ * DESCRIPTION      : This file contains the RequestParser class, which will parse client requests,
+ *                    to determine which CRUD method to call.
+ */
+
+using DataServer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,60 +21,60 @@ namespace DataServer.ServerClasses
     {
         ResponseHandler responseHandler;
 
-        // Constructor
+        /*
+        *	NAME	:	RequestParser -- Constructor
+        *	PURPOSE	:	This method will override the default constructor and set data member values.
+        *	INPUTS	:	None
+        *	RETURNS	:	None
+        */
         public RequestParser()
         {
             responseHandler = new ResponseHandler();
         }
+
 
         /*
         *	NAME	:	ParseReceived
         *	PURPOSE	:	This method will take the received string, check what action needs to be taken, 
         *	            and call method to handle it.
         *	INPUTS	:	string received - the string from the client
-        *	RETURNS	:	string  responseToSend.ToString() - the returned response from the method that is called
+        *	RETURNS	:	string  response - the returned response from the method that is called
         */
         public string ParseReceived(string received)
         {
             string response = "";
 
-            if (received != null)
-            {
-                // Parse the string to get the request command
-                string[] receivedFields = received.Split('\n');             
-                string command = receivedFields[0];         // Zeroth index is the command
-                string query = receivedFields[1];           // First index is the query
+            // Parse the string to get the request command
+            string[] receivedFields = received.Split('\n');             
+            string command = receivedFields[0];         // Zeroth index is the command
+            string query = receivedFields[1];           // First index is the query
 
-                // Remove \r if present
-                if (command.Contains("\r"))
-                {
-                    int lastIndex = command.Length - 1;
-                    command = command.Substring(0, lastIndex);
-                }                 
-
-                // Call the method to handle the command
-                switch (command.ToUpper())                      
-                {
-                    case "PUT":
-                        response = responseHandler.create(query);      
-                        break;
-                    case "GET":
-                        response = responseHandler.read(query);
-                        break;
-                    case "POST":
-                        response = responseHandler.update(query);
-                        break;
-                    case "DELETE":
-                        response = responseHandler.delete(query);
-                        break;
-                    default:
-                        response = "400\n";
-                        break;
-                }
-            }
-            else
+            // Remove \r if present
+            if (command.Contains("\r"))
             {
-                response = "400\n";
+                int lastIndex = command.Length - 1;
+                command = command.Substring(0, lastIndex);
+            }                 
+
+            // Call the method to handle the command
+            switch (command.ToUpper())                      
+            {
+                case "PUT":
+                    response = responseHandler.create(query);      
+                    break;
+                case "GET":
+                    response = responseHandler.read(query);
+                    break;
+                case "POST":
+                    response = responseHandler.update(query);
+                    break;
+                case "DELETE":
+                    response = responseHandler.delete(query);
+                    break;
+                default:
+                    // Set Method Not Allowed return code
+                    response = "405\n";
+                    break;
             }
             return response;
         }

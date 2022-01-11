@@ -1,6 +1,6 @@
 ﻿/*
  * FILE             : DatabaseHandler.cs
- * PROJECT          : Quiz_Server - Demo Day
+ * PROJECT          : DataServer for Inventory Tracker
  * PROGRAMMER       : Edward Boado
  * FIRST VERSION    : 2021 - 12 - 08
  * DESCRIPTION      : This file contains the DatabaseHandler class, which will connect to a MySQL database server. It will
@@ -25,15 +25,29 @@ namespace DataServer.DataAccess
         private MySqlConnection connection;     // The connection
         private static ILogger serverLog;       // The logger
 
-        // constructor
+        /*
+        *	NAME	:	DatabaseHandler -- Constructor
+        *	PURPOSE	:	This method will override the default constructor and set data member values.
+        *	INPUTS	:	None
+        *	RETURNS	:	None
+        */
         public DatabaseHandler()
         {
+            // Set initial values
             connection = null;
             string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
+            // Instantiate an object for logging
             serverLog = new Logger(logFile);
         }
 
-        // login method
+
+        /*
+        *	NAME	:	Connect
+        *	PURPOSE	:	This method will get server settings from a config file and use them to 
+        *	            connect to a MySQL database.
+        *	INPUTS	:	None
+        *	RETURNS	:	bool connected - true if the connection was successfully opened
+        */
         public bool Connect()
         {
             bool connected = false;
@@ -44,11 +58,11 @@ namespace DataServer.DataAccess
             string username = ConfigurationManager.AppSettings.Get("user");
             string password = ConfigurationManager.AppSettings.Get("password");
 
-            // create connection string and connection
+            // Create connection string and connection
             string connectionString = "SERVER=" + ip + ";DATABASE=" + database + ";UID=" + username + ";PASSWORD=" + password + ";";
             connection = new MySqlConnection(connectionString);
 
-            // open connection using login info
+            // Open connection using login info
             try
             {
                 connection.Open();
@@ -63,11 +77,17 @@ namespace DataServer.DataAccess
         }
 
 
-        // method to disconnect
+        /*
+        *	NAME	:	Disconnect
+        *	PURPOSE	:	This method will close the connection to the database
+        *	INPUTS	:	None
+        *	RETURNS	:	bool closed - true if the connection was successfully closed
+        */
         public bool Disconnect()
         {
             bool closed = false;       
 
+            // Close the connection
             try
             {
                 connection.Close();
@@ -82,14 +102,22 @@ namespace DataServer.DataAccess
             return closed;
         }
 
-        // method for executing Create, Update, Delete commands
+
+        /*
+        *	NAME	:	Execute
+        *	PURPOSE	:	This method will execute MySQL queries to create, update and delete from a table
+        *	INPUTS	:	string sqlCommand - the query to execute
+        *	RETURNS	:	bool executed - true if the query was successfully executed
+        */
         public bool Execute(string sqlCommand)
         {
             bool executed = false;
 
+            // Run the query on the connected database
             MySqlCommand command = new MySqlCommand(sqlCommand, connection);
             try
             {
+                // Validate that the command was executed
                 if(command.ExecuteNonQuery() > 0)
                 {
                     executed = true;
@@ -102,7 +130,13 @@ namespace DataServer.DataAccess
             return executed;
         }
 
-        // Method for Read queries
+
+        /*
+        *	NAME	:	Select
+        *	PURPOSE	:	This method will execute MySQL queries to read from a table
+        *	INPUTS	:	string selectQuery - the query to execute
+        *	RETURNS	:	DataTable selectedData - a table with the data returned by the database
+        */
         public DataTable Select(string selectQuery)
         {
             DataTable selectedData = null;

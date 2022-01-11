@@ -1,11 +1,11 @@
 ﻿/*
  * FILE            : Server.cs
- * PROJECT         : Shopify Backend Developer Intern Challenge 2022
+ * PROJECT         : DataServer for Inventory Tracker
  * PROGRAMMER      : Edward Boado
  * FIRST VERSION   : 2021 - 12 - 04
- * DESCRIPTION     : This file contains the Server class, which will handle database access by listening and connecting with 
- *                   clients via TCP socket. When a client connects and sends a SQL query, the Server will parse the received 
- *                   string, call DatabaseHandler methods to run the query, then build and return the response before disconnecting.
+ * DESCRIPTION     : This file contains the multi-threaded, singleton Server class, which will handle database access by 
+ *                   listening and connecting with clients via TCP socket. When a client connects, the Server will
+ *                   create a task thread to handle the request in parallel, then return to listening.
  */
 
 
@@ -30,10 +30,16 @@ namespace DataServer.ServerClasses
         private static readonly object lockServer = new object();       // Lock object to make critical code thread safe
         private static Server dataServer = null;                        // A private instance of the server
 
-        private static ILogger serverLog;        // The logger
-        private static RequestHandler requestHandler;
+        private static ILogger serverLog;               // The logger
+        private static RequestHandler requestHandler;   // Request handling
 
-        // Private constructor
+
+        /*
+        *	NAME	:	Server -- Constructor
+        *	PURPOSE	:	This private constructor will instantiate data members.
+        *	INPUTS	:	None
+        *	RETURNS	:	None
+        */
         private Server()
         {
             // Instantiate request handler
@@ -45,15 +51,26 @@ namespace DataServer.ServerClasses
         }
 
         // Method to create/return an instance, and only allow one instance
+
+
+        /*
+        *	NAME	:	GetServerInstance
+        *	PURPOSE	:	This method return the single instance of the server object, instantiating
+        *	            it once if it does not yet exist.
+        *	INPUTS	:	None
+        *	RETURNS	:	Server dataServer - the single instance of the server
+        */
         public static Server GetServerInstance
         {
             get
             {
-                // make thread safe
+                // Make thread safe to ensure only one created
                 lock (lockServer)
                 {
+                    // Check if a Server is instantiated yet
                     if (dataServer == null)
                     {
+                        // Instantiate a Server
                         dataServer = new Server();
                     }
                     return dataServer;
@@ -79,7 +96,7 @@ namespace DataServer.ServerClasses
         /*
         *	NAME	:	Listen
         *	PURPOSE	:	This method will listen for a client request, connect with the client,
-        *	            and use multithreading to assign processing tasks in parallel.
+        *	            and use multithreading to assign request handling tasks in parallel.
         *	INPUTS	:	None
         *	RETURNS	:	void Task
         */
@@ -87,6 +104,7 @@ namespace DataServer.ServerClasses
         {
             TcpListener server = null;
 
+            // Get the server settings
             string readIP = ConfigurationManager.AppSettings.Get("ip");
             string readPort = ConfigurationManager.AppSettings.Get("port");
 
@@ -109,11 +127,10 @@ namespace DataServer.ServerClasses
 
             try
             {
-                // TcpListener server = new TcpListener(port);
+                // Create a TCP object
                 server = new TcpListener(localIP, port);
 
                 // Start listening for client requests.
-
                 server.Start();
 
                 // Enter the listening loop.
