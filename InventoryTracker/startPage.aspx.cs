@@ -33,7 +33,7 @@ namespace InventoryTracker
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {            
-            txtOutput.Text = serverHandler.SendToServer(txtInput.Text);
+            //txtOutput.Text = serverHandler.SendToServer(txtInput.Text);
         }
     }
 }

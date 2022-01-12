@@ -24,6 +24,33 @@ namespace InventoryTracker
         protected global::System.Web.UI.HtmlControls.HtmlForm mainUI;
 
         /// <summary>
+        /// btnProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnProduct;
+
+        /// <summary>
+        /// btnItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnItem;
+
+        /// <summary>
+        /// btnWarehouse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnWarehouse;
+
+        /// <summary>
         /// txtOutput control.
         /// </summary>
         /// <remarks>
@@ -31,15 +58,6 @@ namespace InventoryTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtOutput;
-
-        /// <summary>
-        /// txtInput control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInput;
 
         /// <summary>
         /// btnSubmit control.
