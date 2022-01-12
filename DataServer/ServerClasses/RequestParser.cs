@@ -43,11 +43,24 @@ namespace DataServer.ServerClasses
         public string ParseReceived(string received)
         {
             string response = "";
+            string command = "";
+            string query = "";
 
             // Parse the string to get the request command
-            string[] receivedFields = received.Split('\n');             
-            string command = receivedFields[0];         // Zeroth index is the command
-            string query = receivedFields[1];           // First index is the query
+            string[] receivedFields = received.Split('\n');
+
+            try
+            {
+                command = receivedFields[0];         // Zeroth index is the command
+                query = receivedFields[1];           // First index is the query
+            }
+            catch
+            {
+                // Set bad request return code
+                response = "400\n";
+                return response;
+            }
+
 
             // Remove \r if present
             if (command.Contains("\r"))

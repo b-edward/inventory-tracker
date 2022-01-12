@@ -13,14 +13,15 @@ DROP TABLE IF EXISTS `Product`;
 CREATE TABLE IF NOT EXISTS `Product` (
   `productID` INT NOT NULL AUTO_INCREMENT,
   `productName` VARCHAR(255) NOT NULL,
-  `isActive` TINYINT NOT NULL,
+  `isActive` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`productID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE IF NOT EXISTS `Item` (
   `itemID` INT NOT NULL AUTO_INCREMENT,
   `productID` INT NOT NULL,
-  `isAssigned` TINYINT NOT NULL,
+  `isAssigned` TINYINT NOT NULL DEFAULT 0,
+  `isSold` TINYINT NOT NULL DEFAULT 0, 
   PRIMARY KEY (`itemID`),
   FOREIGN KEY (`productID`) REFERENCES `Product` (`productID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -32,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `Warehouse` (
   `provinceOrState` VARCHAR(255) NOT NULL,
   `country` VARCHAR(255) NOT NULL,
   `postalCode` VARCHAR(255) NOT NULL,
-  `isActive` TINYINT NOT NULL,
+  `isActive` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`warehouseID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -54,7 +55,7 @@ INSERT INTO `Product` (`productName`, `isActive`) VALUES
 	('Latinum', 0),    
 	('Noh-Jay coffee mug', 1);
 
-INSERT INTO `Item` ( `productID`, `isAssigned`) VALUES
+INSERT INTO `Item` (`productID`, `isAssigned`) VALUES
 	(1, 1),    
 	(2, 1),    
 	(3, 1),    

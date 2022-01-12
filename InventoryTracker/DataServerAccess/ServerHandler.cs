@@ -7,10 +7,11 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Data;
 using System.Text;
+using InventoryTracker.Interfaces;
 
-namespace InventoryTracker
+namespace InventoryTracker.DataServerAccess
 {
-    public class ServerHandler : IDatabaseCommand
+    public class ServerHandler : IDataHandler
     {
         public ServerHandler()
         {
@@ -33,8 +34,8 @@ namespace InventoryTracker
                 try
                 {
                     // Create a new TCP Client
-                    TcpClient client = new TcpClient("13.92.120.219", 13000);
-
+                    TcpClient client = new TcpClient("127.0.0.1", 13000);    //13.92.120.219
+                    
                     // Translate the passed message into ASCII and store it as a Byte array.
                     byte[] data = System.Text.Encoding.ASCII.GetBytes(stringToSend);
 
@@ -75,20 +76,13 @@ namespace InventoryTracker
         }
 
         // Create a new record in the database
-        public string Create(string newRecord)
+        public bool Create(string newRecord)
         {
-            string serverResponse = "";
-            return serverResponse;
+            bool status = false;
+            return status;
         }
 
-        // Overloaded method to read all records
-        public string Read()
-        {
-            string serverResponse = "";
-            return serverResponse;
-        }
-
-        // Overloaded method to read a single record
+        // Read one or more records from the database
         public string Read(string id)
         {
             string serverResponse = "";
@@ -96,17 +90,18 @@ namespace InventoryTracker
         }
 
         // Modify an existing entry
-        public string Update(string id, string updates)
+        public bool Update(string updates)
         {
-            string serverResponse = "";
-            return serverResponse;
+            bool status = false;
+            return status;
         }
 
         // Delete an existing entry
-        public string Delete(string id)
+        public bool Delete(string id)
         {
-            string serverResponse = "";
-            return serverResponse;
+            bool status = false;
+            return status;
         }
+
     }
 }

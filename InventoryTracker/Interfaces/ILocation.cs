@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryTracker
+namespace InventoryTracker.Interfaces
 {
     // This interface implements a generic location, allowing extension of location
     // types in future (e.g. Warehouse, Store)

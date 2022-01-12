@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryTracker
+namespace InventoryTracker.Interfaces
 {
     // This interface will implement the standard inventory process, allowing extension for
     // different types of inventory in future (e.g. Company inventory, location inventory)

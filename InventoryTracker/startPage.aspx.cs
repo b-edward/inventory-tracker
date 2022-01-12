@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using InventoryTracker.DataServerAccess;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -31,13 +32,8 @@ namespace InventoryTracker
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            //string serverResponse = "";
-            for (int i = 0; i < 100; i++)
-            {
-                txtOutput.Text += $"{i + 1})\n" + serverHandler.SendToServer(txtInput.Text) + "\n\n";
-            }
-            //txtOutput.Text = serverResponse;
+        {            
+            txtOutput.Text = serverHandler.SendToServer(txtInput.Text);
         }
     }
 }

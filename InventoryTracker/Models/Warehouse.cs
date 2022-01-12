@@ -1,9 +1,10 @@
-﻿using System;
+﻿using InventoryTracker.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace InventoryTracker.Model
+namespace InventoryTracker.Models
 {
     public class Warehouse : ILocation
     {

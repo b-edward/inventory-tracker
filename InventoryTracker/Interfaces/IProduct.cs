@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InventoryTracker
+namespace InventoryTracker.Interfaces
 {
     // This interface will implement a generic product, allowing extension for different
     // types of products in future (e.g. furniture, vehicles, clothes, etc)

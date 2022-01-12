@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using InventoryTracker.Interfaces;
 
-namespace InventoryTracker.Model
+namespace InventoryTracker.Models
 {
     public class Product : IProduct
     {
