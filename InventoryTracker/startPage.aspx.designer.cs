@@ -51,6 +51,15 @@ namespace InventoryTracker
         protected global::System.Web.UI.WebControls.Button btnWarehouse;
 
         /// <summary>
+        /// btnWarehouseItems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnWarehouseItems;
+
+        /// <summary>
         /// txtOutput control.
         /// </summary>
         /// <remarks>

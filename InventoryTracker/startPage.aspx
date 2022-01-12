@@ -15,19 +15,14 @@
             <!-- Navigation buttons -->
             <div class="nav" style="display: flex; justify-content: center;">
                 <table >
-                    <tr height="15px">
-                        <th width="25%"></th>                   
-                        <th width="12.5%"></th>
-                        <th width="25%"></th>                        
-                        <th width="12.5%"></th>
-                        <th width="25%"></th>
-                    </tr>
                     <tr>
-                        <td><asp:Button ID="btnProduct" runat="server" Text="Products" Width="150px"/></td>
+                        <td><asp:Button ID="btnProduct" runat="server" Text="Products" Width="150px" OnClick="btnProduct_Click"/></td>
                         <td></td>
                         <td><asp:Button ID="btnItem" runat="server" Text="Items" Width="150px"/></td>
                         <td></td>
                         <td><asp:Button ID="btnWarehouse" runat="server" Text="Warehouses" Width="150px"/></td>
+                        <td></td>
+                        <td><asp:Button ID="btnWarehouseItems" runat="server" Text="Warehouse Items" Width="150px"/></td>
                     </tr> 
                     <tr height="15px">
                         <td></td>
@@ -36,7 +31,7 @@
             </div>
             <!-- Display output -->
             <div class="output">
-                <asp:TextBox ID="txtOutput" runat="server" Height="400px" TextMode="MultiLine" Width="900px" ReadOnly="True"></asp:TextBox>
+                <asp:TextBox ID="txtOutput" runat="server" Height="350px" TextMode="MultiLine" Width="900px" ReadOnly="True"></asp:TextBox>
             </div>
             <!-- Product Query table -->
             <div class="products">
