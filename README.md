@@ -5,12 +5,12 @@ The Inventory Tracker is a web application for a logistics company. It was devel
 The user is able to:
 * Add new products, items, and warehouses
 * View a list products, items, or warehouses
-** View a list of all inventory
+	* View a list of all inventory
 * Edit products, items, or warehouses
-** Assign or unassigned an item to a warehouse
-** Set an item as sold
+	* Assign or unassigned an item to a warehouse
+	* Set an item as sold
 * Delete products, items, or warehouses
-** Items, products and warehouses are not actually deleted, but set to inactive (or sold)
+	* Items, products and warehouses are not actually deleted, but set to inactive (or sold)
 
 Notes: 
 * Products represent a type of item, for example "Snowboard"
@@ -28,9 +28,10 @@ Requests must:
 * Start with a verb command followed by a new line character (\n)
 * Commands supported are PUT, GET, POST, and DELETE
 * Finally, a SQL query string corresponding to the command
-* For example: "GET\nSELECT * FROM 'Item';" will return all data from the Item table
+	* For example: "GET\nSELECT * FROM 'Item';" will return all data from the Item table
 
 Responses:
 * Start with an HTTP status code, followed by a new line character
 * If returning a read request, the data follows
 * Read data is formatted with a comma ',' separating each field, and an ampersand '&' separating each record/row
+	* For example: "200\n1,Surfboard,1" 
