@@ -81,6 +81,106 @@ namespace InventoryTracker
             gvWarehouse.DataBind();
         }
 
+        protected void btnView_Click(object sender, EventArgs e)
+        {
+            HideDisplay();
+
+            // Get the viewInventory div and display it
+            htmlControl = FindControl("viewInventory") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            HideDisplay();
+
+            // Get the navTables div and display it
+            DisplayNavTables();
+        }
+
+        protected void btnProduct_Click(object sender, EventArgs e)
+        {
+            HideDisplay();
+
+            // Get the editProduct div and display it
+            htmlControl = FindControl("editProduct") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+            // Get the submitButtons div and display it
+            DisplaySubmitButtons();
+            // Keep the navTables div displayed
+            DisplayNavTables();
+
+            // Read Product table and display it
+            htmlControl = FindControl("viewProducts") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+        }
+
+        protected void btnItem_Click(object sender, EventArgs e)
+        {
+            HideDisplay();
+
+            // Get the editItem div and display it
+            htmlControl = FindControl("editItem") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+            // Get the submitButtons div and display it
+            DisplaySubmitButtons();
+            // Keep the navTables div displayed
+            DisplayNavTables();
+
+            // Read Item table and display it
+            htmlControl = FindControl("viewItems") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+        }
+
+        protected void btnWarehouse_Click(object sender, EventArgs e)
+        {
+            HideDisplay();
+
+            // Get the editWarehouse div and display it
+            htmlControl = FindControl("editWarehouse") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+            // Get the submitButtons div and display it
+            DisplaySubmitButtons();
+            // Keep the navTables div displayed
+            DisplayNavTables();
+
+            // Read Warehouse table and display it
+            htmlControl = FindControl("viewWarehouses") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+        }
+
+
+        protected void btnAddNew_Click(object sender, EventArgs e)
+        {
+            // Get the form input data
+
+            // Send create request to server
+        }
+
+        protected void btnUpdateProduct_Click(object sender, EventArgs e)
+        {
+            // Get the form input data
+
+            // Send update/delete request to server
+        }
+
+
+        // Display navTables
+        protected void DisplayNavTables()
+        {
+            // Get the navTables div and display it
+            htmlControl = FindControl("navTables") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+        }
+
+        // Display submitButtons
+        protected void DisplaySubmitButtons()
+        {
+            // Get the submitButtons div and display it
+            htmlControl = FindControl("submitButtons") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+        }
+
         // Hide all tables
         protected void HideDisplay()
         {
@@ -111,92 +211,6 @@ namespace InventoryTracker
             // Get the viewWarehouses div and hide it
             htmlControl = FindControl("viewWarehouses") as HtmlControl;
             htmlControl.Attributes["style"] = "display:none;";
-        }
-
-
-        protected void btnView_Click(object sender, EventArgs e)
-        {
-            HideDisplay();
-
-            // Get the viewInventory div and display it
-            htmlControl = FindControl("viewInventory") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-        }
-
-        protected void btnEdit_Click(object sender, EventArgs e)
-        {
-            HideDisplay();
-
-            // Get the navTables div and display it
-            htmlControl = FindControl("navTables") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-        }
-
-        protected void btnProduct_Click(object sender, EventArgs e)
-        {
-            HideDisplay();
-
-            // Get the editProduct div and display it
-            htmlControl = FindControl("editProduct") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-            // Get the submitButtons div and display it
-            htmlControl = FindControl("submitButtons") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-            // Keep the navTables div displayed
-            htmlControl = FindControl("navTables") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-
-            // Read Product table and display it
-            htmlControl = FindControl("viewProducts") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-        }
-
-        protected void btnItem_Click(object sender, EventArgs e)
-        {
-            HideDisplay();
-
-            // Get the editItem div and display it
-            htmlControl = FindControl("editItem") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-            // Get the submitButtons div and display it
-            htmlControl = FindControl("submitButtons") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-            // Keep the navTables div displayed
-            htmlControl = FindControl("navTables") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-
-            // Read Item table and display it
-            htmlControl = FindControl("viewItems") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-        }
-
-        protected void btnWarehouse_Click(object sender, EventArgs e)
-        {
-            HideDisplay();
-
-            // Get the editWarehouse div and display it
-            htmlControl = FindControl("editWarehouse") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-            // Get the submitButtons div and display it
-            htmlControl = FindControl("submitButtons") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-            // Keep the navTables div displayed
-            htmlControl = FindControl("navTables") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-
-            // Read Warehouse table and display it
-            htmlControl = FindControl("viewWarehouses") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-        }
-
-        protected void btnAddNew_Click(object sender, EventArgs e)
-        {
-            // Send create request to server
-        }
-
-        protected void btnUpdateProduct_Click(object sender, EventArgs e)
-        {
-            // Send update/delete request to server
         }
     }
 }
