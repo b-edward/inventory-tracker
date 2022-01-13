@@ -60,13 +60,13 @@ namespace InventoryTracker
         protected global::System.Web.UI.WebControls.Button btnWarehouseItems;
 
         /// <summary>
-        /// txtOutput control.
+        /// gvInventory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOutput;
+        protected global::System.Web.UI.WebControls.GridView gvInventory;
 
         /// <summary>
         /// txtProductID control.
@@ -150,22 +150,31 @@ namespace InventoryTracker
         protected global::System.Web.UI.WebControls.TextBox txtProductID2;
 
         /// <summary>
-        /// RadioButton1 control.
+        /// radioSold control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton1;
+        protected global::System.Web.UI.WebControls.RadioButton radioSold;
 
         /// <summary>
-        /// RadioButton2 control.
+        /// radioNotSold control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioButton2;
+        protected global::System.Web.UI.WebControls.RadioButton radioNotSold;
+
+        /// <summary>
+        /// DropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
 
         /// <summary>
         /// btnCreateItem control.

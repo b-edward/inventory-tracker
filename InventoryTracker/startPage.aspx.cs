@@ -24,11 +24,29 @@ namespace InventoryTracker
         protected void InitializeTracker()
         {
             serverHandler = new ServerHandler();
+
+            DataTable inventoryTable = new DataTable();
+            inventoryTable.Columns.AddRange(new DataColumn[4] { 
+                    new DataColumn("ItemId", typeof(int)),
+                    new DataColumn("ProductId", typeof(int)),
+                    new DataColumn("ProductName", typeof(string)),
+                    new DataColumn("WarehouseLocation",typeof(string)) });
+            inventoryTable.Rows.Add(1, 1, "Rice", "Waterloo");
+            inventoryTable.Rows.Add(2, 4, "Tea", "Tokyo");
+            inventoryTable.Rows.Add(3, 3, "Noodles", "Toronto");
+            inventoryTable.Rows.Add(2, 1, "Rice", "Hamilton");
+            gvInventory.DataSource = inventoryTable;
+            gvInventory.DataBind();
         }
 
         protected void btnProduct_Click(object sender, EventArgs e)
         {
-            txtOutput.Text = serverHandler.SendToServer("GET\nSELECT * FROM `Product`;");
+            //txtOutput.Text = serverHandler.SendToServer("GET\nSELECT * FROM `Product`;");
+        }
+
+        protected void GetWarehouses(object sender, EventArgs e)
+        {
+            
         }
     }
 }

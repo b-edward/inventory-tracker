@@ -5,6 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>EB Logistics Corp.</title>
+    <style type="text/css">
+        .auto-style1 {
+            height: 29px;
+        }
+    </style>
 </head>
 <body style="background:#95BF47; padding:1%;">
     <form id="mainUI" runat="server" style="display: flex; justify-content: center; background:white;">
@@ -31,8 +36,20 @@
             </div>
             <!-- Display output -->
             <div class="output">
-                <asp:TextBox ID="txtOutput" runat="server" Height="350px" TextMode="MultiLine" Width="900px" ReadOnly="True"></asp:TextBox>
+<%--                <asp:TextBox ID="txtOutput" runat="server" Height="350px" TextMode="MultiLine" Width="900px" ReadOnly="True"></asp:TextBox>--%>
+
+                <div>   
+                     <asp:GridView ID="gvInventory" runat="server" AutoGenerateColumns="false" >    
+                         <Columns>    
+                             <asp:BoundField DataField="ItemId" HeaderText="Item ID" ItemStyle-Width="150" />   
+                             <asp:BoundField DataField="ProductId" HeaderText="Product ID" ItemStyle-Width="150" />     
+                             <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="150" />    
+                             <asp:BoundField DataField="WarehouseLocation" HeaderText="WarehouseLocation" ItemStyle-Width="150" />    
+                         </Columns>    
+                     </asp:GridView>    
+                </div>  
             </div>
+
             <!-- Product Query table -->
             <div class="products">
                 <table>
@@ -51,10 +68,10 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td>Product Name</td>
-                            <td><asp:TextBox id="txtProductName" runat="server" ToolTip="Enter the product name" width="100%"/></td>
-                            <td></td>
+                            <td class="auto-style1"></td>
+                            <td class="auto-style1">Product Name</td>
+                            <td class="auto-style1"><asp:TextBox id="txtProductName" runat="server" ToolTip="Enter the product name" width="100%"/></td>
+                            <td class="auto-style1"></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -96,24 +113,38 @@
                         <th width="20%"></th>
                         <th width="15%"></th>
                     </tr>
-                        <tr>          
-                            <td></td> 
-                            <td>Item ID</td>
-                            <td><asp:TextBox id="txtItemID" runat="server" ToolTip="Enter the item ID" width="100%"/></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Product ID</td>
-                            <td><asp:TextBox id="txtProductID2" runat="server" ToolTip="Enter the product ID" width="100%"/></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Is Assigned?</td>
-                            <td><asp:RadioButton ID="RadioButton1" runat="server" Text="Active" GroupName="IsActive" /></td>
-                            <td><asp:RadioButton ID="RadioButton2" runat="server" Text="Inactive" GroupName="IsActive" /></td>
-                        </tr>
+                    <tr>          
+                        <td></td> 
+                        <td>Item ID</td>
+                        <td><asp:TextBox id="txtItemID" runat="server" ToolTip="Enter the item ID" width="100%"/></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Product ID</td>
+                        <td><asp:TextBox id="txtProductID2" runat="server" ToolTip="Enter the product ID" width="100%"/></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <!-- If item sold, hide warehouses, delete warehouseItem -->
+                        <td>Is Sold?</td>
+                        <td><asp:RadioButton ID="radioSold" runat="server" Text="Sold" GroupName="IsActive" /></td>
+                        <td><asp:RadioButton ID="radioNotSold" runat="server" Text="In Stock" GroupName="IsActive" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Assigned to warehouse:</td>
+                        <td>                                                 
+                            <!-- If warehouse selected, changes Item isAssigned to true, creates warehouseItem -->
+                            <asp:DropDownList ID="DropDownList1" runat="server">                            
+                             <asp:listitem text="None" value="0"></asp:listitem>                     
+                             <asp:listitem text="Waterloo" value="1"></asp:listitem>
+                             <asp:listitem text="Toronto" value="2"></asp:listitem>
+                             <asp:listitem text="Ottawa" value="3"></asp:listitem>
+                        </asp:DropDownList></td>
+                        <td></td>
+                    </tr>
                 </table>
                 <!-- Buttons for submit/clear -->
                 <div class="buttons" style="display: flex; justify-content: center; margin:20px;">                                    

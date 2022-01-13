@@ -3,21 +3,20 @@
 The Inventory Tracker is a web application for a logistics company. It was developed in ASP.NET and is hosted on Microsoft Azure App Service. It presents the user interface, allowing basic CRUD Functionality. The application will validate user input, create SQL queries, send the query request to the DataServer via TCP/IP, parse the response and display it.
 
 The user is able to:
-* Create products, items, and warehouses
-* Edit them
-* Delete them [see note]
-* View a list of one or more items, products, or warehouses
-* Assign an item to a warehouse
-* View a list of items in a warehouse
-* View a list of warehouses with a product in stock
+* Add new products, items, and warehouses
+* View a list products, items, or warehouses
+** View a list of all inventory
+* Edit products, items, or warehouses
+** Assign or unassigned an item to a warehouse
+** Set an item as sold
+* Delete products, items, or warehouses
+** Items, products and warehouses are not actually deleted, but set to inactive (or sold)
 
 Notes: 
 * Products represent a type of item, for example "Snowboard"
 * Items represent individual units of a product, for example "Item #2006", which happens to be a Snowboard
 * An item can be unnassigned, or assigned to only one warehouse at a time
-* Items, products and warehouses are not actually deleted, but set to inactive (or sold)
-* Only warehouse items are deleted
-
+* Sold items are no longer shown in the inventory
 
 ## Data Server Web Service
 
