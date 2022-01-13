@@ -37,6 +37,17 @@ namespace InventoryTracker
             inventoryTable.Rows.Add(2, 1, "Rice", "Hamilton");
             gvInventory.DataSource = inventoryTable;
             gvInventory.DataBind();
+
+            DataTable productTable = new DataTable();
+            productTable.Columns.AddRange(new DataColumn[3] {
+                    new DataColumn("ProductId", typeof(int)),
+                    new DataColumn("ProductName", typeof(string)),
+                    new DataColumn("IsActive",typeof(string)) });
+            productTable.Rows.Add(1, "Rice", "Active");
+            productTable.Rows.Add(2, "Tea", "Active");
+            productTable.Rows.Add(3, "Noodles", "Not Active");
+            gvProduct.DataSource = productTable;
+            gvProduct.DataBind();
         }
 
         protected void btnProduct_Click(object sender, EventArgs e)

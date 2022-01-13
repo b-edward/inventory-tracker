@@ -17,8 +17,23 @@
             <div class="nav" style="display: flex; justify-content: center;">
             <h1 style="color:#5E8E3E; font-weight:bolder;">Inventory Tracking Application</h1>
             </div>
-            <!-- Navigation buttons -->
-            <div class="nav" style="display: flex; justify-content: center;">
+            <!-- Main Navigation -->
+            <div class="nav-main" style="display: flex; justify-content: center; margin: 20px;">
+                <table >
+                    <tr>
+                        <td></td>
+                        <td><asp:Button ID="btnView" runat="server" Text="View Inventory" Width="150px"/></td>
+                        <td></td>
+                        <td><asp:Button ID="btnEdit" runat="server" Text="Edit Inventory" Width="150px"/></td>
+                        <td></td>
+                    </tr> 
+                    <tr>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <!-- Table Navigation -->
+            <div class="nav-tables" style="display: flex; justify-content: center; margin: 20px;">
                 <table >
                     <tr>
                         <td><asp:Button ID="btnProduct" runat="server" Text="Products" Width="150px" OnClick="btnProduct_Click"/></td>
@@ -26,19 +41,59 @@
                         <td><asp:Button ID="btnItem" runat="server" Text="Items" Width="150px"/></td>
                         <td></td>
                         <td><asp:Button ID="btnWarehouse" runat="server" Text="Warehouses" Width="150px"/></td>
-                        <td></td>
-                        <td><asp:Button ID="btnWarehouseItems" runat="server" Text="Warehouse Items" Width="150px"/></td>
                     </tr> 
-                    <tr height="15px">
+                    <tr>
                         <td></td>
                     </tr>
                 </table>
             </div>
-            <!-- Display output -->
-            <div class="output">
-<%--                <asp:TextBox ID="txtOutput" runat="server" Height="350px" TextMode="MultiLine" Width="900px" ReadOnly="True"></asp:TextBox>--%>
 
-                <div>   
+            <!-- Edit Product Form -->
+            <div class="products">
+                <div style="display: flex; justify-content: center; margin: 20px;">
+                    <table>
+                        <tr>           
+                            <td>Product ID</td>
+                            <td><asp:TextBox id="txtProductID" runat="server" ToolTip="Enter the product ID" width="100%"/></td>
+                        </tr>
+                        <tr>
+                            <td>Product Name</td>
+                            <td><asp:TextBox id="txtProductName" runat="server" ToolTip="Enter the product name" width="100%"/></td>
+                        </tr>
+                        <tr>
+                            <td>Product Status</td>
+                            <td>                            
+                                <asp:DropDownList ID="ddlProductActive" runat="server">                     
+                                    <asp:listitem text=""></asp:listitem>                      
+                                    <asp:listitem text="Discontinued" value="0"></asp:listitem>                     
+                                    <asp:listitem text="Active" value="1"></asp:listitem>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- Buttons for submit/clear -->
+                <div class="buttons-product" style="display: flex; justify-content: center; margin:20px;">                                    
+                    <table>
+                        <tr>
+                            <td><asp:Button ID="btnAddNew" runat="server" Text="Add New" Width="150px"/></td>
+                            <td><asp:Button ID="btnUpdateProduct" runat="server" Text="Update" Width="150px"/></td>
+                        </tr>    
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Edit Item Form -->
+
+            
+            <!-- Edit Warehouse Form -->
+
+
+
+            <!-- Display Output -->
+            <div class="output">
+                <!-- View Inventory -->
+                <div style="display: flex; justify-content: center; margin:30px;">   
                      <asp:GridView ID="gvInventory" runat="server" AutoGenerateColumns="false" >    
                          <Columns>    
                              <asp:BoundField DataField="ItemId" HeaderText="Item ID" ItemStyle-Width="150" />   
@@ -48,60 +103,50 @@
                          </Columns>    
                      </asp:GridView>    
                 </div>  
+                <!-- View Products -->
+                <div style="display: flex; justify-content: center; margin:30px;">   
+                     <asp:GridView ID="gvProduct" runat="server" AutoGenerateColumns="false" >    
+                         <Columns>     
+                             <asp:BoundField DataField="ProductId" HeaderText="Product ID" ItemStyle-Width="150" />     
+                             <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="150" />    
+                             <asp:BoundField DataField="IsActive" HeaderText="Active" ItemStyle-Width="150" />    
+                         </Columns>    
+                     </asp:GridView>    
+                </div>  
+                <!-- View Inventory -->
+                <div style="display: flex; justify-content: center; margin:30px;">   
+                     <asp:GridView ID="gvItem" runat="server" AutoGenerateColumns="false" >    
+                         <Columns>    
+                             <asp:BoundField DataField="ItemId" HeaderText="Item ID" ItemStyle-Width="150" />   
+                             <asp:BoundField DataField="ProductId" HeaderText="Product ID" ItemStyle-Width="150" />     
+                             <asp:BoundField DataField="IsSold" HeaderText="Availability" ItemStyle-Width="150" />    
+                             <asp:BoundField DataField="WarehouseLocation" HeaderText="Warehouse Location" ItemStyle-Width="150" />    
+                         </Columns>    
+                     </asp:GridView>    
+                </div>  
+                <!-- View Warehouse -->
+                <div style="display: flex; justify-content: center; margin:30px;">   
+                     <asp:GridView ID="gvWarehouse" runat="server" AutoGenerateColumns="false" >    
+                         <Columns>    
+                             <asp:BoundField DataField="WarehouseId" HeaderText="Item ID" ItemStyle-Width="150" />   
+                             <asp:BoundField DataField="StreetAndNo" HeaderText="Street and Number" ItemStyle-Width="150" />     
+                             <asp:BoundField DataField="City" HeaderText="City" ItemStyle-Width="150" />    
+                             <asp:BoundField DataField="ProvinceOrState" HeaderText="Province or State" ItemStyle-Width="150" />    
+                             <asp:BoundField DataField="Country" HeaderText="Country" ItemStyle-Width="150" />    
+                             <asp:BoundField DataField="PostalCode" HeaderText="Postal Code" ItemStyle-Width="150" />    
+                             <asp:BoundField DataField="IsActive" HeaderText="Actively Operating" ItemStyle-Width="150" />    
+                         </Columns>    
+                     </asp:GridView>    
+                </div>  
             </div>
 
-            <!-- Product Query table -->
-            <div class="products">
-                <table>
-                    <!-- Set up columns -->
-                    <tr>
-                        <th width="25%"></th>                   
-                        <th width="20%"></th>
-                        <th width="20%"></th>                        
-                        <th width="20%"></th>
-                        <th width="15%"></th>
-                    </tr>
-                        <tr>           
-                            <td></td>
-                            <td>Product ID</td>
-                            <td><asp:TextBox id="txtProductID" runat="server" ToolTip="Enter the product ID" width="100%"/></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="auto-style1"></td>
-                            <td class="auto-style1">Product Name</td>
-                            <td class="auto-style1"><asp:TextBox id="txtProductName" runat="server" ToolTip="Enter the product name" width="100%"/></td>
-                            <td class="auto-style1"></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Is Active?</td>
-                            <td><asp:RadioButton ID="radActive" runat="server" Text="Active" GroupName="IsActive" /></td>
-                            <td><asp:RadioButton ID="radInactive" runat="server" Text="Inactive" GroupName="IsActive" /></td>
-                            <td></td>
-                        </tr>
-                </table>
-                <!-- Buttons for submit/clear -->
-                <div class="buttons" style="display: flex; justify-content: center; margin:20px;">                                    
-                    <table>
-                        <!-- Set up columns -->
-                        <tr>
-                            <th width="25%"></th>                   
-                            <th width="20%"></th>
-                            <th width="20%"></th>                        
-                            <th width="20%"></th>
-                            <th width="15%"></th>
-                        </tr>
-                        <tr>
-                            <td><asp:Button ID="btnCreateProduct" runat="server" Text="CREATE" Width="150px"/></td>
-                            <td></td>
-                            <td><asp:Button ID="btnUpdateProduct" runat="server" Text="UPDATE" Width="150px"/></td>
-                            <td></td>
-                            <td><asp:Button ID="btnDeleteProduct" runat="server" Text="DELETE" Width="150px"/></td>
-                        </tr>    
-                    </table>
-                </div>
-            </div>     
+
+
+
+
+
+
+   
             <!-- Item Query table -->
             <div class="items">
                 <table>
@@ -142,7 +187,8 @@
                              <asp:listitem text="Waterloo" value="1"></asp:listitem>
                              <asp:listitem text="Toronto" value="2"></asp:listitem>
                              <asp:listitem text="Ottawa" value="3"></asp:listitem>
-                        </asp:DropDownList></td>
+                            </asp:DropDownList>
+                        </td>
                         <td></td>
                     </tr>
                 </table>
