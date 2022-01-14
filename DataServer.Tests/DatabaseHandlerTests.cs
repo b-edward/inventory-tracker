@@ -1,7 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using DataServer.DataAccess;
-using DataServer.Interfaces;
+﻿using DataServer.DataAccess;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Data;
 
 namespace DataServer.Tests

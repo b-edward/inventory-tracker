@@ -7,16 +7,13 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataServer.Interfaces
 {
     public interface IRequestHandler
     {
-        bool HandleRequest(Object clientObject);     
+        bool HandleRequest(Object clientObject);
+
         string GetRequest(Object networkObject);
     }
 }

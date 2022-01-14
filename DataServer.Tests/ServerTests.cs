@@ -1,6 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using DataServer.ServerClasses;
+﻿using DataServer.ServerClasses;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DataServer.Tests
 {

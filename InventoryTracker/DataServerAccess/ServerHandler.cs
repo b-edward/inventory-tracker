@@ -76,28 +76,28 @@ namespace InventoryTracker.DataServerAccess
         }
 
         // Create a new record in the database
-        public bool Create(string newRecord)
+        public bool Create(string query)
         {
             bool status = false;
             return status;
         }
 
         // Read one or more records from the database
-        public string Read(string id)
+        public string Read(string query)
         {
             string serverResponse = "";
             return serverResponse;
         }
 
         // Modify an existing entry
-        public bool Update(string updates)
+        public bool Update(string query)
         {
             bool status = false;
             return status;
         }
 
         // Delete an existing entry
-        public bool Delete(string id)
+        public bool Delete(string query)
         {
             bool status = false;
             return status;

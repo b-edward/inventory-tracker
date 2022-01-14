@@ -6,12 +6,6 @@
  * DESCRIPTION      : This file contains an interface for parsing a request.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace DataServer.Interfaces
 {
     public interface IRequestParser

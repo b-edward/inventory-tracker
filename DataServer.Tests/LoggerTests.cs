@@ -1,7 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using DataServer.Log;
-using DataServer.Interfaces;
+﻿using DataServer.Log;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DataServer.Tests
 {
@@ -28,7 +26,7 @@ namespace DataServer.Tests
         public void TestLogHappy()
         {
             string testFile = "TestLog.txt";
-            ILogger serverLog = new Logger(testFile);            
+            ILogger serverLog = new Logger(testFile);
             Assert.IsTrue(serverLog.Log("All good!"));
         }
 

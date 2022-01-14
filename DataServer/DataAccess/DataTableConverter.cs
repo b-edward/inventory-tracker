@@ -3,19 +3,14 @@
  * PROJECT          : DataServer for Inventory Tracker
  * PROGRAMMER       : Edward Boado
  * FIRST VERSION    : 2022 - 01 - 10
- * DESCRIPTION      : This file contains the DataTableConverter class, which will convert a DataTable 
+ * DESCRIPTION      : This file contains the DataTableConverter class, which will convert a DataTable
  *                    into a string. It is a static class so it does not get instantiated.
  */
 
-using System;
-using System.Collections.Generic;
+using DataServer.Log;
 using System.Configuration;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using DataServer.Log;
-using DataServer.Interfaces;
 
 namespace DataServer.DataAccess
 {
@@ -29,6 +24,7 @@ namespace DataServer.DataAccess
         *	INPUTS	:	DataTable datatable - the table to be converted to string
         *	RETURNS	:	string response - the table as a string, or error code if invalid
         */
+
         public static string ConvertDataTableToString(DataTable datatable)
         {
             string response = "";
@@ -50,18 +46,18 @@ namespace DataServer.DataAccess
             return response;
         }
 
-
         /*
         *	NAME	:	ConvertDataTable
         *	PURPOSE	:	This method will extract the data from the table and build a string from it
         *	INPUTS	:	DataTable datatable - the table to be converted to string
         *	RETURNS	:	string response - the table data as a string
         */
+
         private static string ConvertDataTable(DataTable datatable)
         {
             StringBuilder response = new StringBuilder();
 
-            // Iterate through each row 
+            // Iterate through each row
             foreach (DataRow row in datatable.Rows)
             {
                 int columns = row.ItemArray.Length;

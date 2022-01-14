@@ -3,19 +3,14 @@
  * PROJECT          : DataServer for Inventory Tracker
  * PROGRAMMER       : Edward Boado
  * FIRST VERSION    : 2022 - 01 - 09
- * DESCRIPTION      : This file contains the DataHandler class, which will handle the data requests from the 
+ * DESCRIPTION      : This file contains the DataHandler class, which will handle the data requests from the
  *                    server handlers to the database handler.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataServer.Interfaces;
 using DataServer.DataAccess;
+using DataServer.Interfaces;
 using DataServer.Log;
+using System.Configuration;
 using System.Data;
 
 namespace DataServer.ServerClasses
@@ -31,13 +26,13 @@ namespace DataServer.ServerClasses
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         public DataHandler()
         {
             databaseHandler = new DatabaseHandler();
             string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
             serverLog = new Logger(logFile);
         }
-
 
         /*
         *	NAME	:	Create
@@ -46,6 +41,7 @@ namespace DataServer.ServerClasses
         *	INPUTS	:	string query - the query that was parsed from the request
         *	RETURNS	:	bool status - true if the command was successfully executed
         */
+
         public bool Create(string query)
         {
             bool status = false;
@@ -58,7 +54,6 @@ namespace DataServer.ServerClasses
             return status;
         }
 
-
         /*
         *	NAME	:	Read
         *	PURPOSE	:	This method will take a query string and use the database handler
@@ -66,6 +61,7 @@ namespace DataServer.ServerClasses
         *	INPUTS	:	string query - the query that was parsed from the request
         *	RETURNS	:	string response - the data returned from the database
         */
+
         public string Read(string query)
         {
             DataTable data = new DataTable();
@@ -79,7 +75,7 @@ namespace DataServer.ServerClasses
                 databaseHandler.Disconnect();
 
                 // Validate returned table before sending for conversion
-                if(data != null)
+                if (data != null)
                 {
                     // Use the DataTableConverter to get the string
                     response = DataTableConverter.ConvertDataTableToString(data);
@@ -93,7 +89,6 @@ namespace DataServer.ServerClasses
             return response;
         }
 
-
         /*
         *	NAME	:	Update
         *	PURPOSE	:	This method will take a query string and forward to the database handler
@@ -101,6 +96,7 @@ namespace DataServer.ServerClasses
         *	INPUTS	:	string query - the query that was parsed from the request
         *	RETURNS	:	bool status - true if the command was successfully executed
         */
+
         public bool Update(string query)
         {
             bool status = false;
@@ -113,7 +109,6 @@ namespace DataServer.ServerClasses
             return status;
         }
 
-
         /*
         *	NAME	:	Delete
         *	PURPOSE	:	This method will take a query string and forward to the database handler
@@ -121,6 +116,7 @@ namespace DataServer.ServerClasses
         *	INPUTS	:	string query - the query that was parsed from the request
         *	RETURNS	:	bool status - true if the command was successfully executed
         */
+
         public bool Delete(string query)
         {
             bool status = false;
@@ -133,7 +129,6 @@ namespace DataServer.ServerClasses
             return status;
         }
 
-
         /*
         *	NAME	:	ExecuteCUD
         *	PURPOSE	:	This method will take a query string, connect/disconnect the database handler,
@@ -141,6 +136,7 @@ namespace DataServer.ServerClasses
         *	INPUTS	:	string query - the query to execute
         *	RETURNS	:	bool status - true if the command was successfully executed
         */
+
         public bool ExecuteCUD(string query)
         {
             bool status = false;

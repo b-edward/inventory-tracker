@@ -7,34 +7,34 @@ using System.Web;
 
 namespace InventoryTracker.Controllers
 {
-    public class ProductController : ITableRead, ITableCUD
+    public class ItemController : ITableRead, ITableCUD
     {
-        private IModel productTable;
+        private IModel itemTable;
         
-        public ProductController()
+        public ItemController()
         {
         }
 
-        // Create SQL query to execute the command in the product table
+        // Create SQL query to execute the command in the item table
         public string BuildCUDQuery(object table, string command)
         {
             string query = "";
 
             // Convert the object parameter into a Product
-            productTable = (Product)table;
+            itemTable = (Product)table;
 
-            // Use productTable properties to build the command query 
+            // Use itemTable properties to build the command query 
 
             return query; 
         }
 
 
-        // Create SQL query to get inventory of all products
+        // Create SQL query to get inventory of all items
         public string BuildReadQuery()
         {
             string query = "";
 
-            // Use productTable properties to build select query string
+            // Use itemTable properties to build select query string
 
             return query;
         }

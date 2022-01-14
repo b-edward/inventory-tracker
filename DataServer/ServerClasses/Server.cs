@@ -3,24 +3,18 @@
  * PROJECT         : DataServer for Inventory Tracker
  * PROGRAMMER      : Edward Boado
  * FIRST VERSION   : 2021 - 12 - 04
- * DESCRIPTION     : This file contains the multi-threaded, singleton Server class, which will handle database access by 
+ * DESCRIPTION     : This file contains the multi-threaded, singleton Server class, which will handle database access by
  *                   listening and connecting with clients via TCP socket. When a client connects, the Server will
  *                   create a task thread to handle the request in parallel, then return to listening.
  */
 
-
+using DataServer.Log;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Data;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using DataServer.Log;
-using DataServer.Interfaces;
 
 namespace DataServer.ServerClasses
 {
@@ -33,13 +27,13 @@ namespace DataServer.ServerClasses
         private static ILogger serverLog;               // The logger
         private static RequestHandler requestHandler;   // Request handling
 
-
         /*
         *	NAME	:	Server -- Constructor
         *	PURPOSE	:	This private constructor will instantiate data members.
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         private Server()
         {
             // Instantiate request handler
@@ -52,7 +46,6 @@ namespace DataServer.ServerClasses
 
         // Method to create/return an instance, and only allow one instance
 
-
         /*
         *	NAME	:	GetServerInstance
         *	PURPOSE	:	This method return the single instance of the server object, instantiating
@@ -60,6 +53,7 @@ namespace DataServer.ServerClasses
         *	INPUTS	:	None
         *	RETURNS	:	Server dataServer - the single instance of the server
         */
+
         public static Server GetServerInstance
         {
             get
@@ -85,6 +79,7 @@ namespace DataServer.ServerClasses
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         public void Run()
         {
             while (!Done)
@@ -96,10 +91,11 @@ namespace DataServer.ServerClasses
         /*
         *	NAME	:	Listen
         *	PURPOSE	:	This method will listen for a client request, connect with the client,
-        *	            and use multithreading to assign request handling tasks in parallel.
+        *	            and use multi-threading to assign request handling tasks in parallel.
         *	INPUTS	:	None
         *	RETURNS	:	void Task
         */
+
         public static async Task Listen()
         {
             TcpListener server = null;
@@ -153,7 +149,7 @@ namespace DataServer.ServerClasses
                     }
                 }
             }
-            // Handle exeptions
+            // Handle exceptions
             catch
             {
                 serverLog.Log("[ERROR] - Could not establish connection to a client.");

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataServer.Log;
 using DataServer.ServerClasses;
-using DataServer.Log;
+using System;
 using System.Configuration;
 
 namespace DataServer
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             // Instantiate the server
             Server dataServer = Server.GetServerInstance;
@@ -31,13 +27,13 @@ namespace DataServer
             serverLog.Log("[SERVER SHUTDOWN] - Program closed");
         }
 
-
         /*
         *	NAME	:	Listen
         *	PURPOSE	:	This asynchronous method will call the server's listener method, and run it in an asyncrhonous loop.
         *	INPUTS	:	None
         *	RETURNS	:	void Task
         */
+
         public static async void Listen()
         {
             // Always listen for requests

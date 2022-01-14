@@ -3,17 +3,13 @@
  * PROJECT          : DataServer for Inventory Tracker
  * PROGRAMMER       : Edward Boado
  * FIRST VERSION    : 2022 - 01 - 07
- * DESCRIPTION      : This file contains the ResponseHandler class, which will take action based upon the 
+ * DESCRIPTION      : This file contains the ResponseHandler class, which will take action based upon the
  *                    request, and send the response to the client.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataServer.Log;
 using DataServer.Interfaces;
+using DataServer.Log;
+using System;
 using System.Configuration;
 using System.Net.Sockets;
 
@@ -22,13 +18,14 @@ public delegate string CrudHandler(string s);
 
 namespace DataServer.ServerClasses
 {
-    public class ResponseHandler 
+    public class ResponseHandler
     {
         private static ILogger serverLog;           // The logger
         private static IDataHandler dataHandler;    // Access to the database
 
         // Delegate instances for handling each CRUD command
         public CrudHandler create = new CrudHandler(ReceivedCreate);
+
         public CrudHandler read = new CrudHandler(ReceivedRead);
         public CrudHandler update = new CrudHandler(ReceivedUpdate);
         public CrudHandler delete = new CrudHandler(ReceivedDelete);
@@ -39,13 +36,13 @@ namespace DataServer.ServerClasses
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         public ResponseHandler()
         {
             string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
             serverLog = new Logger(logFile);
             dataHandler = new DataHandler();
         }
-
 
         /*
         *	NAME	:	ReceivedCreate
@@ -54,6 +51,7 @@ namespace DataServer.ServerClasses
         *	INPUTS	:	string received - the string from the client
         *	RETURNS	:	string  response - the response to the client
         */
+
         public static string ReceivedCreate(string query)
         {
             string response = "";
@@ -62,7 +60,6 @@ namespace DataServer.ServerClasses
             return response;
         }
 
-
         /*
         *	NAME	:	ReceivedDelete
         *	PURPOSE	:	This method will take the received string, and use a data handler to execute the
@@ -70,19 +67,20 @@ namespace DataServer.ServerClasses
         *	INPUTS	:	string received - the string from the client
         *	RETURNS	:	string response - the response to the client
         */
+
         public static string ReceivedRead(string query)
         {
             string response = "";
-            
+
             // Call method to execute read query
-            response = dataHandler.Read(query);        
+            response = dataHandler.Read(query);
             bool readResult = false;
 
             // Set the bool true if read was okay
             if (response != null)
             {
                 // Check if the select command read anything
-                if(response == "")
+                if (response == "")
                 {
                     // If blank, set Not Found return code
                     response = "404\n";
@@ -91,12 +89,11 @@ namespace DataServer.ServerClasses
                 {
                     readResult = true;
                     // Call method to add return code
-                    response = AddStatusCode(readResult, response);     
+                    response = AddStatusCode(readResult, response);
                 }
             }
             return response;
         }
-
 
         /*
         *	NAME	:	ReceivedUpdate
@@ -105,6 +102,7 @@ namespace DataServer.ServerClasses
         *	INPUTS	:	string received - the string from the client
         *	RETURNS	:	string response - the response to the client
         */
+
         public static string ReceivedUpdate(string query)
         {
             string response = "";
@@ -113,7 +111,6 @@ namespace DataServer.ServerClasses
             return response;
         }
 
-
         /*
         *	NAME	:	ReceivedDelete
         *	PURPOSE	:	This method will take the received string, and use a data handler to execute the
@@ -121,6 +118,7 @@ namespace DataServer.ServerClasses
         *	INPUTS	:	string received - the string from the client
         *	RETURNS	:	string response - the response to the client
         */
+
         public static string ReceivedDelete(string query)
         {
             string response = "";
@@ -129,17 +127,17 @@ namespace DataServer.ServerClasses
             return response;
         }
 
-
         /*
         *	NAME	:	AddStatusCode
         *	PURPOSE	:	This method will add an appropriate status code to the response string
         *	INPUTS	:	string received - the string from the client
         *	RETURNS	:	string response - the response to the client
         */
+
         private static string AddStatusCode(bool status, string response)
         {
             // Check if status was true
-            if(status)
+            if (status)
             {
                 // Set OK return code
                 response = response.Insert(0, "200\n");
@@ -152,13 +150,13 @@ namespace DataServer.ServerClasses
             return response;
         }
 
-
         /*
         *	NAME	:	SendResponse
         *	PURPOSE	:	This method will send the response to the client.
         *	INPUTS	:	Object clientObject - holds the TCPClient object that was connected to the client
-        *	RETURNS	:	bool status - true if successful 
+        *	RETURNS	:	bool status - true if successful
         */
+
         public bool SendResponse(Object networkObject, string response)
         {
             NetworkStream stream = (NetworkStream)networkObject;

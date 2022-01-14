@@ -1,4 +1,5 @@
 ﻿using InventoryTracker.Interfaces;
+using InventoryTracker.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,18 +7,28 @@ using System.Web;
 
 namespace InventoryTracker.Controllers
 {
-    public class InventoryController : IInventory
+    public class InventoryController : ITableRead
     {
-        // Method to get the total inventory of all products
-        public int GetTotal()
+        private IModel itemTable;
+        private IModel productTable;
+        private IModel warehouseTable;
+        private IModel warehouseItemTable;
+
+        public InventoryController(string tableToRead)
         {
-            return 0;
+            // instantiate models
         }
 
-        // Method to get the inventory for a single product
-        public int GetTotal(string productID)
+        // Method to get the total inventory of all active && unsold items
+        public string BuildReadQuery()
         {
-            return 0;
+            string query = "";
+
+            // Use IModel properties to build SQL query string
+            // Need a join to get the item ID (Item), productName (Product), warehouseCity (Warehouse & WarehouseItem),
+            // warehouseID (WarehouseItem) for all unsold items
+
+            return query;
         }
     }
 }

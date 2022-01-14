@@ -10,7 +10,9 @@ namespace InventoryTracker.Interfaces
     // different types of inventory in future (e.g. Company inventory, location inventory)
     public interface IInventory
     {
-        int GetTotal();                     // Method to get the total inventory of all products
-        int GetTotal(string productID);     // Method to get the inventory for a single product
+        int ItemID { get; set; }
+        string ProductName { get; set; }
+        string WarehouseCity { get; set; }
+        int WarehouseID { get; set; }
     }
 }

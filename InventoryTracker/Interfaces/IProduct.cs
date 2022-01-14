@@ -10,7 +10,7 @@ namespace InventoryTracker.Interfaces
     // types of products in future (e.g. furniture, vehicles, clothes, etc)
     public interface IProduct
     {
-        string ProductID { get; set; }
+        int ProductID { get; set; }
         string ProductName { get; set; }
         bool IsActive { get; set; }
     }

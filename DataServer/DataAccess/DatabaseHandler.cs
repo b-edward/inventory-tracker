@@ -7,15 +7,10 @@
  *                    take queries/commands, run them on the database, and then return the response data.
  */
 
-using System;
-using System.Collections.Generic;
+using DataServer.Log;
+using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
-using DataServer.Log;
 
 namespace DataServer.DataAccess
 {
@@ -23,6 +18,7 @@ namespace DataServer.DataAccess
     {
         // Data members
         private MySqlConnection connection;     // The connection
+
         private static ILogger serverLog;       // The logger
 
         /*
@@ -31,6 +27,7 @@ namespace DataServer.DataAccess
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         public DatabaseHandler()
         {
             // Set initial values
@@ -40,14 +37,14 @@ namespace DataServer.DataAccess
             serverLog = new Logger(logFile);
         }
 
-
         /*
         *	NAME	:	Connect
-        *	PURPOSE	:	This method will get server settings from a config file and use them to 
+        *	PURPOSE	:	This method will get server settings from a config file and use them to
         *	            connect to a MySQL database.
         *	INPUTS	:	None
         *	RETURNS	:	bool connected - true if the connection was successfully opened
         */
+
         public bool Connect()
         {
             bool connected = false;
@@ -76,16 +73,16 @@ namespace DataServer.DataAccess
             return connected;
         }
 
-
         /*
         *	NAME	:	Disconnect
         *	PURPOSE	:	This method will close the connection to the database
         *	INPUTS	:	None
         *	RETURNS	:	bool closed - true if the connection was successfully closed
         */
+
         public bool Disconnect()
         {
-            bool closed = false;       
+            bool closed = false;
 
             // Close the connection
             try
@@ -102,13 +99,13 @@ namespace DataServer.DataAccess
             return closed;
         }
 
-
         /*
         *	NAME	:	Execute
         *	PURPOSE	:	This method will execute MySQL queries to create, update and delete from a table
         *	INPUTS	:	string sqlCommand - the query to execute
         *	RETURNS	:	bool executed - true if the query was successfully executed
         */
+
         public bool Execute(string sqlCommand)
         {
             bool executed = false;
@@ -118,18 +115,17 @@ namespace DataServer.DataAccess
             try
             {
                 // Validate that the command was executed
-                if(command.ExecuteNonQuery() > 0)
+                if (command.ExecuteNonQuery() > 0)
                 {
                     executed = true;
                 }
             }
-            catch 
+            catch
             {
                 serverLog.Log("[ERROR] - Could not execute command: " + sqlCommand);
             }
             return executed;
         }
-
 
         /*
         *	NAME	:	Select
@@ -137,6 +133,7 @@ namespace DataServer.DataAccess
         *	INPUTS	:	string selectQuery - the query to execute
         *	RETURNS	:	DataTable selectedData - a table with the data returned by the database
         */
+
         public DataTable Select(string selectQuery)
         {
             DataTable selectedData = null;
@@ -147,11 +144,11 @@ namespace DataServer.DataAccess
                 MySqlCommand selector = new MySqlCommand(selectQuery, connection);
                 MySqlDataAdapter selectAdaptor = new MySqlDataAdapter(selector);
 
-                // fill table 
+                // fill table
                 selectedData = new DataTable();
                 selectAdaptor.Fill(selectedData);
             }
-            catch 
+            catch
             {
                 serverLog.Log("[ERROR] - Could not select command: " + selectQuery);
                 selectedData = null;

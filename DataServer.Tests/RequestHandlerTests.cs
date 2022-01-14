@@ -1,7 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using DataServer.Interfaces;
 using DataServer.ServerClasses;
-using DataServer.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net.Sockets;
 
 namespace DataServer.Tests

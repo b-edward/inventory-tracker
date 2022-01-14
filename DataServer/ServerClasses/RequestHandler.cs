@@ -7,15 +7,11 @@
  *                    then use the other handlers to create and send a response.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using DataServer.Log;
 using DataServer.Interfaces;
+using DataServer.Log;
+using System;
+using System.Configuration;
+using System.Net.Sockets;
 
 namespace DataServer.ServerClasses
 {
@@ -31,6 +27,7 @@ namespace DataServer.ServerClasses
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         public RequestHandler()
         {
             // Instantiate interfaces
@@ -42,13 +39,13 @@ namespace DataServer.ServerClasses
             serverLog = new Logger(logFile);
         }
 
-
         /*
         *	NAME	:	HandleRequest
         *	PURPOSE	:	This method will allow a single task thread to connect to a client request in parallel.
         *	INPUTS	:	Object clientObject - holds the TCPClient object that was connected to the client
-        *	RETURNS	:	bool status - true if successful 
+        *	RETURNS	:	bool status - true if successful
         */
+
         public bool HandleRequest(Object clientObject)
         {
             TcpClient client = (TcpClient)clientObject;
@@ -59,7 +56,7 @@ namespace DataServer.ServerClasses
             // Get a stream object for reading and writing
             try
             {
-                stream = client.GetStream();            
+                stream = client.GetStream();
                 // Log connection
                 Console.WriteLine("[CONNECTED] - Connected to client");
                 serverLog.Log("[CONNECTED] - Connected to client");
@@ -95,13 +92,13 @@ namespace DataServer.ServerClasses
             return status;
         }
 
-
         /*
         *	NAME	:	GetRequest
         *	PURPOSE	:	This method will read the request from the client and return it.
         *	INPUTS	:	Object clientObject - holds the TCPClient object that was connected to the client
         *	RETURNS	:	string request - the client request as a string
         */
+
         public string GetRequest(Object networkObject)
         {
             NetworkStream stream = (NetworkStream)networkObject;
@@ -112,7 +109,7 @@ namespace DataServer.ServerClasses
 
             try
             {
-                // Convert bytes to ascii string.   
+                // Convert bytes to ascii string.
                 int numBytes = stream.Read(bytes, 0, bytes.Length);
                 request = System.Text.Encoding.ASCII.GetString(bytes, 0, numBytes);
 
@@ -126,7 +123,7 @@ namespace DataServer.ServerClasses
                 else
                 {
                     // Set bad request return code
-                    request = "400\n";      
+                    request = "400\n";
                     Console.WriteLine("[ERROR] - No data received from client");
                 }
             }

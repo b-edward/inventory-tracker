@@ -1,7 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using DataServer.Interfaces;
 using DataServer.ServerClasses;
-using DataServer.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DataServer.Tests
 {
@@ -19,5 +18,5 @@ namespace DataServer.Tests
 
             Assert.IsTrue(response.Contains("405"));
         }
-}
+    }
 }
