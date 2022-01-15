@@ -1,4 +1,5 @@
 ﻿using InventoryTracker.Interfaces;
+using InventoryTracker.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,6 @@ namespace InventoryTracker.Controllers
 {
     // This class will be used when user wants to assign an item to a warehouse
     // it will create, update, or delete warehouseItems
-    // WarehouseItems table is not read here because Inventory already displays
-    // the same data as part of the inventory report
     public class WarehouseItemController : ITableRead, ITableCUD
     {
         private IModel warehouseItemTable;
@@ -27,6 +26,19 @@ namespace InventoryTracker.Controllers
             warehouseItemTable = (WarehouseItem)table;
 
             // Use warehouseItemTable properties to build the command query 
+
+            return query;
+        }
+
+
+
+        // Read is not used in this release, but included for use is future features
+        // Create SQL query to get inventory of all items
+        public string BuildReadQuery()
+        {
+            string query = "";
+
+            // Use itemTable properties to build select query string
 
             return query;
         }

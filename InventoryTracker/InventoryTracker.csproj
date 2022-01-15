@@ -125,13 +125,14 @@
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\WarehouseController.cs" />
-    <Compile Include="Controllers\WarehouseInventoryController.cs" />
+    <Compile Include="Controllers\WarehouseItemController.cs" />
     <Compile Include="DataServerAccess\ConvertDataToTable.cs" />
     <Compile Include="DataServerAccess\RequestHandler.cs" />
     <Compile Include="DataServerAccess\ResponseHandler.cs" />
     <Compile Include="Interfaces\IDataHandler.cs" />
     <Compile Include="Interfaces\IEditController.cs" />
     <Compile Include="Interfaces\IInventory.cs" />
+    <Compile Include="Interfaces\IWarehouseItem.cs" />
     <Compile Include="Interfaces\IItem.cs" />
     <Compile Include="Interfaces\ILocation.cs" />
     <Compile Include="Interfaces\IModel.cs" />
@@ -142,6 +143,7 @@
     <Compile Include="Interfaces\ITableCUD.cs" />
     <Compile Include="Interfaces\ITableRead.cs" />
     <Compile Include="Models\Inventory.cs" />
+    <Compile Include="Models\WarehouseItem.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Warehouse.cs" />
     <Compile Include="Models\Item.cs" />

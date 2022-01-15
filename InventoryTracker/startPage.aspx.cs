@@ -32,13 +32,13 @@ namespace InventoryTracker
             DataTable inventoryTable = new DataTable();
             inventoryTable.Columns.AddRange(new DataColumn[4] { 
                     new DataColumn("ItemId", typeof(int)),
-                    new DataColumn("ProductId", typeof(int)),
                     new DataColumn("ProductName", typeof(string)),
-                    new DataColumn("WarehouseLocation",typeof(string)) });
-            inventoryTable.Rows.Add(1, 1, "Rice", "Waterloo");
-            inventoryTable.Rows.Add(2, 4, "Tea", "Tokyo");
-            inventoryTable.Rows.Add(3, 3, "Noodles", "Toronto");
-            inventoryTable.Rows.Add(2, 1, "Rice", "Hamilton");
+                    new DataColumn("Location",typeof(string)),
+                    new DataColumn("WarehouseId", typeof(int)) });
+            inventoryTable.Rows.Add(1, "Rice", "Waterloo", 1);
+            inventoryTable.Rows.Add(2, "Tea", "Tokyo", 4);
+            inventoryTable.Rows.Add(3, "Noodles", "Toronto", 3);
+            inventoryTable.Rows.Add(2, "Rice", "Unassigned", 1);
             gvInventory.DataSource = inventoryTable;
             gvInventory.DataBind();
 
@@ -88,6 +88,9 @@ namespace InventoryTracker
             // Get the viewInventory div and display it
             htmlControl = FindControl("viewInventory") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
+            // Update the table title
+            lblTableTitle.Text = "Inventory";
+
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -113,6 +116,8 @@ namespace InventoryTracker
             // Read Product table and display it
             htmlControl = FindControl("viewProducts") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
+            // Update the table title
+            lblTableTitle.Text = "Products";
         }
 
         protected void btnItem_Click(object sender, EventArgs e)
@@ -130,6 +135,8 @@ namespace InventoryTracker
             // Read Item table and display it
             htmlControl = FindControl("viewItems") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
+            // Update the table title
+            lblTableTitle.Text = "Items";
         }
 
         protected void btnWarehouse_Click(object sender, EventArgs e)
@@ -147,6 +154,8 @@ namespace InventoryTracker
             // Read Warehouse table and display it
             htmlControl = FindControl("viewWarehouses") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
+            // Update the table title
+            lblTableTitle.Text = "Warehouses";
         }
 
 
@@ -211,6 +220,8 @@ namespace InventoryTracker
             // Get the viewWarehouses div and hide it
             htmlControl = FindControl("viewWarehouses") as HtmlControl;
             htmlControl.Attributes["style"] = "display:none;";
+            // Clear the table title
+            lblTableTitle.Text = "";
         }
     }
 }

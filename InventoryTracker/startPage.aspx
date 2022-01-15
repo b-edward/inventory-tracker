@@ -16,8 +16,8 @@
     <form id="mainUI" runat="server" style="display: flex; justify-content: center; background:white;">
         <div>
             <div class="nav" style="display: flex; justify-content: center;">
-            <h1 style="color:#5E8E3E; font-weight:bolder;">Inventory Tracking Application</h1>
-        </div>
+                <h1 style="color:#5E8E3E; font-weight:bolder;">Inventory Tracking Application</h1>
+            </div>
             <!-- Main Navigation -->
             <div id="navMain" style="display: flex; justify-content: center; margin: 20px;">
                 <table >
@@ -144,14 +144,18 @@
 
             <!-- Display Output -->
             <div class="output">
+                <!-- Table title -->
+                <div style="display: flex; justify-content: center;">
+                    <asp:Label ID="lblTableTitle" runat="server" Text="Inventory" Font-Bold="True" ForeColor="#5E8E3E" Font-Size="X-Large" Font-Underline="True"></asp:Label>
+                </div>
                 <!-- View Inventory -->
                 <div id="viewInventory" class="centre-div" runat="server" style="display: flex;">   
                      <asp:GridView ID="gvInventory" runat="server" AutoGenerateColumns="false" >    
                          <Columns>    
-                             <asp:BoundField DataField="ItemId" HeaderText="Item ID" ItemStyle-Width="150" />   
-                             <asp:BoundField DataField="ProductId" HeaderText="Product ID" ItemStyle-Width="150" />     
+                             <asp:BoundField DataField="ItemId" HeaderText="Item ID" ItemStyle-Width="150" />    
                              <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="150" />    
-                             <asp:BoundField DataField="WarehouseLocation" HeaderText="WarehouseLocation" ItemStyle-Width="150" />    
+                             <asp:BoundField DataField="Location" HeaderText="Location" ItemStyle-Width="150" />  
+                             <asp:BoundField DataField="WarehouseId" HeaderText="Warehouse ID" ItemStyle-Width="150" />      
                          </Columns>    
                      </asp:GridView>    
                 </div>  
