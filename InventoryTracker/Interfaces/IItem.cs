@@ -10,6 +10,7 @@ namespace InventoryTracker.Interfaces
     {
         int ItemID { get; set; }
         string ProductID { get; set; }
-        bool IsActive { get; set; }
+        bool IsAssigned { get; set; }
+        bool IsSold { get; set; }
     }
 }

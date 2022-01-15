@@ -152,10 +152,10 @@
                 <div id="viewInventory" class="centre-div" runat="server" style="display: flex;">   
                      <asp:GridView ID="gvInventory" runat="server" AutoGenerateColumns="false" >    
                          <Columns>    
-                             <asp:BoundField DataField="ItemId" HeaderText="Item ID" ItemStyle-Width="150" />    
+                             <asp:BoundField DataField="ItemID" HeaderText="Item ID" ItemStyle-Width="150" />    
                              <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="150" />    
-                             <asp:BoundField DataField="Location" HeaderText="Location" ItemStyle-Width="150" />  
-                             <asp:BoundField DataField="WarehouseId" HeaderText="Warehouse ID" ItemStyle-Width="150" />      
+                             <asp:BoundField DataField="WarehouseCity" HeaderText="Location" ItemStyle-Width="150" />  
+                             <asp:BoundField DataField="WarehouseID" HeaderText="Warehouse ID" ItemStyle-Width="150" />      
                          </Columns>    
                      </asp:GridView>    
                 </div>  
@@ -163,7 +163,7 @@
                 <div id="viewProducts" class="centre-div" runat="server" style="display: none;">   
                      <asp:GridView ID="gvProduct" runat="server" AutoGenerateColumns="false" >    
                          <Columns>     
-                             <asp:BoundField DataField="ProductId" HeaderText="Product ID" ItemStyle-Width="150" />     
+                             <asp:BoundField DataField="ProductID" HeaderText="Product ID" ItemStyle-Width="150" />     
                              <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="150" />    
                              <asp:BoundField DataField="IsActive" HeaderText="Active" ItemStyle-Width="150" />    
                          </Columns>    
@@ -173,8 +173,8 @@
                 <div id="viewItems" class="centre-div" runat="server" style="display: none;">   
                      <asp:GridView ID="gvItem" runat="server" AutoGenerateColumns="false" >    
                          <Columns>    
-                             <asp:BoundField DataField="ItemId" HeaderText="Item ID" ItemStyle-Width="150" />   
-                             <asp:BoundField DataField="ProductId" HeaderText="Product ID" ItemStyle-Width="150" />     
+                             <asp:BoundField DataField="ItemID" HeaderText="Item ID" ItemStyle-Width="150" />   
+                             <asp:BoundField DataField="ProductID" HeaderText="Product ID" ItemStyle-Width="150" />     
                              <asp:BoundField DataField="IsSold" HeaderText="Availability" ItemStyle-Width="150" />    
                              <asp:BoundField DataField="WarehouseID" HeaderText="WarehouseID" ItemStyle-Width="150" />    
                          </Columns>    
@@ -184,7 +184,7 @@
                 <div id="viewWarehouses" class="centre-div" runat="server" style="display: none;">   
                      <asp:GridView ID="gvWarehouse" runat="server" AutoGenerateColumns="false" >    
                          <Columns>    
-                             <asp:BoundField DataField="WarehouseId" HeaderText="Item ID" ItemStyle-Width="150" />   
+                             <asp:BoundField DataField="WarehouseID" HeaderText="Item ID" ItemStyle-Width="150" />   
                              <asp:BoundField DataField="StreetAndNo" HeaderText="Street and Number" ItemStyle-Width="150" />     
                              <asp:BoundField DataField="City" HeaderText="City" ItemStyle-Width="150" />    
                              <asp:BoundField DataField="ProvinceOrState" HeaderText="Province or State" ItemStyle-Width="150" />    

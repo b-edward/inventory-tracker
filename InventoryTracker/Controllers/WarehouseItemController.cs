@@ -9,7 +9,7 @@ namespace InventoryTracker.Controllers
 {
     // This class will be used when user wants to assign an item to a warehouse
     // it will create, update, or delete warehouseItems
-    public class WarehouseItemController : ITableRead, ITableCUD, IController
+    public class WarehouseItemController : ITableRead, ITableCUD
     {
         private IModel warehouseItemTable;
 

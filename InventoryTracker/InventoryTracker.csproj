@@ -131,10 +131,9 @@
     <Compile Include="DataServerAccess\ConvertDataToTable.cs" />
     <Compile Include="DataServerAccess\RequestHandler.cs" />
     <Compile Include="DataServerAccess\ResponseHandler.cs" />
-    <Compile Include="Interfaces\IController.cs" />
-    <Compile Include="Interfaces\IDataHandler.cs" />
     <Compile Include="Interfaces\IEditController.cs" />
     <Compile Include="Interfaces\IInventory.cs" />
+    <Compile Include="Interfaces\IServerHandler.cs" />
     <Compile Include="Interfaces\IWarehouseItem.cs" />
     <Compile Include="Interfaces\IItem.cs" />
     <Compile Include="Interfaces\ILocation.cs" />

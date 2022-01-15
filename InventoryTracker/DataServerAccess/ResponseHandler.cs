@@ -9,13 +9,14 @@ namespace InventoryTracker.DataServerAccess
 {
     public class ResponseHandler : IResponseHandler
     {
-        private IDataHandler dataHandler;
+        public ResponseHandler()
+        {
+        }
 
         // Use the converter to parse the response and fill the data table
         public DataTable GetDataTable(string response)
         {
-            DataTable dataTable = new DataTable();
-
+            DataTable dataTable = ConvertDataToTable.GetInventoryTable(response);
             return dataTable;
         }
     }

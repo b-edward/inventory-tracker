@@ -1,4 +1,6 @@
-﻿using InventoryTracker.DataServerAccess;
+﻿using InventoryTracker.Controllers;
+using InventoryTracker.DataServerAccess;
+using InventoryTracker.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -15,18 +17,19 @@ namespace InventoryTracker
 {
     public partial class startPage : System.Web.UI.Page
     {
-        ServerHandler serverHandler;
+        IReadController readController;
+        IEditController editController;
         HtmlControl htmlControl;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            readController = new ReadController();
+            editController = new EditController();
             InitializeTracker();
         }        
 
         protected void InitializeTracker()
         {
-            serverHandler = new ServerHandler();
-
             // Stub data for display
 
 
@@ -71,22 +74,10 @@ namespace InventoryTracker
 
         protected void btnView_Click(object sender, EventArgs e)
         {
-            // Instantiate 
             // Get the inventory data table
-            DataTable inventoryTable = new DataTable();
-
-            inventoryTable.Columns.AddRange(new DataColumn[4] {
-                    new DataColumn("ItemId", typeof(int)),
-                    new DataColumn("ProductName", typeof(string)),
-                    new DataColumn("Location",typeof(string)),
-                    new DataColumn("WarehouseId", typeof(int)) });
-            inventoryTable.Rows.Add(1, "Rice", "Waterloo", 1);
-            inventoryTable.Rows.Add(2, "Tea", "Tokyo", 4);
-            inventoryTable.Rows.Add(3, "Noodles", "Toronto", 3);
-            inventoryTable.Rows.Add(2, "Rice", "Unassigned", 1);
+            DataTable inventoryTable = readController.GetInventory();
             gvInventory.DataSource = inventoryTable;
             gvInventory.DataBind();
-
 
             // Get the viewInventory div and display i
             HideDisplay();
@@ -94,7 +85,6 @@ namespace InventoryTracker
             htmlControl.Attributes["style"] = "display:flex;";
             // Update the table title
             lblTableTitle.Text = "Inventory";
-
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)

@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace InventoryTracker.Interfaces
 {
-    interface IController
+    interface IServerHandler
     {
+        string SendToServer(string stringToSend);
     }
 }

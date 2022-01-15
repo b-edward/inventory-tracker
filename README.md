@@ -33,5 +33,5 @@ Requests must:
 Responses:
 * Start with an HTTP status code, followed by a new line character
 * If returning a read request, the data follows
-* Read data is formatted with a comma ',' separating each field, and an ampersand '&' separating each record/row
+	* Read data is formatted with an ampersand '&' separating each record/row, and a comma ',' separating each field
 	* For example: "200\n1,Surfboard,1" 
