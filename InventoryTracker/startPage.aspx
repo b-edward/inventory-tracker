@@ -42,6 +42,10 @@
                     </tr> 
                 </table>
             </div>
+            <!-- Table title -->
+            <div style="display: flex; justify-content: center;">
+                <asp:Label ID="lblTableTitle" runat="server" Text="Inventory" Font-Bold="True" ForeColor="#5E8E3E" Font-Size="X-Large" Font-Underline="True"></asp:Label>
+            </div>
             <!-- Edit Product Form -->
             <div id="editProduct" class="centre-div" runat="server" style="display: none;">
                 <table>
@@ -144,10 +148,6 @@
 
             <!-- Display Output -->
             <div class="output">
-                <!-- Table title -->
-                <div style="display: flex; justify-content: center;">
-                    <asp:Label ID="lblTableTitle" runat="server" Text="Inventory" Font-Bold="True" ForeColor="#5E8E3E" Font-Size="X-Large" Font-Underline="True"></asp:Label>
-                </div>
                 <!-- View Inventory -->
                 <div id="viewInventory" class="centre-div" runat="server" style="display: flex;">   
                      <asp:GridView ID="gvInventory" runat="server" AutoGenerateColumns="false" >    

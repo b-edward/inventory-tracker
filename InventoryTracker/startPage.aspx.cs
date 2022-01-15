@@ -29,18 +29,6 @@ namespace InventoryTracker
 
             // Stub data for display
 
-            DataTable inventoryTable = new DataTable();
-            inventoryTable.Columns.AddRange(new DataColumn[4] { 
-                    new DataColumn("ItemId", typeof(int)),
-                    new DataColumn("ProductName", typeof(string)),
-                    new DataColumn("Location",typeof(string)),
-                    new DataColumn("WarehouseId", typeof(int)) });
-            inventoryTable.Rows.Add(1, "Rice", "Waterloo", 1);
-            inventoryTable.Rows.Add(2, "Tea", "Tokyo", 4);
-            inventoryTable.Rows.Add(3, "Noodles", "Toronto", 3);
-            inventoryTable.Rows.Add(2, "Rice", "Unassigned", 1);
-            gvInventory.DataSource = inventoryTable;
-            gvInventory.DataBind();
 
             DataTable productTable = new DataTable();
             productTable.Columns.AddRange(new DataColumn[3] {
@@ -83,9 +71,25 @@ namespace InventoryTracker
 
         protected void btnView_Click(object sender, EventArgs e)
         {
-            HideDisplay();
+            // Instantiate 
+            // Get the inventory data table
+            DataTable inventoryTable = new DataTable();
 
-            // Get the viewInventory div and display it
+            inventoryTable.Columns.AddRange(new DataColumn[4] {
+                    new DataColumn("ItemId", typeof(int)),
+                    new DataColumn("ProductName", typeof(string)),
+                    new DataColumn("Location",typeof(string)),
+                    new DataColumn("WarehouseId", typeof(int)) });
+            inventoryTable.Rows.Add(1, "Rice", "Waterloo", 1);
+            inventoryTable.Rows.Add(2, "Tea", "Tokyo", 4);
+            inventoryTable.Rows.Add(3, "Noodles", "Toronto", 3);
+            inventoryTable.Rows.Add(2, "Rice", "Unassigned", 1);
+            gvInventory.DataSource = inventoryTable;
+            gvInventory.DataBind();
+
+
+            // Get the viewInventory div and display i
+            HideDisplay();
             htmlControl = FindControl("viewInventory") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
             // Update the table title

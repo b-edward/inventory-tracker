@@ -124,11 +124,14 @@
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\EditController.cs" />
+    <Compile Include="Controllers\ReadController.cs" />
     <Compile Include="Controllers\WarehouseController.cs" />
     <Compile Include="Controllers\WarehouseItemController.cs" />
     <Compile Include="DataServerAccess\ConvertDataToTable.cs" />
     <Compile Include="DataServerAccess\RequestHandler.cs" />
     <Compile Include="DataServerAccess\ResponseHandler.cs" />
+    <Compile Include="Interfaces\IController.cs" />
     <Compile Include="Interfaces\IDataHandler.cs" />
     <Compile Include="Interfaces\IEditController.cs" />
     <Compile Include="Interfaces\IInventory.cs" />

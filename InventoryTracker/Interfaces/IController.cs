@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace InventoryTracker.Interfaces
 {
-    public interface IEditController
+    interface IController
     {
-        string ExecuteCUD(object table, string command, string tableName);
     }
 }

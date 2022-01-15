@@ -7,7 +7,7 @@ using System.Web;
 
 namespace InventoryTracker.Controllers
 {
-    public class ItemController : ITableRead, ITableCUD
+    public class ItemController : ITableRead, ITableCUD, IController
     {
         private IModel itemTable;
         
@@ -21,7 +21,7 @@ namespace InventoryTracker.Controllers
             string query = "";
 
             // Convert the object parameter into a Product
-            itemTable = (Product)table;
+            itemTable = (Item)table;
 
             // Use itemTable properties to build the command query 
 

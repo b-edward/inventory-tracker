@@ -7,7 +7,7 @@ using System.Web;
 
 namespace InventoryTracker.Controllers
 {
-    public class WarehouseController : ITableRead, ITableCUD
+    public class WarehouseController : ITableRead, ITableCUD, IController
     {
         private IModel warehouseTable;
 

@@ -78,6 +78,15 @@ namespace InventoryTracker
         protected global::System.Web.UI.WebControls.Button btnWarehouse;
 
         /// <summary>
+        /// lblTableTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTableTitle;
+
+        /// <summary>
         /// editProduct control.
         /// </summary>
         /// <remarks>
@@ -256,15 +265,6 @@ namespace InventoryTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpdateProduct;
-
-        /// <summary>
-        /// lblTableTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTableTitle;
 
         /// <summary>
         /// viewInventory control.

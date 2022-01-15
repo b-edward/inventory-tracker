@@ -7,7 +7,7 @@ using System.Web;
 
 namespace InventoryTracker.Controllers
 {
-    public class InventoryController : ITableRead
+    public class InventoryController : ITableRead, IController
     {
         private IModel itemTable;
         private IModel productTable;
@@ -16,7 +16,11 @@ namespace InventoryTracker.Controllers
 
         public InventoryController(string tableToRead)
         {
-            // instantiate models
+            // Instantiate models
+            itemTable = new Item();
+            productTable = new Product();
+            warehouseTable = new Warehouse();
+            warehouseItemTable = new WarehouseItem();
         }
 
         // Method to get the total inventory of all active && unsold items
