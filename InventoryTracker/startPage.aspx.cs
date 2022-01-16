@@ -16,65 +16,62 @@ namespace InventoryTracker
         {
             readController = new ReadController();
             editController = new EditController();
-            InitializeTracker();
+            DisplayInventory();
+            //InitializeTracker();
         }
 
-        protected void InitializeTracker()
-        {
-            // Stub data for display
+        //protected void InitializeTracker()
+        //{
+        //    // Stub data for display
 
-            DataTable productTable = new DataTable();
-            productTable.Columns.AddRange(new DataColumn[3] {
-                    new DataColumn("ProductId", typeof(int)),
-                    new DataColumn("ProductName", typeof(string)),
-                    new DataColumn("IsActive",typeof(string)) });
-            productTable.Rows.Add(1, "Rice", "Active");
-            productTable.Rows.Add(2, "Tea", "Active");
-            productTable.Rows.Add(3, "Noodles", "Not Active");
-            gvProduct.DataSource = productTable;
-            gvProduct.DataBind();
 
-            DataTable itemTable = new DataTable();
-            itemTable.Columns.AddRange(new DataColumn[4] {
-                    new DataColumn("ItemId", typeof(int)),
-                    new DataColumn("ProductId", typeof(int)),
-                    new DataColumn("IsSold", typeof(int)),
-                    new DataColumn("WarehouseID",typeof(int)) });
-            itemTable.Rows.Add(1, 1, 0, 2);
-            itemTable.Rows.Add(2, 2, 1, 3);
-            itemTable.Rows.Add(3, 2, 1, 1);
-            gvItem.DataSource = itemTable;
-            gvItem.DataBind();
 
-            DataTable warehouseTable = new DataTable();
-            warehouseTable.Columns.AddRange(new DataColumn[7] {
-                    new DataColumn("WarehouseID", typeof(int)),
-                    new DataColumn("StreetAndNo", typeof(string)),
-                    new DataColumn("City", typeof(string)),
-                    new DataColumn("ProvinceOrState", typeof(string)),
-                    new DataColumn("Country", typeof(string)),
-                    new DataColumn("PostalCode", typeof(string)),
-                    new DataColumn("IsActive",typeof(string)) });
-            warehouseTable.Rows.Add(1, "13 Street", "Hamilton", "ON", "Canada", "L8S 4K1", 1);
-            warehouseTable.Rows.Add(2, "45 Main Street", "New York", "NY", "USA", "42871", 1);
-            warehouseTable.Rows.Add(3, "787 University Ave", "Waterloo", "ON", "Canada", "N83 4E1", 1);
-            gvWarehouse.DataSource = warehouseTable;
-            gvWarehouse.DataBind();
-        }
+        //    DataTable itemTable = new DataTable();
+        //    itemTable.Columns.AddRange(new DataColumn[4] {
+        //            new DataColumn("ItemId", typeof(int)),
+        //            new DataColumn("ProductId", typeof(int)),
+        //            new DataColumn("IsSold", typeof(int)),
+        //            new DataColumn("WarehouseID",typeof(int)) });
+        //    itemTable.Rows.Add(1, 1, 0, 2);
+        //    itemTable.Rows.Add(2, 2, 1, 3);
+        //    itemTable.Rows.Add(3, 2, 1, 1);
+        //    gvItem.DataSource = itemTable;
+        //    gvItem.DataBind();
 
-        protected void btnView_Click(object sender, EventArgs e)
+        //    DataTable warehouseTable = new DataTable();
+        //    warehouseTable.Columns.AddRange(new DataColumn[7] {
+        //            new DataColumn("WarehouseID", typeof(int)),
+        //            new DataColumn("StreetAndNo", typeof(string)),
+        //            new DataColumn("City", typeof(string)),
+        //            new DataColumn("ProvinceOrState", typeof(string)),
+        //            new DataColumn("Country", typeof(string)),
+        //            new DataColumn("PostalCode", typeof(string)),
+        //            new DataColumn("IsActive",typeof(string)) });
+        //    warehouseTable.Rows.Add(1, "13 Street", "Hamilton", "ON", "Canada", "L8S 4K1", 1);
+        //    warehouseTable.Rows.Add(2, "45 Main Street", "New York", "NY", "USA", "42871", 1);
+        //    warehouseTable.Rows.Add(3, "787 University Ave", "Waterloo", "ON", "Canada", "N83 4E1", 1);
+        //    gvWarehouse.DataSource = warehouseTable;
+        //    gvWarehouse.DataBind();
+        //}
+
+        protected void DisplayInventory()
         {
             // Get the inventory data table
             DataTable inventoryTable = readController.GetInventory();
             gvInventory.DataSource = inventoryTable;
             gvInventory.DataBind();
 
-            // Get the viewInventory div and display i
+            // Get the viewInventory div and display it
             HideDisplay();
             htmlControl = FindControl("viewInventory") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
             // Update the table title
             lblTableTitle.Text = "Inventory";
+        }
+
+        protected void btnView_Click(object sender, EventArgs e)
+        {
+            DisplayInventory();
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -87,17 +84,22 @@ namespace InventoryTracker
 
         protected void btnProduct_Click(object sender, EventArgs e)
         {
+            // Reset the display
             HideDisplay();
 
-            // Get the editProduct div and display it
+            // Display edit product form
             htmlControl = FindControl("editProduct") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
-            // Get the submitButtons div and display it
             DisplaySubmitButtons();
-            // Keep the navTables div displayed
             DisplayNavTables();
 
-            // Read Product table and display it
+            // Get the Product data table and fill viewProducts
+            DataTable productTable = readController.GetTable("Product");
+            gvProduct.DataSource = productTable;
+            gvProduct.DataBind();
+
+            // Get the viewProducts div and display it
+            HideDisplay();
             htmlControl = FindControl("viewProducts") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
             // Update the table title

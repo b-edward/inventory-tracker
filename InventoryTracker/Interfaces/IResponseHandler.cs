@@ -4,6 +4,6 @@ namespace InventoryTracker.Interfaces
 {
     public interface IResponseHandler
     {
-        DataTable GetDataTable(string response);
+        DataTable GetDataTable(string tableName, string response);
     }
 }

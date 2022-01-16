@@ -27,10 +27,7 @@ namespace InventoryTracker.Controllers
         // Create SQL query to get inventory of all products
         public string BuildReadQuery()
         {
-            string query = "";
-
-            // Use productTable properties to build select query string
-
+            string query = "GET\nSELECT * FROM `Product`;";
             return query;
         }
     }

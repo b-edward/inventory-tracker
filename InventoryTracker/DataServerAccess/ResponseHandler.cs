@@ -10,9 +10,9 @@ namespace InventoryTracker.DataServerAccess
         }
 
         // Use the converter to parse the response and fill the data table
-        public DataTable GetDataTable(string response)
+        public DataTable GetDataTable(string tableName, string response)
         {
-            DataTable dataTable = ConvertDataToTable.GetInventoryTable(response);
+            DataTable dataTable = ConvertDataToTable.GetDataTable(tableName, response);
             return dataTable;
         }
     }
