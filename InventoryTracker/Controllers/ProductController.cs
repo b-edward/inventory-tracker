@@ -45,7 +45,7 @@ namespace InventoryTracker.Controllers
             string query = "";
             // Use model properties to build the command query
             query = $"{command.ToUpper()}\nINSERT INTO `Product` (`productName`, `isActive`) " +
-                            $"VALUES ('{productTable.ProductName}', {productTable.IsActive});";
+                    $"VALUES ('{productTable.ProductName}', {productTable.IsActive});";
             return query;
         }
 
@@ -53,8 +53,8 @@ namespace InventoryTracker.Controllers
         {
             string query = "";
             // Use model properties to build the command query
-            query = $"{command.ToUpper()}\nINSERT INTO `Product` (`productName`, `isActive`) " +
-                            $"VALUES ('{productTable.ProductName}', {productTable.IsActive});";
+            query = $"{command.ToUpper()}\nUPDATE `Product` SET productName='{productTable.ProductName}', " +
+                    $"isActive={productTable.IsActive} WHERE productID={productTable.ProductID};";
             return query;
         }
 

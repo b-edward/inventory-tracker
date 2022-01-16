@@ -23,7 +23,7 @@ namespace InventoryTracker.Controllers
             // Return immediately if invalid arguments
             if (table == null || command == null || command.Length < 1 || tableName == null || tableName.Length < 1)
             {
-                response = "Invalid arguments. Please try again";
+                response = "Invalid arguments. Please try again.";
                 return response;
             }
 

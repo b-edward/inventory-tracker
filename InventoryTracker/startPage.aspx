@@ -64,7 +64,6 @@
                             <td>Product ID:</td>
                             <td>
                                 <asp:TextBox ID="txtProductID" runat="server" ToolTip="Enter the product ID" Width="100%" /></td>
-<%--                                <input type="text" id="inputProductID" runat="server" value="" /> --%>
                             <td>
                         </tr>
                         <tr>
@@ -183,6 +182,10 @@
                 <p id="errorMessage" style="color:red"></p>
             </div>
 
+            <!-- Table note -->
+            <div style="display: flex; justify-content: center;">
+                <asp:Label ID="lblTableNote" runat="server" Text="" Font-Size="Medium" Width="66%"></asp:Label>
+            </div>
             <!-- Display Output -->
             <div class="output">
                 <!-- View Inventory -->
@@ -196,8 +199,9 @@
                         </Columns>
                     </asp:GridView>
                 </div>
+
                 <!-- View Products -->
-                <div id="viewProducts" class="centre-div" runat="server" style="display: none;">
+                <div id="viewProducts" class="centre-div" runat="server" style="display: none;">            
                     <asp:GridView ID="gvProduct" runat="server" AutoGenerateColumns="false">
                         <Columns>
                             <asp:BoundField DataField="ProductID" HeaderText="Product ID" ItemStyle-Width="100" />

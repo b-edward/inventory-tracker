@@ -43,6 +43,7 @@ namespace InventoryTracker
             htmlControl.Attributes["style"] = "display:flex;";
             // Update the table title
             lblTableTitle.Text = "Inventory";
+            lblTableNote.Text = "";
         }
 
         protected void ClearInputs()
@@ -75,6 +76,7 @@ namespace InventoryTracker
             // Display edit product form
             htmlControl = FindControl("editProduct") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
+            lblTableNote.Text = "Note: A product is a type of item, for example 'Snowboard'";
             DisplaySubmitButtons();
             DisplayNavTables();
 
@@ -105,6 +107,9 @@ namespace InventoryTracker
             // Display edit item form
             htmlControl = FindControl("editItem") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
+            lblTableNote.Text = "Notes: An item is an individual unit of a product, for example 'Item #2006', which could be " +
+                                "one of many Snowboards. Items may be assigned to a warehouse, or may be left unassigned. " +
+                                "Sold items are no long shown in the Inventory table.";
             DisplaySubmitButtons();
             DisplayNavTables();
 
@@ -135,6 +140,7 @@ namespace InventoryTracker
             // Display edit warehouse form
             htmlControl = FindControl("editWarehouse") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
+            lblTableNote.Text = "";
             DisplaySubmitButtons();
             DisplayNavTables();
 
@@ -163,11 +169,10 @@ namespace InventoryTracker
 
             if(modelToAdd != null)
             {
-                // Ignore the ID to allow MySQL to auto increment
 
                 // For ITEMS, if warehouseID provided, must also send warehouseItem to add
 
-                // Send create request(s) to server
+                // Send create request to server
                 string serverResponse = editController.ExecuteCUD(modelToAdd, ADD, lblCurrentEditTable.Text);
                 lblServerMessage.Text = serverResponse;
             }
@@ -176,11 +181,19 @@ namespace InventoryTracker
         protected void btnUpdateProduct_Click(object sender, EventArgs e)
         {
             // Get the form input data
+            Object modelToAdd = GetModel();
 
+            if (modelToAdd != null)
+            {
+                // For ITEMS, if warehouseID provided, must also send warehouseItem to add
+
+                // Send update/delete request(s) to server
+                string serverResponse = editController.ExecuteCUD(modelToAdd, EDIT, lblCurrentEditTable.Text);
+                lblServerMessage.Text = serverResponse;
+            }
 
             // For ITEMS, if warehouseID provided, must also send warehouseItem to edit
 
-            // Send update/delete request to server
         }
 
 

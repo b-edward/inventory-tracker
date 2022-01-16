@@ -24,7 +24,7 @@ namespace InventoryTracker.DataServerAccess
             string[] serverResponse = ParseData(queryResponse);
             if(serverResponse[0].Contains("200"))
             {
-                response = "Request executed successfully";
+                response = "Request executed successfully.";
             }
             else
             {
