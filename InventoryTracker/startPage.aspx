@@ -208,7 +208,7 @@
                             <asp:BoundField DataField="ProvinceOrState" HeaderText="Province or State" ItemStyle-Width="150" />
                             <asp:BoundField DataField="Country" HeaderText="Country" ItemStyle-Width="150" />
                             <asp:BoundField DataField="PostalCode" HeaderText="Postal Code" ItemStyle-Width="150" />
-                            <asp:BoundField DataField="IsActive" HeaderText="Actively Operating" ItemStyle-Width="150" />
+                            <asp:BoundField DataField="IsActive" HeaderText="Operating Status" ItemStyle-Width="150" />
                         </Columns>
                     </asp:GridView>
                 </div>

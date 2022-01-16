@@ -29,7 +29,6 @@ namespace InventoryTracker.Controllers
         {
             string query = "GET\nSELECT Item.itemID, Product.productName, Item.isAssigned, Item.isSold FROM Item " +
                             "LEFT JOIN Product ON Item.productID = Product.productID;";
-
             return query;
         }
     }

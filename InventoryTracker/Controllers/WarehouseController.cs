@@ -27,10 +27,7 @@ namespace InventoryTracker.Controllers
         // Create SQL query to get inventory of all warehouses
         public string BuildReadQuery()
         {
-            string query = "";
-
-            // Use warehouseTable properties to build select query string
-
+            string query = "GET\nSELECT * FROM `Warehouse`;";
             return query;
         }
     }

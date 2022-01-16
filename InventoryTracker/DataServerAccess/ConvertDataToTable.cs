@@ -179,6 +179,46 @@ namespace InventoryTracker.DataServerAccess
         private static DataTable ConvertToWarehouseTable(string data)
         {
             DataTable warehouseTable = new DataTable();
+
+            warehouseTable.Columns.AddRange(new DataColumn[7] {
+                    new DataColumn("WarehouseID", typeof(int)),
+                    new DataColumn("StreetAndNo", typeof(string)),
+                    new DataColumn("City",typeof(string)),
+                    new DataColumn("ProvinceOrState", typeof(string)),
+                    new DataColumn("Country", typeof(string)),
+                    new DataColumn("PostalCode", typeof(string)),
+                    new DataColumn("IsActive", typeof(string)),});
+
+            // Get the records
+            string[] records = ParseData(data);
+
+            // Add the records to the DataTable
+            for (int i = 0; i < records.Length - 1; i++)
+            {
+                // Get the fields
+                string[] fields = records[i].Split(',');
+                int warehouseID = int.Parse(fields[0]);
+                string streetAndNo = fields[1];
+                string provinceOrState = fields[2];
+                string city = fields[3];
+                string country = fields[4];
+                string postalCode = fields[5];
+                string isActive = fields[6];
+
+                // Convert active status for display
+                if (isActive == "0")
+                {
+                    isActive = "Closed";
+                }
+                else
+                {
+                    isActive = "Operating";
+                }
+
+                // Add the fields to the row
+                warehouseTable.Rows.Add(warehouseID, streetAndNo, provinceOrState, city, country, postalCode, isActive);
+            }
+
             return warehouseTable;
         }
 
