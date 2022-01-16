@@ -52,7 +52,7 @@ namespace DataServer.ServerClasses
             catch
             {
                 // Set bad request return code
-                response = "400\n";
+                response = "400\nInvalid request";
                 return response;
             }
 
@@ -84,7 +84,7 @@ namespace DataServer.ServerClasses
 
                 default:
                     // Set Method Not Allowed return code
-                    response = "405\n";
+                    response = "405\nMethod not allowed.";
                     break;
             }
             return response;

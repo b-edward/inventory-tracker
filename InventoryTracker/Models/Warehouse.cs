@@ -10,7 +10,7 @@ namespace InventoryTracker.Models
         private string provinceOrState;
         private string country;
         private string postalCode;
-        private bool isActive;
+        private int isActive;
 
         public string WarehouseID
         { get { return warehouseID; } set { warehouseID = value; } }
@@ -24,7 +24,7 @@ namespace InventoryTracker.Models
         { get { return country; } set { country = value; } }
         public string PostalCode
         { get { return postalCode; } set { postalCode = value; } }
-        public bool IsActive
+        public int IsActive
         { get { return isActive; } set { isActive = value; } }
         public int ID
         { get; set; }

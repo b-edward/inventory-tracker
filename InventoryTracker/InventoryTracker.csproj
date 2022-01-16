@@ -127,6 +127,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\EditController.cs" />
     <Compile Include="Controllers\ReadController.cs" />
+    <Compile Include="Controllers\SelectController.cs" />
     <Compile Include="Controllers\WarehouseController.cs" />
     <Compile Include="Controllers\WarehouseItemController.cs" />
     <Compile Include="DataServerAccess\ConvertDataToTable.cs" />

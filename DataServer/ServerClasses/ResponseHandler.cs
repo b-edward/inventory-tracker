@@ -83,7 +83,7 @@ namespace DataServer.ServerClasses
                 if (response == "")
                 {
                     // If blank, set Not Found return code
-                    response = "404\n";
+                    response = "404\nNot found";
                 }
                 else
                 {
@@ -145,7 +145,7 @@ namespace DataServer.ServerClasses
             else
             {
                 // Otherwise set Internal Server Error return code
-                response = response.Insert(0, "500\n");
+                response = response.Insert(0, "500\nServer could not execute request.");
             }
             return response;
         }

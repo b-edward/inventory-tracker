@@ -123,14 +123,14 @@ namespace DataServer.ServerClasses
                 else
                 {
                     // Set bad request return code
-                    request = "400\n";
+                    request = "400\nInvalid request";
                     Console.WriteLine("[ERROR] - No data received from client");
                 }
             }
             catch
             {
                 // Set Internal Server Error return code
-                request = "500\n";
+                request = "500\nCould not execute request.";
                 // Log errors
                 serverLog.Log("[ERROR] Could not read data from client");
                 Console.WriteLine("[ERROR] Could not read data from client");

@@ -42,6 +42,15 @@ namespace InventoryTracker
         protected global::System.Web.UI.WebControls.Button btnEdit;
 
         /// <summary>
+        /// lblServerMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblServerMessage;
+
+        /// <summary>
         /// navTables control.
         /// </summary>
         /// <remarks>

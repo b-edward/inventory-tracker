@@ -40,7 +40,7 @@ namespace DataServer.DataAccess
                 string logFile = ConfigurationManager.AppSettings.Get("serverLogFile");
                 serverLog = new Logger(logFile);
                 serverLog.Log("[ERROR] - Could not convert DataTable to string");
-                response = "500\n";
+                response = "500\nCould not retrieve data.";
             }
             // Return the converted data table as a string
             return response;

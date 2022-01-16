@@ -6,6 +6,6 @@
     {
         string ProductID { get; set; }
         string ProductName { get; set; }
-        bool IsActive { get; set; }
+        int IsActive { get; set; }
     }
 }

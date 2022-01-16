@@ -5,7 +5,7 @@ namespace InventoryTracker.Controllers
 {
     public class ProductController : ITableRead, ITableCUD
     {
-        private IModel productTable;
+        private IProduct productTable;
 
         public ProductController()
         {
@@ -14,15 +14,52 @@ namespace InventoryTracker.Controllers
         // Create SQL query to execute the command in the product table
         public string BuildCUDQuery(object table, string command)
         {
-            string query = "";
-
             // Convert the object parameter into a Product
             productTable = (Product)table;
 
-            // Use productTable properties to build the command query
+            string query = GetQuery(table, command);
 
             return query;
         }
+
+        private string GetQuery(object table, string command)
+        {
+            string query = "";
+
+            switch(command.ToUpper())
+            {
+                case "PUT":
+                    query = InsertQuery(table, command);
+                    break;
+                case "POST":
+                    query = UpdateQuery(table, command);
+                    break;
+
+
+            }
+            return query;
+        }
+
+        private string InsertQuery(object table, string command)
+        {
+            string query = "";
+            // Use model properties to build the command query
+            query = $"{command.ToUpper()}\nINSERT INTO `Product` (`productName`, `isActive`) " +
+                            $"VALUES ('{productTable.ProductName}', {productTable.IsActive});";
+            return query;
+        }
+
+        private string UpdateQuery(object table, string command)
+        {
+            string query = "";
+            // Use model properties to build the command query
+            query = $"{command.ToUpper()}\nINSERT INTO `Product` (`productName`, `isActive`) " +
+                            $"VALUES ('{productTable.ProductName}', {productTable.IsActive});";
+            return query;
+        }
+
+
+
 
         // Create SQL query to get inventory of all products
         public string BuildReadQuery()

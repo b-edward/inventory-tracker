@@ -6,13 +6,13 @@ namespace InventoryTracker.Models
     {
         private string productID;
         private string productName;
-        private bool isActive;
+        private int isActive;
 
         public string ProductID
         { get { return productID; } set { productID = value; } }
         public string ProductName
         { get { return productName; } set { productName = value; } }
-        public bool IsActive
+        public int IsActive
         { get { return isActive; } set { isActive = value; } }
         public int ID
         { get; set; }

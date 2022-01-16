@@ -29,7 +29,7 @@ namespace InventoryTracker.Controllers
             }
 
             // Instantiate controller based on tableName
-            tableRead = SelectController(tableName);
+            tableRead = (ITableRead)SelectController.GetController(tableName);
             if(tableRead != null)
             {
                 // Get the inventory query string and send it
@@ -49,32 +49,6 @@ namespace InventoryTracker.Controllers
             }
             
             return dataTable;
-        }
-
-        private ITableRead SelectController(string tableName)
-        {
-            ITableRead newObject;
-
-            // Switch to select the controller
-            switch(tableName.ToUpper())
-            {
-                case "INVENTORY":
-                    newObject = new InventoryController();
-                    break;
-                case "ITEM":
-                    newObject = new ItemController();
-                    break;
-                case "PRODUCT":
-                    newObject = new ProductController();
-                    break;
-                case "WAREHOUSE":
-                    newObject = new WarehouseController();
-                    break;
-                default:
-                    newObject = null;
-                    break;
-            }
-            return newObject;
         }
 
         private string SendQuery(string query)

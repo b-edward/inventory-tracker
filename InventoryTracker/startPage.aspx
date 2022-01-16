@@ -32,6 +32,10 @@
                         <td></td>
                     </tr>
                 </table>
+            </div>            
+            <!-- Server Response Output -->
+            <div style="display: flex; justify-content: center; margin:15px;">
+                <asp:Label ID="lblServerMessage" runat="server" Text="" Font-Bold="True" ForeColor="#0000CC" Font-Size="Large" ></asp:Label>
             </div>
             <!-- Table Navigation -->
             <div id="navTables" class="centre-div" runat="server" style="display: none;">
@@ -185,10 +189,10 @@
                 <div id="viewInventory" class="centre-div" runat="server" style="display: flex;">
                     <asp:GridView ID="gvInventory" runat="server" AutoGenerateColumns="false">
                         <Columns>
-                            <asp:BoundField DataField="ItemID" HeaderText="Item ID" ItemStyle-Width="150" />
-                            <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="150" />
+                            <asp:BoundField DataField="ItemID" HeaderText="Item ID" ItemStyle-Width="100" />
+                            <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="250" />
                             <asp:BoundField DataField="WarehouseCity" HeaderText="Location" ItemStyle-Width="150" />
-                            <asp:BoundField DataField="WarehouseID" HeaderText="Warehouse ID" ItemStyle-Width="150" />
+                            <asp:BoundField DataField="WarehouseID" HeaderText="Warehouse ID" ItemStyle-Width="100" />
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -196,8 +200,8 @@
                 <div id="viewProducts" class="centre-div" runat="server" style="display: none;">
                     <asp:GridView ID="gvProduct" runat="server" AutoGenerateColumns="false">
                         <Columns>
-                            <asp:BoundField DataField="ProductID" HeaderText="Product ID" ItemStyle-Width="150" />
-                            <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="150" />
+                            <asp:BoundField DataField="ProductID" HeaderText="Product ID" ItemStyle-Width="100" />
+                            <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="250" />
                             <asp:BoundField DataField="IsActive" HeaderText="Active Status" ItemStyle-Width="150" />
                         </Columns>
                     </asp:GridView>
@@ -206,8 +210,8 @@
                 <div id="viewItems" class="centre-div" runat="server" style="display: none;">
                     <asp:GridView ID="gvItem" runat="server" AutoGenerateColumns="false">
                         <Columns>
-                            <asp:BoundField DataField="ItemID" HeaderText="Item ID" ItemStyle-Width="150" />
-                            <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="150" />
+                            <asp:BoundField DataField="ItemID" HeaderText="Item ID" ItemStyle-Width="100" />
+                            <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="250" />
                             <asp:BoundField DataField="IsAssigned" HeaderText="Assigned to Warehouse" ItemStyle-Width="150" />
                             <asp:BoundField DataField="IsSold" HeaderText="Availability for Sale" ItemStyle-Width="150" />
                         </Columns>
@@ -217,8 +221,8 @@
                 <div id="viewWarehouses" class="centre-div" runat="server" style="display: none;">
                     <asp:GridView ID="gvWarehouse" runat="server" AutoGenerateColumns="false">
                         <Columns>
-                            <asp:BoundField DataField="WarehouseID" HeaderText="Item ID" ItemStyle-Width="150" />
-                            <asp:BoundField DataField="StreetAndNo" HeaderText="Street and Number" ItemStyle-Width="150" />
+                            <asp:BoundField DataField="WarehouseID" HeaderText="Item ID" ItemStyle-Width="100" />
+                            <asp:BoundField DataField="StreetAndNo" HeaderText="Street and Number" ItemStyle-Width="250" />
                             <asp:BoundField DataField="City" HeaderText="City" ItemStyle-Width="150" />
                             <asp:BoundField DataField="ProvinceOrState" HeaderText="Province or State" ItemStyle-Width="150" />
                             <asp:BoundField DataField="Country" HeaderText="Country" ItemStyle-Width="150" />

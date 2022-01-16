@@ -6,16 +6,16 @@ namespace InventoryTracker.Models
     {
         private string itemID;
         private string productID;
-        private bool isAssigned;
-        private bool isSold;
+        private int isAssigned;
+        private int isSold;
 
         public string ItemID
         { get { return itemID; } set { itemID = value; } }
         public string ProductID
         { get { return productID; } set { productID = value; } }
-        public bool IsAssigned
+        public int IsAssigned
         { get { return isAssigned; } set { isAssigned = value; } }
-        public bool IsSold
+        public int IsSold
         { get { return isSold; } set { isSold = value; } }
 
         // ID property should not be used, implemented only for IModel usage

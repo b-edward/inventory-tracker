@@ -10,6 +10,6 @@
         string ProvinceOrState { get; set; }
         string Country { get; set; }
         string PostalCode { get; set; }
-        bool IsActive { get; set; }
+        int IsActive { get; set; }
     }
 }
