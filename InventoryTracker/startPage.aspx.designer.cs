@@ -123,6 +123,33 @@ namespace InventoryTracker
         protected global::System.Web.UI.WebControls.DropDownList ddlProductActive;
 
         /// <summary>
+        /// submitButtons control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl submitButtons;
+
+        /// <summary>
+        /// btnAddProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddProduct;
+
+        /// <summary>
+        /// btnUpdateProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdateProduct;
+
+        /// <summary>
         /// editItem control.
         /// </summary>
         /// <remarks>
@@ -240,31 +267,13 @@ namespace InventoryTracker
         protected global::System.Web.UI.WebControls.DropDownList ddlWarehouseActive;
 
         /// <summary>
-        /// submitButtons control.
+        /// lblCurrentEditTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl submitButtons;
-
-        /// <summary>
-        /// btnAddNew control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddNew;
-
-        /// <summary>
-        /// btnUpdateProduct control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateProduct;
+        protected global::System.Web.UI.WebControls.Label lblCurrentEditTable;
 
         /// <summary>
         /// viewInventory control.

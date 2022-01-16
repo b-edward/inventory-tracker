@@ -1,5 +1,6 @@
 ﻿using InventoryTracker.Controllers;
 using InventoryTracker.Interfaces;
+using InventoryTracker.Models;
 using System;
 using System.Data;
 using System.Web.UI.HtmlControls;
@@ -17,12 +18,13 @@ namespace InventoryTracker
             readController = new ReadController();
             editController = new EditController();
             DisplayInventory();
+            ClearInputs();
         }
 
         protected void DisplayInventory()
         {
             // Get the inventory data table
-            DataTable inventoryTable = readController.GetInventory();
+            DataTable inventoryTable = readController.GetTable("Inventory");
             gvInventory.DataSource = inventoryTable;
             gvInventory.DataBind();
 
@@ -33,6 +35,14 @@ namespace InventoryTracker
             // Update the table title
             lblTableTitle.Text = "Inventory";
         }
+
+        protected void ClearInputs()
+        {
+            txtProductID.Text = "";
+            txtProductName.Text = "";
+
+        }
+
 
         protected void btnView_Click(object sender, EventArgs e)
         {
@@ -68,6 +78,8 @@ namespace InventoryTracker
             htmlControl.Attributes["style"] = "display:flex;";
             // Update the table title
             lblTableTitle.Text = "Products";
+            // Track which table is being edited
+            lblCurrentEditTable.Text = "products";
         }
 
         protected void btnItem_Click(object sender, EventArgs e)
@@ -91,6 +103,8 @@ namespace InventoryTracker
             htmlControl.Attributes["style"] = "display:flex;";
             // Update the table title
             lblTableTitle.Text = "Items";
+            // Track which table is being edited
+            lblCurrentEditTable.Text = "items";
         }
 
         protected void btnWarehouse_Click(object sender, EventArgs e)
@@ -114,15 +128,23 @@ namespace InventoryTracker
             htmlControl.Attributes["style"] = "display:flex;";
             // Update the table title
             lblTableTitle.Text = "Warehouses";
+            // Track which table is being edited
+            lblCurrentEditTable.Text = "warehouses";
         }
 
         protected void btnAddNew_Click(object sender, EventArgs e)
         {
             // Get the form input data
+            Object modelToAdd = GetModel();
 
-            // Ignore the ID to allow MySQL to auto increment
+            if(modelToAdd != null)
+            {
+                // Ignore the ID to allow MySQL to auto increment
 
-            // Send create request to server
+                // For ITEMS, if warehouseID provided, must also send warehouseItem to add
+
+                // Send create request(s) to server
+            }
         }
 
         protected void btnUpdateProduct_Click(object sender, EventArgs e)
@@ -130,8 +152,85 @@ namespace InventoryTracker
             // Get the form input data
 
 
+            // For ITEMS, if warehouseID provided, must also send warehouseItem to edit
 
             // Send update/delete request to server
+        }
+
+        protected Object GetModel()
+        {
+            Object newModel = null;
+
+            // Switch to select the model
+            switch (lblCurrentEditTable.Text.ToUpper())
+            {
+                case "ITEMS":
+                    newModel = GetItem();
+                    break;
+                case "PRODUCTS":
+                    newModel = GetProduct();
+                    break;
+                case "WAREHOUSES":
+                    newModel = GetWarehouse();
+                    break;
+            }
+            return newModel;
+        }
+
+        protected Object GetProduct()
+        {
+            Product newProduct = new Product();
+
+            // Validate product ID
+            bool isInt = int.TryParse(txtProductID.Text, out int id);
+            if(isInt && id > 0)
+            {
+                // Set the product ID
+                newProduct.ProductID = txtProductID.Text;
+            }
+            else
+            {
+                newProduct.ProductID = "";
+            }
+
+            // Set the product name
+            newProduct.ProductName = txtProductName.Text;
+
+            // Set the isActive field
+            if (ddlProductActive.SelectedValue == "0")
+            {
+                newProduct.IsActive = false;
+            }
+            else
+            {
+                // Active by default
+                newProduct.IsActive = true;
+            }
+            return newProduct;
+        }
+
+        protected Object GetItem()
+        {
+            IModel newItem = new Item();
+
+
+            return newItem;
+        }
+
+        protected IModel GetWarehouse()
+        {
+            IModel newWarehouse = new Warehouse();
+
+
+            return newWarehouse;
+        }
+
+        protected IModel GetWarehouseItem()
+        {
+            IModel newWarehouseItem = new WarehouseItem();
+
+
+            return newWarehouseItem;
         }
 
         // Display navTables

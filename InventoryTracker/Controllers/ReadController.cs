@@ -17,13 +17,6 @@ namespace InventoryTracker.Controllers
             responseHandler = new ResponseHandler();
         }
 
-        public DataTable GetInventory()
-        {
-            // Use the GetTable method to get the inventory
-            DataTable dataTable = GetTable("Inventory");
-            return dataTable;
-        }
-
         public DataTable GetTable(string tableName)
         {
             DataTable dataTable = null;

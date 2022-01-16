@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head runat="server">    
+	<script type="text/javascript" src="Scripts/InputValidation.js"></script>
     <style type="text/css">
         .centre-div {
             justify-content: center;
-            margin: 20px;
+            margin: 20px;   
         }
     </style>
     <title>EB Logistics Corp.</title>
@@ -53,28 +54,46 @@
             </div>
             <!-- Edit Product Form -->
             <div id="editProduct" class="centre-div" runat="server" style="display: none;">
-                <table>
-                    <tr>
-                        <td>Product ID:</td>
-                        <td>
-                            <asp:TextBox ID="txtProductID" runat="server" ToolTip="Enter the product ID" Width="100%" /></td>
-                    </tr>
-                    <tr>
-                        <td>Product Name:</td>
-                        <td>
-                            <asp:TextBox ID="txtProductName" runat="server" ToolTip="Enter the product name" Width="100%" /></td>
-                    </tr>
-                    <tr>
-                        <td>Product Status:</td>
-                        <td>
-                            <asp:DropDownList ID="ddlProductActive" runat="server">
-                                <asp:ListItem Text=""></asp:ListItem>
-                                <asp:ListItem Text="Discontinued" Value="0"></asp:ListItem>
-                                <asp:ListItem Text="Active" Value="1"></asp:ListItem>
-                            </asp:DropDownList>
-                        </td>
-                    </tr>
-                </table>
+                <div>
+                    <table>
+                        <tr>
+                            <td>Product ID:</td>
+                            <td>
+                                <asp:TextBox ID="txtProductID" runat="server" ToolTip="Enter the product ID" Width="100%" /></td>
+<%--                                <input type="text" id="inputProductID" runat="server" value="" /> --%>
+                            <td>
+                        </tr>
+                        <tr>
+                            <td>Product Name:</td>
+                            <td>
+                                <asp:TextBox ID="txtProductName" runat="server" ToolTip="Enter the product name" Width="100%" /></td>
+                        </tr>
+                        <tr>
+                            <td>Product Status:</td>
+                            <td>
+                                <asp:DropDownList ID="ddlProductActive" runat="server">
+                                    <asp:ListItem Text=""></asp:ListItem>
+                                    <asp:ListItem Text="Discontinued" Value="0"></asp:ListItem>
+                                    <asp:ListItem Text="Active" Value="1"></asp:ListItem>
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+                
+                <!-- Buttons for submitting Product form -->
+                <div id="submitButtons" class="centre-div" runat="server" style="display: none;">
+                    <table>
+                        <tr>
+                            <td>
+                                <asp:Button ID="btnAddProduct" runat="server" Text="Add New" Width="150px" OnClick="btnAddNew_Click" OnClientClick = "if (!validateAddProduct()) {return false;}" UseSubmitBehavior="False"/></td>
+                            <td>
+                            
+                                <asp:Button ID="btnUpdateProduct" runat="server" Text="Update" Width="150px" OnClick="btnUpdateProduct_Click" OnClientClick = "if (!validateEditProduct()) {return false;}" UseSubmitBehavior="False"/></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
             <!-- Edit Item Form -->
             <div id="editItem" class="centre-div" runat="server" style="display: none;">
@@ -152,16 +171,12 @@
                     </tr>
                 </table>
             </div>
-            <!-- Buttons for submitting forms -->
-            <div id="submitButtons" class="centre-div" runat="server" style="display: none;">
-                <table>
-                    <tr>
-                        <td>
-                            <asp:Button ID="btnAddNew" runat="server" Text="Add New" Width="150px" OnClick="btnAddNew_Click" /></td>
-                        <td>
-                            <asp:Button ID="btnUpdateProduct" runat="server" Text="Update" Width="150px" OnClick="btnUpdateProduct_Click" /></td>
-                    </tr>
-                </table>
+            <!-- Track current table -->
+            <asp:Label ID="lblCurrentEditTable" runat="server" Text="" Visible="False"></asp:Label>
+
+            <!-- Display Input Error Message -->
+            <div class="error" style="display: flex; justify-content: center;">
+                <p id="errorMessage" style="color:red"></p>
             </div>
 
             <!-- Display Output -->

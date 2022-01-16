@@ -4,7 +4,7 @@
     // types of products in future (e.g. furniture, vehicles, clothes, etc)
     public interface IProduct
     {
-        int ProductID { get; set; }
+        string ProductID { get; set; }
         string ProductName { get; set; }
         bool IsActive { get; set; }
     }

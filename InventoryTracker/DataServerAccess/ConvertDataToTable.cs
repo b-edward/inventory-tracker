@@ -47,10 +47,10 @@ namespace InventoryTracker.DataServerAccess
             DataTable inventoryTable = new DataTable();
 
             inventoryTable.Columns.AddRange(new DataColumn[4] {
-                    new DataColumn("ItemID", typeof(int)),
+                    new DataColumn("ItemID", typeof(string)),
                     new DataColumn("ProductName", typeof(string)),
                     new DataColumn("WarehouseCity", typeof(string)),
-                    new DataColumn("WarehouseID",typeof(int)) });
+                    new DataColumn("WarehouseID",typeof(string)) });
 
             // Get the records
             string[] records = ParseData(data);
@@ -60,7 +60,7 @@ namespace InventoryTracker.DataServerAccess
             {
                 // Get the fields
                 string[] fields = records[i].Split(',');
-                int itemID = int.Parse(fields[0]);
+                string itemID = fields[0];
                 string productName = fields[1];
                 // Validate location, set unassigned if blank
                 string location = "";
@@ -72,12 +72,9 @@ namespace InventoryTracker.DataServerAccess
                 {
                     location = "Unassigned";
                 }
-                // Validate warehouse ID, set 0 if unassigned
-                bool warehouseOK = int.TryParse(fields[3], out int warehouseID);
-                if (!warehouseOK)
-                {
-                    warehouseID = 0;
-                }
+                // Get warehouseID
+                string warehouseID = fields[3];
+
                 // Add the fields to the row
                 inventoryTable.Rows.Add(itemID, productName, location, warehouseID);
             }
@@ -92,7 +89,7 @@ namespace InventoryTracker.DataServerAccess
         {
             DataTable itemTable = new DataTable();
             itemTable.Columns.AddRange(new DataColumn[4] {
-                    new DataColumn("ItemID", typeof(int)),
+                    new DataColumn("ItemID", typeof(string)),
                     new DataColumn("ProductName", typeof(string)),
                     new DataColumn("IsAssigned",typeof(string)),
                     new DataColumn("IsSold", typeof(string)) });
@@ -105,7 +102,7 @@ namespace InventoryTracker.DataServerAccess
             {
                 // Get the fields
                 string[] fields = records[i].Split(',');
-                int itemID = int.Parse(fields[0]);
+                string itemID = fields[0];
                 string productName = fields[1];
                 string isAssigned = fields[2];
                 string isSold = fields[3];
@@ -143,7 +140,7 @@ namespace InventoryTracker.DataServerAccess
             DataTable productTable = new DataTable();
 
             productTable.Columns.AddRange(new DataColumn[3] {
-                    new DataColumn("ProductID", typeof(int)),
+                    new DataColumn("ProductID", typeof(string)),
                     new DataColumn("ProductName", typeof(string)),
                     new DataColumn("IsActive",typeof(string))});
 
@@ -155,7 +152,7 @@ namespace InventoryTracker.DataServerAccess
             {
                 // Get the fields
                 string[] fields = records[i].Split(',');
-                int productID = int.Parse(fields[0]);
+                string productID = fields[0];
                 string productName = fields[1];
                 string activeStatus = fields[2];
 
@@ -181,7 +178,7 @@ namespace InventoryTracker.DataServerAccess
             DataTable warehouseTable = new DataTable();
 
             warehouseTable.Columns.AddRange(new DataColumn[7] {
-                    new DataColumn("WarehouseID", typeof(int)),
+                    new DataColumn("WarehouseID", typeof(string)),
                     new DataColumn("StreetAndNo", typeof(string)),
                     new DataColumn("City",typeof(string)),
                     new DataColumn("ProvinceOrState", typeof(string)),
@@ -197,7 +194,7 @@ namespace InventoryTracker.DataServerAccess
             {
                 // Get the fields
                 string[] fields = records[i].Split(',');
-                int warehouseID = int.Parse(fields[0]);
+                string warehouseID = fields[0];
                 string streetAndNo = fields[1];
                 string provinceOrState = fields[2];
                 string city = fields[3];

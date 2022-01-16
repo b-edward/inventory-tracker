@@ -7,7 +7,6 @@ namespace InventoryTracker.Controllers
     {
         private IRequestHandler requestHandler;
         private IResponseHandler responseHandler;
-        private ITableRead tableReader;
         private ITableCUD tableEditor;
 
         public EditController()
@@ -19,6 +18,7 @@ namespace InventoryTracker.Controllers
         public string ExecuteCUD(object table, string command, string tableName)
         {
             string response = "200";
+
 
             return response;
         }
