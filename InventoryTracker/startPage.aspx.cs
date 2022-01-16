@@ -18,7 +18,6 @@ namespace InventoryTracker
             readController = new ReadController();
             editController = new EditController();
             DisplayInventory();
-            ClearInputs();
         }
 
         protected void DisplayInventory()
@@ -61,6 +60,7 @@ namespace InventoryTracker
         {
             // Reset the display
             HideDisplay();
+            ClearInputs();
 
             // Display edit product form
             htmlControl = FindControl("editProduct") as HtmlControl;
@@ -86,6 +86,7 @@ namespace InventoryTracker
         {
             // Reset the display
             HideDisplay();
+            ClearInputs();
 
             // Display edit item form
             htmlControl = FindControl("editItem") as HtmlControl;
@@ -111,6 +112,7 @@ namespace InventoryTracker
         {
             // Reset the display
             HideDisplay();
+            ClearInputs();
 
             // Display edit warehouse form
             htmlControl = FindControl("editWarehouse") as HtmlControl;
