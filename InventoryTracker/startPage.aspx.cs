@@ -99,7 +99,6 @@ namespace InventoryTracker
             gvProduct.DataBind();
 
             // Get the viewProducts div and display it
-            HideDisplay();
             htmlControl = FindControl("viewProducts") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
             // Update the table title
@@ -108,21 +107,43 @@ namespace InventoryTracker
 
         protected void btnItem_Click(object sender, EventArgs e)
         {
+            // Reset the display
             HideDisplay();
 
-            // Get the editItem div and display it
+            // Display edit item form
             htmlControl = FindControl("editItem") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
-            // Get the submitButtons div and display it
             DisplaySubmitButtons();
-            // Keep the navTables div displayed
             DisplayNavTables();
 
-            // Read Item table and display it
+            // Get the item data table and fill viewItems
+            DataTable itemTable = readController.GetTable("Item");
+            gvItem.DataSource = itemTable;
+            gvItem.DataBind();
+
+            // Get the viewItems div and display it
             htmlControl = FindControl("viewItems") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
             // Update the table title
             lblTableTitle.Text = "Items";
+
+
+
+            //HideDisplay();
+
+            //// Get the editItem div and display it
+            //htmlControl = FindControl("editItem") as HtmlControl;
+            //htmlControl.Attributes["style"] = "display:flex;";
+            //// Get the submitButtons div and display it
+            //DisplaySubmitButtons();
+            //// Keep the navTables div displayed
+            //DisplayNavTables();
+
+            //// Read Item table and display it
+            //htmlControl = FindControl("viewItems") as HtmlControl;
+            //htmlControl.Attributes["style"] = "display:flex;";
+            //// Update the table title
+            //lblTableTitle.Text = "Items";
         }
 
         protected void btnWarehouse_Click(object sender, EventArgs e)

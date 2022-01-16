@@ -27,9 +27,8 @@ namespace InventoryTracker.Controllers
         // Create SQL query to get inventory of all items
         public string BuildReadQuery()
         {
-            string query = "";
-
-            // Use itemTable properties to build select query string
+            string query = "GET\nSELECT Item.itemID, Product.productName, Item.isAssigned, Item.isSold FROM Item " +
+                            "LEFT JOIN Product ON Item.productID = Product.productID;";
 
             return query;
         }

@@ -13,7 +13,6 @@ namespace InventoryTracker.DataServerAccess
         public static TableConverter itemConverter = new TableConverter(ConvertToItemTable);
         public static TableConverter warehouseConverter = new TableConverter(ConvertToWarehouseTable);
 
-
         // Select a table converter based on first parameter
         public static DataTable GetDataTable(string tableName, string data)
         {
@@ -40,7 +39,6 @@ namespace InventoryTracker.DataServerAccess
             }
             return newDataTable;
         }
-
 
 
         // Convert to Inventory report
@@ -93,6 +91,48 @@ namespace InventoryTracker.DataServerAccess
         private static DataTable ConvertToItemTable(string data)
         {
             DataTable itemTable = new DataTable();
+            itemTable.Columns.AddRange(new DataColumn[4] {
+                    new DataColumn("ItemID", typeof(int)),
+                    new DataColumn("ProductName", typeof(string)),
+                    new DataColumn("IsAssigned",typeof(string)),
+                    new DataColumn("IsSold", typeof(string)) });
+
+            // Get the records
+            string[] records = ParseData(data);
+
+            // Add the records to the DataTable
+            for (int i = 0; i < records.Length - 1; i++)
+            {
+                // Get the fields
+                string[] fields = records[i].Split(',');
+                int itemID = int.Parse(fields[0]);
+                string productName = fields[1];
+                string isAssigned = fields[2];
+                string isSold = fields[3];
+
+                // Convert assigned status for display
+                if (isAssigned == "0")
+                {
+                    isAssigned = "Not Assigned";
+                }
+                else
+                {
+                    isAssigned = "Assigned";
+                }
+
+                // Convert sold status for display
+                if (isSold == "0")
+                {
+                    isSold = "Available";
+                }
+                else
+                {
+                    isSold = "Sold";
+                }
+
+                // Add the fields to the row
+                itemTable.Rows.Add(itemID, productName, isAssigned, isSold);
+            }
             return itemTable;
         }
 
@@ -132,7 +172,6 @@ namespace InventoryTracker.DataServerAccess
                 // Add the fields to the row
                 productTable.Rows.Add(productID, productName, activeStatus);
             }
-
             return productTable;
         }
 
