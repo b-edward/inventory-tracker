@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using InventoryTracker.Interfaces;
+﻿using InventoryTracker.Interfaces;
 
 namespace InventoryTracker.Models
 {
@@ -12,9 +8,13 @@ namespace InventoryTracker.Models
         private string productName;
         private bool isActive;
 
-        public int ID { get { return productID; } set { productID = value; } }
-        public int ProductID { get { return productID; } set { productID = value; } }
-        public string ProductName { get { return productName; } set { productName = value; } }
-        public bool IsActive { get { return isActive; } set { isActive = value; } }
+        public int ID
+        { get { return productID; } set { productID = value; } }
+        public int ProductID
+        { get { return productID; } set { productID = value; } }
+        public string ProductName
+        { get { return productName; } set { productName = value; } }
+        public bool IsActive
+        { get { return isActive; } set { isActive = value; } }
     }
 }

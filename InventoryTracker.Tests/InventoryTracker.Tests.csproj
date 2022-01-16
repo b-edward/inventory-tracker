@@ -56,8 +56,12 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="InventoryControllerTests.cs" />
+    <Compile Include="EditControllerTests.cs" />
+    <Compile Include="ReadControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerHandlerTests.cs" />
+    <Compile Include="RequestHandlerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

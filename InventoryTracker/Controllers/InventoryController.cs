@@ -1,9 +1,5 @@
 ﻿using InventoryTracker.Interfaces;
 using InventoryTracker.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace InventoryTracker.Controllers
 {
@@ -34,7 +30,6 @@ namespace InventoryTracker.Controllers
             // Use IModel properties to build SQL query string
             // Need a join to get the item ID (Item), productName (Product), warehouseCity (Warehouse & WarehouseItem),
             // warehouseID (WarehouseItem) for all unsold items
-            
 
             return query;
         }

@@ -1,9 +1,5 @@
 ﻿using InventoryTracker.DataServerAccess;
 using InventoryTracker.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace InventoryTracker.Controllers
 {
@@ -20,10 +16,9 @@ namespace InventoryTracker.Controllers
             responseHandler = new ResponseHandler();
         }
 
-
         public string ExecuteCUD(object table, string command, string tableName)
         {
-            string response = "";
+            string response = "200";
 
             return response;
         }

@@ -1,9 +1,4 @@
-﻿using InventoryTracker.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Web;
+﻿using System.Data;
 
 namespace InventoryTracker.DataServerAccess
 {
@@ -24,7 +19,7 @@ namespace InventoryTracker.DataServerAccess
             string[] records = ParseData(data);
 
             // Add the records to the DataTable
-            for(int i = 0; i < records.Length - 1; i++)
+            for (int i = 0; i < records.Length - 1; i++)
             {
                 // Get the fields
                 string[] fields = records[i].Split(',');
@@ -32,7 +27,7 @@ namespace InventoryTracker.DataServerAccess
                 string productName = fields[1];
                 // Validate location, set unassigned if blank
                 string location = "";
-                if(fields[2] != null && fields[2] != "")
+                if (fields[2] != null && fields[2] != "")
                 {
                     location = fields[2];
                 }
@@ -42,7 +37,7 @@ namespace InventoryTracker.DataServerAccess
                 }
                 // Validate warehouse ID, set 0 if unassigned
                 bool warehouseOK = int.TryParse(fields[3], out int warehouseID);
-                if(!warehouseOK)
+                if (!warehouseOK)
                 {
                     warehouseID = 0;
                 }

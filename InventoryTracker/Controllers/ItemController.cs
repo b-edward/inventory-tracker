@@ -1,16 +1,12 @@
 ﻿using InventoryTracker.Interfaces;
 using InventoryTracker.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace InventoryTracker.Controllers
 {
     public class ItemController : ITableRead, ITableCUD
     {
         private IModel itemTable;
-        
+
         public ItemController()
         {
         }
@@ -23,11 +19,10 @@ namespace InventoryTracker.Controllers
             // Convert the object parameter into a Product
             itemTable = (Item)table;
 
-            // Use itemTable properties to build the command query 
+            // Use itemTable properties to build the command query
 
-            return query; 
+            return query;
         }
-
 
         // Create SQL query to get inventory of all items
         public string BuildReadQuery()

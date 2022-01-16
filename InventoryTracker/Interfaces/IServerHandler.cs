@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InventoryTracker.Interfaces
+﻿namespace InventoryTracker.Interfaces
 {
-    interface IServerHandler
+    public interface IServerHandler
     {
         string SendToServer(string stringToSend);
     }

@@ -1,9 +1,5 @@
 ﻿using InventoryTracker.Interfaces;
 using InventoryTracker.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace InventoryTracker.Controllers
 {
@@ -23,11 +19,10 @@ namespace InventoryTracker.Controllers
             // Convert the object parameter into a warehouse
             warehouseTable = (Warehouse)table;
 
-            // Use warehouseTable properties to build the command query 
+            // Use warehouseTable properties to build the command query
 
             return query;
         }
-
 
         // Create SQL query to get inventory of all warehouses
         public string BuildReadQuery()

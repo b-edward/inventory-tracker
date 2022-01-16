@@ -1,11 +1,6 @@
-﻿using InventoryTracker.Interfaces;
-using InventoryTracker.DataServerAccess;
-using System;
-using System.Collections.Generic;
+﻿using InventoryTracker.DataServerAccess;
+using InventoryTracker.Interfaces;
 using System.Data;
-using System.Linq;
-using System.Web;
-using InventoryTracker.Models;
 
 namespace InventoryTracker.Controllers
 {
@@ -42,7 +37,7 @@ namespace InventoryTracker.Controllers
 
             return dataTable;
         }
-        
+
         public DataTable GetTable(string tableName)
         {
             DataTable dataTable = new DataTable();

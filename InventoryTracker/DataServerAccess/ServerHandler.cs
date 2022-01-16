@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using InventoryTracker.Interfaces;
+using System;
 using System.Net.Sockets;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Data;
-using System.Text;
-using InventoryTracker.Interfaces;
 
 namespace InventoryTracker.DataServerAccess
 {
@@ -23,26 +16,27 @@ namespace InventoryTracker.DataServerAccess
         *	            It will use the established package protocol to send and receive data from the server, then call a method
         *	            to process the response.
         *	INPUTS	:	None
-        *	RETURNS	:	void 
+        *	RETURNS	:	void
         */
+
         public string SendToServer(string stringToSend)
         {
             string response = "";
 
-            if(stringToSend.Length > 0)
+            if (stringToSend.Length > 0)
             {
                 try
                 {
                     // Create a new TCP Client
                     TcpClient client = new TcpClient("127.0.0.1", 13000);    //13.92.120.219
-                    
+
                     // Translate the passed message into ASCII and store it as a Byte array.
                     byte[] data = System.Text.Encoding.ASCII.GetBytes(stringToSend);
 
                     // Get a client stream for reading and writing.
                     NetworkStream stream = client.GetStream();
 
-                    // Send the message to the connected TcpServer. 
+                    // Send the message to the connected TcpServer.
                     stream.Write(data, 0, data.Length);
 
                     // Reset buffer to store the server response bytes.
@@ -59,7 +53,6 @@ namespace InventoryTracker.DataServerAccess
                     // Close connection
                     stream.Close();
                     client.Close();
-
                 }
                 catch
                 {

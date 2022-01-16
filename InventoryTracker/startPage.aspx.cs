@@ -1,37 +1,27 @@
 ﻿using InventoryTracker.Controllers;
-using InventoryTracker.DataServerAccess;
 using InventoryTracker.Interfaces;
-using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
 
 namespace InventoryTracker
 {
     public partial class startPage : System.Web.UI.Page
     {
-        IReadController readController;
-        IEditController editController;
-        HtmlControl htmlControl;
+        private IReadController readController;
+        private IEditController editController;
+        private HtmlControl htmlControl;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             readController = new ReadController();
             editController = new EditController();
             InitializeTracker();
-        }        
+        }
 
         protected void InitializeTracker()
         {
             // Stub data for display
-
 
             DataTable productTable = new DataTable();
             productTable.Columns.AddRange(new DataColumn[3] {
@@ -152,7 +142,6 @@ namespace InventoryTracker
             lblTableTitle.Text = "Warehouses";
         }
 
-
         protected void btnAddNew_Click(object sender, EventArgs e)
         {
             // Get the form input data
@@ -166,7 +155,6 @@ namespace InventoryTracker
 
             // Send update/delete request to server
         }
-
 
         // Display navTables
         protected void DisplayNavTables()
