@@ -20,20 +20,37 @@ namespace InventoryTracker.Tests
         }
 
         [TestMethod]
-        public void TestGetTable()
+        public void TestGetTableProduct()
         {
             IReadController readController = new ReadController();
             DataTable datatable = null;
-            string[] tables = new string[3] { "Product", "Item", "Warehouse" };
 
-            for (int i = 0; i < tables.Length -1; i++)
-            {
-                // Reset table to null
-                datatable = null;
-                // Check that GetTable() is returning a DataTable
-                datatable = readController.GetTable("");
-                Assert.IsNotNull(datatable);
-            }
+            // Check that GetTable() is returning a DataTable
+            datatable = readController.GetTable("Product");
+            Assert.IsNotNull(datatable);
         }
+
+        [TestMethod]
+        public void TestGetTableItem()
+        {
+            IReadController readController = new ReadController();
+            DataTable datatable = null;
+
+            // Check that GetTable() is returning a DataTable
+            datatable = readController.GetTable("Item");
+            Assert.IsNotNull(datatable);
+        }
+
+        [TestMethod]
+        public void TestGetTableWarehouse()
+        {
+            IReadController readController = new ReadController();
+            DataTable datatable = null;
+
+            // Check that GetTable() is returning a DataTable
+            datatable = readController.GetTable("Warehouse");
+            Assert.IsNotNull(datatable);
+        }
+
     }
 }

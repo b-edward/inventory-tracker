@@ -120,12 +120,16 @@ namespace InventoryTracker
         {
             // Get the form input data
 
+            // Ignore the ID to allow MySQL to auto increment
+
             // Send create request to server
         }
 
         protected void btnUpdateProduct_Click(object sender, EventArgs e)
         {
             // Get the form input data
+
+
 
             // Send update/delete request to server
         }
