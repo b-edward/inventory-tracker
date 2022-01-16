@@ -77,7 +77,7 @@ namespace InventoryTracker
             htmlControl = FindControl("editProduct") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
             lblTableNote.Text = "Note: A product is a type of item, for example 'Snowboard'";
-            DisplaySubmitButtons();
+            DisplayProductButtons();
             DisplayNavTables();
 
             // Get the Product data table and fill viewProducts
@@ -110,7 +110,7 @@ namespace InventoryTracker
             lblTableNote.Text = "Notes: An item is an individual unit of a product, for example 'Item #2006', which could be " +
                                 "one of many Snowboards. Items may be assigned to a warehouse, or may be left unassigned. " +
                                 "Sold items are no long shown in the Inventory table.";
-            DisplaySubmitButtons();
+            DisplayItemButtons();
             DisplayNavTables();
 
             // Get the item data table and fill viewItems
@@ -141,7 +141,7 @@ namespace InventoryTracker
             htmlControl = FindControl("editWarehouse") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
             lblTableNote.Text = "";
-            DisplaySubmitButtons();
+            DisplayWarehouseButtons();
             DisplayNavTables();
 
             // Get the warehouse data table and fill 
@@ -185,19 +185,18 @@ namespace InventoryTracker
 
             if (modelToAdd != null)
             {
-                // For ITEMS, if warehouseID provided, must also send warehouseItem to add
+                // For ITEMS, if warehouseID provided, must also send warehouseItem to add OR edit
 
                 // Send update/delete request(s) to server
                 string serverResponse = editController.ExecuteCUD(modelToAdd, EDIT, lblCurrentEditTable.Text);
                 lblServerMessage.Text = serverResponse;
             }
 
-            // For ITEMS, if warehouseID provided, must also send warehouseItem to edit
 
         }
 
 
-        // Separate these Get methods into a static class
+        // Select a table model to be used and then use input form to fill it
         protected Object GetModel()
         {
             Object newModel = null;
@@ -282,11 +281,24 @@ namespace InventoryTracker
             htmlControl.Attributes["style"] = "display:flex;";
         }
 
-        // Display submitButtons
-        protected void DisplaySubmitButtons()
+        // Display product buttons
+        protected void DisplayProductButtons()
         {
-            // Get the submitButtons div and display it
-            htmlControl = FindControl("submitButtons") as HtmlControl;
+            htmlControl = FindControl("submitProduct") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+        }
+
+        // Display item buttons
+        protected void DisplayItemButtons()
+        {
+            htmlControl = FindControl("submitItem") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+        }
+
+        // Display warehouse buttons
+        protected void DisplayWarehouseButtons()
+        {
+            htmlControl = FindControl("submitWarehouse") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
         }
 
@@ -305,8 +317,12 @@ namespace InventoryTracker
             // Get the editWarehouse div and hide it
             htmlControl = FindControl("editWarehouse") as HtmlControl;
             htmlControl.Attributes["style"] = "display:none;";
-            // Get the submitButtons div and hide it
-            htmlControl = FindControl("submitButtons") as HtmlControl;
+            // Get the submit buttons and hide them
+            htmlControl = FindControl("submitProduct") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:none;";
+            htmlControl = FindControl("submitItem") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:none;";
+            htmlControl = FindControl("submitWarehouse") as HtmlControl;
             htmlControl.Attributes["style"] = "display:none;";
             // Get the viewInventory div and hide it
             htmlControl = FindControl("viewInventory") as HtmlControl;
@@ -325,4 +341,6 @@ namespace InventoryTracker
             lblServerMessage.Text = "";            
         }
     }
+
+
 }

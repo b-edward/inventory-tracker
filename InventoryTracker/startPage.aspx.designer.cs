@@ -132,13 +132,13 @@ namespace InventoryTracker
         protected global::System.Web.UI.WebControls.DropDownList ddlProductActive;
 
         /// <summary>
-        /// submitButtons control.
+        /// submitProduct control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl submitButtons;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl submitProduct;
 
         /// <summary>
         /// btnAddProduct control.
@@ -202,6 +202,33 @@ namespace InventoryTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlIsSold;
+
+        /// <summary>
+        /// submitItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl submitItem;
+
+        /// <summary>
+        /// btnAddItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddItem;
+
+        /// <summary>
+        /// btnEditItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEditItem;
 
         /// <summary>
         /// editWarehouse control.
@@ -274,6 +301,33 @@ namespace InventoryTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlWarehouseActive;
+
+        /// <summary>
+        /// submitWarehouse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl submitWarehouse;
+
+        /// <summary>
+        /// btnAddWarehouse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddWarehouse;
+
+        /// <summary>
+        /// btnEditWarehouse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEditWarehouse;
 
         /// <summary>
         /// lblCurrentEditTable control.
