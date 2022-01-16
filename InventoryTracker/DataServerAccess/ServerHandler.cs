@@ -61,7 +61,7 @@ namespace InventoryTracker.DataServerAccess
             }
             else
             {
-                response = "There's nothing to send.";
+                response = "400\nThere's nothing to send.";
             }
 
             // return the response

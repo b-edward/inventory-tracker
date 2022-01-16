@@ -43,7 +43,7 @@ namespace InventoryTracker
             htmlControl.Attributes["style"] = "display:flex;";
             // Update the table title
             lblTableTitle.Text = "Inventory";
-            lblTableNote.Text = "";
+            lblTableNote.Text = "Note: To delete an item from inventory, edit item availability to 'sold'.";
         }
 
         protected void ClearInputs()
