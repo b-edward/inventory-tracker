@@ -13,7 +13,7 @@ namespace InventoryTracker.Models
         private int isActive;
 
         public string WarehouseID
-        { get { return warehouseID; } set { warehouseID = value; } }
+        { get { return ID; } set { ID = value; } }
         public string StreetAndNo
         { get { return streetAndNo; } set { streetAndNo = value; } }
         public string City
@@ -26,7 +26,7 @@ namespace InventoryTracker.Models
         { get { return postalCode; } set { postalCode = value; } }
         public int IsActive
         { get { return isActive; } set { isActive = value; } }
-        public int ID
-        { get; set; }
+        public string ID
+        { get { return warehouseID; } set { warehouseID = value; } }
     }
 }

@@ -19,6 +19,6 @@ namespace InventoryTracker.Models
         { get { return isSold; } set { isSold = value; } }
 
         // ID property should not be used, implemented only for IModel usage
-        public int ID { get; set; }
+        public string ID { get; set; }
     }
 }

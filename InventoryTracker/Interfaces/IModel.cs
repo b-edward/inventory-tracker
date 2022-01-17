@@ -2,6 +2,6 @@
 {
     public interface IModel
     {
-        int ID { get; set; }
+        string ID { get; set; }
     }
 }

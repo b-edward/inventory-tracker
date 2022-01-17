@@ -5,7 +5,7 @@ namespace InventoryTracker.Controllers
 {
     public class WarehouseController : ITableRead, ITableCUD
     {
-        private IModel warehouseTable;
+        private ILocation warehouseTable;
 
         public WarehouseController()
         {
@@ -42,8 +42,10 @@ namespace InventoryTracker.Controllers
         {
             string query = "";
             // Use model properties to build the command query
-            query = $"{command.ToUpper()}\nINSERT INTO `Product` (`productName`, `isActive`) " +
-                    $"VALUES ('{warehouseTable.ProductName}', {warehouseTable.IsActive});";
+            query = $"{command.ToUpper()}\nINSERT INTO `Warehouse` (`streetAndNo`, `city`, `provinceOrState`, " +
+                    $"`country`, `postalCode`, `isActive`) VALUES ('{warehouseTable.StreetAndNo}', '{warehouseTable.City}', " +
+                    $"'{warehouseTable.ProvinceOrState}', '{warehouseTable.Country}', '{warehouseTable.PostalCode}', " +
+                    $"'{warehouseTable.IsActive}');";
             return query;
         }
 
@@ -51,8 +53,10 @@ namespace InventoryTracker.Controllers
         {
             string query = "";
             // Use model properties to build the command query
-            query = $"{command.ToUpper()}\nUPDATE `Product` SET productName='{warehouseTable.ProductName}', " +
-                    $"isActive={warehouseTable.IsActive} WHERE productID={warehouseTable.ProductID};";
+            query = $"{command.ToUpper()}\nUPDATE `Warehouse` SET streetAndNo='{warehouseTable.StreetAndNo}', " +
+                $"city='{warehouseTable.City}', provinceOrState='{warehouseTable.ProvinceOrState}', " +
+                $"country='{warehouseTable.Country}', postalCode='{warehouseTable.PostalCode}', " +
+                $"isActive='{warehouseTable.IsActive}' WHERE warehouseID={warehouseTable.ID};";
             return query;
         }
 

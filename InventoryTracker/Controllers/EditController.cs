@@ -37,11 +37,8 @@ namespace InventoryTracker.Controllers
 
                 // Parse the response using ResponseHandler
                 response = responseHandler.ParseResponse(queryResponse);
-
-                // return server response
             }
-
-
+            // Return server response
             return response;
         }
 

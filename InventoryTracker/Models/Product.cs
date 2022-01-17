@@ -14,7 +14,7 @@ namespace InventoryTracker.Models
         { get { return productName; } set { productName = value; } }
         public int IsActive
         { get { return isActive; } set { isActive = value; } }
-        public int ID
+        public string ID
         { get; set; }
     }
 }

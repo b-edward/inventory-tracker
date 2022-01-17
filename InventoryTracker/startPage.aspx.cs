@@ -23,7 +23,11 @@ namespace InventoryTracker
         {
             readController = new ReadController();
             editController = new EditController();
-            DisplayInventory();
+            // Display the inventory if this is the first render of the page
+            if(!IsPostBack)
+            {
+                DisplayInventory();
+            }
         }
 
         protected void DisplayInventory()
@@ -72,30 +76,8 @@ namespace InventoryTracker
             // Reset the display
             HideDisplay();
             ClearInputs();
-
-            // Display edit product form
-            htmlControl = FindControl("editProduct") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-            lblTableNote.Text = "Note: A product is a type of item, for example 'Snowboard'";
-            DisplayProductButtons();
-            DisplayNavTables();
-
-            // Get the Product data table and fill viewProducts
-            DataTable productTable = readController.GetTable("Product");
-
-            // Check table is not null, update lblServerMessage if error
-
-
-            gvProduct.DataSource = productTable;
-            gvProduct.DataBind();
-
-            // Get the viewProducts div and display it
-            htmlControl = FindControl("viewProducts") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-            // Update the table title
-            lblTableTitle.Text = "Product";
-            // Track which table is being edited
-            lblCurrentEditTable.Text = "product";
+            // Display the product editing screen
+            DisplayProductEdit();
         }
 
         protected void btnItem_Click(object sender, EventArgs e)
@@ -103,32 +85,8 @@ namespace InventoryTracker
             // Reset the display
             HideDisplay();
             ClearInputs();
-
-            // Display edit item form
-            htmlControl = FindControl("editItem") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-            lblTableNote.Text = "Notes: An item is an individual unit of a product, for example 'Item #2006', which could be " +
-                                "one of many Snowboards. Items may be assigned to a warehouse, or may be left unassigned. " +
-                                "Sold items are no long shown in the Inventory table.";
-            DisplayItemButtons();
-            DisplayNavTables();
-
-            // Get the item data table and fill viewItems
-            DataTable itemTable = readController.GetTable("Item");
-
-            // Check table is not null, update lblServerMessage if error
-
-
-            gvItem.DataSource = itemTable;
-            gvItem.DataBind();
-
-            // Get the viewItems div and display it
-            htmlControl = FindControl("viewItems") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-            // Update the table title
-            lblTableTitle.Text = "Item";
-            // Track which table is being edited
-            lblCurrentEditTable.Text = "item";
+            // Display the item editing screen
+            DisplayItemEdit();
         }
 
         protected void btnWarehouse_Click(object sender, EventArgs e)
@@ -136,31 +94,10 @@ namespace InventoryTracker
             // Reset the display
             HideDisplay();
             ClearInputs();
-
-            // Display edit warehouse form
-            htmlControl = FindControl("editWarehouse") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-            lblTableNote.Text = "";
-            DisplayWarehouseButtons();
-            DisplayNavTables();
-
-            // Get the warehouse data table and fill 
-            DataTable warehouseTable = readController.GetTable("Warehouse");
-
-            // Check table is not null, update lblServerMessage if error
-
-
-            gvWarehouse.DataSource = warehouseTable;
-            gvWarehouse.DataBind();
-
-            // Get Warehouse div and display it
-            htmlControl = FindControl("viewWarehouses") as HtmlControl;
-            htmlControl.Attributes["style"] = "display:flex;";
-            // Update the table title
-            lblTableTitle.Text = "Warehouse";
-            // Track which table is being edited
-            lblCurrentEditTable.Text = "warehouse";
+            // Display the item editing screen
+            DisplayWarehouseEdit();
         }
+
 
         protected void btnAddNew_Click(object sender, EventArgs e)
         {
@@ -176,9 +113,11 @@ namespace InventoryTracker
                 string serverResponse = editController.ExecuteCUD(modelToAdd, ADD, lblCurrentEditTable.Text);
                 lblServerMessage.Text = serverResponse;
             }
+            // Reload the editing screen
+            ReloadEditScreen();
         }
 
-        protected void btnUpdateProduct_Click(object sender, EventArgs e)
+        protected void btnUpdate_Click(object sender, EventArgs e)
         {
             // Get the form input data
             Object modelToAdd = GetModel();
@@ -191,8 +130,8 @@ namespace InventoryTracker
                 string serverResponse = editController.ExecuteCUD(modelToAdd, EDIT, lblCurrentEditTable.Text);
                 lblServerMessage.Text = serverResponse;
             }
-
-
+            // Reload the editing screen
+            ReloadEditScreen();
         }
 
 
@@ -251,23 +190,50 @@ namespace InventoryTracker
 
         protected Object GetItem()
         {
-            IModel newItem = new Item();
+            Item newItem = new Item();
 
 
             return newItem;
         }
 
-        protected IModel GetWarehouse()
+        protected Object GetWarehouse()
         {
-            IModel newWarehouse = new Warehouse();
+            ILocation newWarehouse = new Warehouse();
 
+            // Validate warehouse ID
+            bool isInt = int.TryParse(txtWarehouseID.Text, out int id);
+            if (isInt && id > 0)
+            {
+                // Set the product ID
+                newWarehouse.ID = txtWarehouseID.Text;
+            }
+            else
+            {
+                newWarehouse.ID = "";
+            }
 
+            newWarehouse.StreetAndNo = txtStreetAndNo.Text;
+            newWarehouse.City = txtCity.Text;
+            newWarehouse.ProvinceOrState = txtProvinceOrState.Text;
+            newWarehouse.Country = txtCountry.Text;
+            newWarehouse.PostalCode = txtPostalCode.Text;
+
+            // Set the isActive field
+            if (ddlWarehouseActive.SelectedValue != "0")
+            {
+                // Convert active to tiny int true
+                newWarehouse.IsActive = 1;
+            }
+            else
+            {
+                newWarehouse.IsActive = 0;
+            }
             return newWarehouse;
         }
 
-        protected IModel GetWarehouseItem()
+        protected Object GetWarehouseItem()
         {
-            IModel newWarehouseItem = new WarehouseItem();
+            WarehouseItem newWarehouseItem = new WarehouseItem();
 
 
             return newWarehouseItem;
@@ -281,25 +247,118 @@ namespace InventoryTracker
             htmlControl.Attributes["style"] = "display:flex;";
         }
 
-        // Display product buttons
-        protected void DisplayProductButtons()
+
+        // Reload the editing screen
+        protected void ReloadEditScreen()
         {
+            // Find the screen to display
+            switch (lblCurrentEditTable.Text.ToUpper())
+            {
+                case "PRODUCT":
+                    DisplayProductEdit();
+                    break;
+                case "ITEM":
+                    DisplayItemEdit();
+                    break;
+                case "WAREHOUSE":
+                    DisplayWarehouseEdit();
+                    break;
+                default:
+                    // If something went wrong just display inventory
+                    DisplayInventory();
+                    break;
+            }
+        }
+
+
+        protected void DisplayProductEdit()
+        {
+            // Display product buttons
             htmlControl = FindControl("submitProduct") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
+            // Display edit product form
+            htmlControl = FindControl("editProduct") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+            lblTableNote.Text = "Note: A product is a type of item, for example 'Snowboard'";
+            DisplayNavTables();
+            // Get the Product data table and fill viewProducts
+            DataTable productTable = readController.GetTable("Product");
+
+            // Check table is not null, update lblServerMessage if error
+
+
+            gvProduct.DataSource = productTable;
+            gvProduct.DataBind();
+
+            // Get the viewProducts div and display it
+            htmlControl = FindControl("viewProducts") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+            // Update the table title
+            lblTableTitle.Text = "Product";
+            // Track which table is being edited
+            lblCurrentEditTable.Text = "product";
         }
 
-        // Display item buttons
-        protected void DisplayItemButtons()
+        protected void DisplayItemEdit()
         {
+            // Display item buttons
             htmlControl = FindControl("submitItem") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
+
+            // Display edit item form
+            htmlControl = FindControl("editItem") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+            lblTableNote.Text = "Notes: An item is an individual unit of a product, for example 'Item #2006', which could be " +
+                                "one of many Snowboards. Items may be assigned to a warehouse, or may be left unassigned. " +
+                                "Sold items are no long shown in the Inventory table.";
+            DisplayNavTables();
+
+            // Get the item data table and fill viewItems
+            DataTable itemTable = readController.GetTable("Item");
+
+            // Check table is not null, update lblServerMessage if error
+
+
+            gvItem.DataSource = itemTable;
+            gvItem.DataBind();
+
+            // Get the viewItems div and display it
+            htmlControl = FindControl("viewItems") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+            // Update the table title
+            lblTableTitle.Text = "Item";
+            // Track which table is being edited
+            lblCurrentEditTable.Text = "item";
         }
 
-        // Display warehouse buttons
-        protected void DisplayWarehouseButtons()
+        protected void DisplayWarehouseEdit()
         {
+            // Display warehouse buttons
             htmlControl = FindControl("submitWarehouse") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
+
+            // Display edit warehouse form
+            htmlControl = FindControl("editWarehouse") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+            lblTableNote.Text = "";
+            DisplayNavTables();
+
+            // Get the warehouse data table and fill 
+            DataTable warehouseTable = readController.GetTable("Warehouse");
+
+            // Check table is not null, update lblServerMessage if error
+
+
+            gvWarehouse.DataSource = warehouseTable;
+            gvWarehouse.DataBind();
+
+            // Get Warehouse div and display it
+            htmlControl = FindControl("viewWarehouses") as HtmlControl;
+            htmlControl.Attributes["style"] = "display:flex;";
+            // Update the table title
+            lblTableTitle.Text = "Warehouse";
+            // Track which table is being edited
+            lblCurrentEditTable.Text = "warehouse";
         }
 
         // Hide all tables
@@ -338,7 +397,8 @@ namespace InventoryTracker
             htmlControl.Attributes["style"] = "display:none;";
             // Clear the labels
             lblTableTitle.Text = "";
-            lblServerMessage.Text = "";            
+            lblServerMessage.Text = "";
+            lblTableNote.Text = "";
         }
     }
 

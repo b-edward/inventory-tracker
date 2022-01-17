@@ -2,7 +2,7 @@
 {
     public interface IWarehouseItem
     {
-        int ItemID { get; set; }
-        int WarehouseItemID { get; set; }
+        string ItemID { get; set; }
+        string WarehouseItemID { get; set; }
     }
 }

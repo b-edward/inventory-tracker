@@ -91,7 +91,7 @@
                                     <asp:Button ID="btnAddProduct" runat="server" Text="Add New" Width="150px" OnClick="btnAddNew_Click" OnClientClick = "if (!validateAddProduct()) {return false;}" UseSubmitBehavior="False"/></td>
                                 <td>
                             
-                                    <asp:Button ID="btnUpdateProduct" runat="server" Text="Update" Width="150px" OnClick="btnUpdateProduct_Click" OnClientClick = "if (!validateEditProduct()) {return false;}" UseSubmitBehavior="False"/></td>
+                                    <asp:Button ID="btnUpdateProduct" runat="server" Text="Update" Width="150px" OnClick="btnUpdate_Click" OnClientClick = "if (!validateEditProduct()) {return false;}" UseSubmitBehavior="False"/></td>
                             </tr>
                         </table>
                     </div>
@@ -136,7 +136,7 @@
                                     <asp:Button ID="btnAddItem" runat="server" Text="Add New" Width="150px" OnClick="btnAddNew_Click" OnClientClick = "if (!validateAddItem()) {return false;}" UseSubmitBehavior="False"/></td>
                                 <td>
                             
-                                    <asp:Button ID="btnEditItem" runat="server" Text="Update" Width="150px" OnClick="btnUpdateProduct_Click" OnClientClick = "if (!validateEditItem()) {return false;}" UseSubmitBehavior="False"/></td>
+                                    <asp:Button ID="btnEditItem" runat="server" Text="Update" Width="150px" OnClick="btnUpdate_Click" OnClientClick = "if (!validateEditItem()) {return false;}" UseSubmitBehavior="False"/></td>
                             </tr>
                         </table>
                     </div>
@@ -195,7 +195,7 @@
                                     <asp:Button ID="btnAddWarehouse" runat="server" Text="Add New" Width="150px" OnClick="btnAddNew_Click" OnClientClick = "if (!validateAddWarehouse()) {return false;}" UseSubmitBehavior="False"/></td>
                                 <td>
                             
-                                    <asp:Button ID="btnEditWarehouse" runat="server" Text="Update" Width="150px" OnClick="btnUpdateProduct_Click" OnClientClick = "if (!validateEditWarehouse()) {return false;}" UseSubmitBehavior="False"/></td>
+                                    <asp:Button ID="btnEditWarehouse" runat="server" Text="Update" Width="150px" OnClick="btnUpdate_Click" OnClientClick = "if (!validateEditWarehouse()) {return false;}" UseSubmitBehavior="False"/></td>
                             </tr>
                         </table>
                     </div>

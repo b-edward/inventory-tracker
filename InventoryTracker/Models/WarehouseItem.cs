@@ -4,14 +4,14 @@ namespace InventoryTracker.Models
 {
     public class WarehouseItem : IWarehouseItem, IModel
     {
-        private int itemID;
-        private int warehouseID;
+        private string itemID;
+        private string warehouseID;
 
-        public int ID
+        public string ID
         { get { return itemID; } set { itemID = value; } }
-        public int ItemID
+        public string ItemID
         { get { return itemID; } set { itemID = value; } }
-        public int WarehouseItemID
+        public string WarehouseItemID
         { get { return warehouseID; } set { warehouseID = value; } }
     }
 }
