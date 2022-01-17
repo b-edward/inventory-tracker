@@ -9,17 +9,6 @@ namespace InventoryTracker.Tests
     public class ReadControllerTests
     {
         [TestMethod]
-        public void TestGetInventory()
-        {
-            IReadController readController = new ReadController();
-            DataTable inventoryTable = null;
-
-            // Check that GetInventory() is returning a DataTable
-            inventoryTable = readController.GetInventory();
-            Assert.IsNotNull(inventoryTable);
-        }
-
-        [TestMethod]
         public void TestGetTableProduct()
         {
             IReadController readController = new ReadController();
@@ -51,6 +40,16 @@ namespace InventoryTracker.Tests
             datatable = readController.GetTable("Warehouse");
             Assert.IsNotNull(datatable);
         }
+
+        [TestMethod]
+        public void TestGetNewItemID()
+        {
+            IReadController readController = new ReadController();
+            string newItemID = null;
+            newItemID = readController.GetNewItemID();
+            Assert.IsNotNull(newItemID);
+        }
+
 
     }
 }

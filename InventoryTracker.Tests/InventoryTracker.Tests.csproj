@@ -56,15 +56,17 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WarehouseControllerTests.cs" />
-    <Compile Include="ItemControllerTests.cs" />
-    <Compile Include="ProductControllerTests.cs" />
-    <Compile Include="InventoryControllerTests.cs" />
-    <Compile Include="EditControllerTests.cs" />
-    <Compile Include="ReadControllerTests.cs" />
+    <Compile Include="ControllerTests\WarehouseItemControllerTests.cs" />
+    <Compile Include="ControllerTests\SelectControllerTests.cs" />
+    <Compile Include="ControllerTests\WarehouseControllerTests.cs" />
+    <Compile Include="ControllerTests\ItemControllerTests.cs" />
+    <Compile Include="ControllerTests\ProductControllerTests.cs" />
+    <Compile Include="ControllerTests\InventoryControllerTests.cs" />
+    <Compile Include="ControllerTests\EditControllerTests.cs" />
+    <Compile Include="ControllerTests\ReadControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServerHandlerTests.cs" />
-    <Compile Include="RequestHandlerTests.cs" />
+    <Compile Include="DataServerAccessTests\ServerHandlerTests.cs" />
+    <Compile Include="DataServerAccessTests\RequestHandlerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -76,6 +78,7 @@
       <Name>InventoryTracker</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

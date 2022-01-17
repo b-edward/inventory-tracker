@@ -62,9 +62,6 @@ namespace InventoryTracker.Controllers
 
 
 
-
-
-
         // Create SQL query to get inventory of all warehouses
         public string BuildReadQuery()
         {

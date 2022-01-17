@@ -25,9 +25,8 @@ namespace InventoryTracker.Tests
             IServerHandler serverHandler = new ServerHandler();
             string serverResponse = "";
             string request = "";
-            string expectedString = "There's nothing to send.";
             serverResponse = serverHandler.SendToServer(request);
-            Assert.AreEqual(serverResponse, expectedString);
+            Assert.IsTrue(serverResponse.Contains("400"));
         }
     }
 }

@@ -70,11 +70,11 @@ namespace InventoryTracker.Controllers
         }
 
 
-            // Read is not used in this release, but included for use is future features
-            // Create SQL query to get inventory of all WarehouseItems
-            public string BuildReadQuery()
+        // Read is not used in this release, but included for use is future features
+        // Create SQL query to get inventory of all WarehouseItems
+        public string BuildReadQuery()
         {
-            string query = "";
+            string query = null;
             return query;
         }
     }
