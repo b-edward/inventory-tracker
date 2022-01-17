@@ -94,7 +94,7 @@ namespace InventoryTracker
             }
 
             // Set the isSold field
-            if (ddlIsSold.SelectedValue != "0")
+            if (ddlIsSold.SelectedValue == "1")
             {
                 // Convert active to tiny int true
                 newItem.IsSold = 1;

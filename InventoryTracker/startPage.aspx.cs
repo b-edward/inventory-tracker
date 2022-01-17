@@ -81,10 +81,32 @@ namespace InventoryTracker
                 // Send create request to server
                 serverResponse = editController.ExecuteCUD(modelToAdd, ADD, lblCurrentEditTable.Text);
 
-
                 // For ITEMS, if serverResponse 200, if warehouseID provided, must also send warehouseItem to INSERT new 
+                if (lblCurrentEditTable.Text == "item" && serverResponse.Contains("200"))
+                {
+                    // Get the new item ID from the Item table
+                    string newItemID = readController.GetNewItemID();
 
+                    // Get the form input data
+                    WarehouseItem warehouseItemModel = (WarehouseItem)GetWarehouseItem();
+                    // Add the item ID to the model
+                    warehouseItemModel.ItemID = newItemID;
 
+                    if(int.Parse(txtWarehouseIDItems.Text) > 0)
+                    {
+                        // Insert item into WarehouseItem table if it was assigned to warehouse
+                        serverResponse = editController.ExecuteCUD(warehouseItemModel, ADD, "warehouseItem");
+
+                        if (serverResponse.Contains("200"))
+                        {
+                            serverResponse = "Item updated successfully.";
+                        }
+                        else
+                        {
+                            serverResponse = "Something went wrong when assigning item to the warehouse.";
+                        }
+                    }
+                }
             }
             // Reload the editing screen
             ReloadEditScreen();
@@ -127,16 +149,16 @@ namespace InventoryTracker
                         serverResponse = editController.ExecuteCUD(modelToAdd, EDIT, "warehouseItem");
                         if (!serverResponse.Contains("200"))
                         {
-                            // PUT if warehouseItem not in table
+                            // PUT if warehouseItem was not already in the table
                             serverResponse = editController.ExecuteCUD(modelToAdd, ADD, "warehouseItem");
 
-                            if(!serverResponse.Contains("200"))
+                            if(serverResponse.Contains("200"))
                             {
-                                serverResponse = "Something went wrong when updating item warehouse assignment.";
+                                serverResponse = "Item updated successfully.";
                             }
                             else
                             {
-                                serverResponse = "Item updated successfully.";
+                                serverResponse = "Something went wrong when updating item warehouse assignment.";
                             }
                         }
                         else

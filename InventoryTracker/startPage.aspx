@@ -11,7 +11,7 @@
                 margin: 20px;   
             }
         </style>
-        <title>EB Logistics Corp.</title>
+        <title>Noh-Jay Consortium</title>
     </head>
     <body style="background: #95BF47; padding: 1%;">
         <form id="mainUI" runat="server" style="display: flex; justify-content: center; background: white;">

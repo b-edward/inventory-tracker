@@ -67,5 +67,12 @@ namespace InventoryTracker.Controllers
                             "LEFT JOIN WarehouseItem ON Item.itemID = WarehouseItem.itemID;";
             return query;
         }
+
+        // Get a SQL query for reading the most recently added item
+        public string BuildReadNewestQuery()
+        {
+            string query = "GET\nSELECT * FROM `Item` ORDER BY itemID DESC LIMIT 1;";
+            return query;
+        }
     }
 }

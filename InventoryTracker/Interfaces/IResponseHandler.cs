@@ -6,5 +6,6 @@ namespace InventoryTracker.Interfaces
     {
         DataTable GetDataTable(string tableName, string response);
         string ParseResponse(string queryResponse);
+        string ParseItemID(string itemResponse);
     }
 }

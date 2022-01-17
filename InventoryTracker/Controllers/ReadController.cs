@@ -66,5 +66,23 @@ namespace InventoryTracker.Controllers
             DataTable dataTable = responseHandler.GetDataTable(tableName, getResponse[1]);
             return dataTable;
         }
+
+        public string GetNewItemID()
+        {
+            // Instantiate controller 
+            ItemController itemController = new ItemController();
+
+            // Get the query string and send it
+            string query = itemController.BuildReadNewestQuery();
+            string response = SendQuery(query);
+
+            // If query was successful then convert it
+            string newItemID = "";
+            if (response.Contains("200"))
+            {
+                newItemID = responseHandler.ParseItemID(response);
+            }
+            return newItemID;
+        }
     }
 }

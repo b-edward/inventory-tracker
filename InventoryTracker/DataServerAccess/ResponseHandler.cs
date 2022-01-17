@@ -33,10 +33,20 @@ namespace InventoryTracker.DataServerAccess
             return response;
         }
 
+        public string ParseItemID(string itemResponse)
+        {
+            string[] item = ParseData(itemResponse);
+            string[] itemFields = item[1].Split(',');
+            string itemID = itemFields[0];
+            return itemID;
+        }
+
         private string[] ParseData(string queryResponse)
         {
             string[] response = queryResponse.Split('\n');
             return response;
         }
+
+
     }
 }
