@@ -88,10 +88,12 @@ namespace InventoryTracker.DataServerAccess
         private static DataTable ConvertToItemTable(string data)
         {
             DataTable itemTable = new DataTable();
-            itemTable.Columns.AddRange(new DataColumn[4] {
+            itemTable.Columns.AddRange(new DataColumn[6] {
                     new DataColumn("ItemID", typeof(string)),
+                    new DataColumn("ProductID", typeof(string)),
                     new DataColumn("ProductName", typeof(string)),
                     new DataColumn("IsAssigned",typeof(string)),
+                    new DataColumn("WarehouseID", typeof(string)),
                     new DataColumn("IsSold", typeof(string)) });
 
             // Get the records
@@ -103,9 +105,11 @@ namespace InventoryTracker.DataServerAccess
                 // Get the fields
                 string[] fields = records[i].Split(',');
                 string itemID = fields[0];
-                string productName = fields[1];
-                string isAssigned = fields[2];
-                string isSold = fields[3];
+                string productID = fields[1];
+                string productName = fields[2];
+                string isAssigned = fields[3];
+                string warehouseID = fields[4];
+                string isSold = fields[5];
 
                 // Convert assigned status for display
                 if (isAssigned == "0")
@@ -128,7 +132,7 @@ namespace InventoryTracker.DataServerAccess
                 }
 
                 // Add the fields to the row
-                itemTable.Rows.Add(itemID, productName, isAssigned, isSold);
+                itemTable.Rows.Add(itemID, productID, productName, isAssigned, warehouseID, isSold);
             }
             return itemTable;
         }

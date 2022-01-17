@@ -102,15 +102,16 @@
                                     <asp:TextBox ID="txtItemId" runat="server" ToolTip="Enter the item ID" Width="100%" /></td>
                             </tr>
                             <tr>
-                                <td>Product Name:</td>
+                                <td>Product ID:</td>
                                 <td>
-                                    <asp:TextBox ID="txtProductNameItems" runat="server" ToolTip="Enter the product name" Width="100%" /></td>
+                                    <asp:TextBox ID="txtProductIDItems" runat="server" ToolTip="Enter the product ID" Width="100%" /></td>
+                                <td>
                             </tr>
                             <tr>
-                                <td>Warehouse ID (optional):</td>
+                                <td>Warehouse ID:</td>
                                 <!-- Selecting a location sets item as assigned, and creates a new warehouseItem -->
                                 <td>
-                                    <asp:TextBox ID="txtWarehouseIDItems" runat="server" ToolTip="Enter a warehouseID or leave blank if not assigned" Width="100%" /></td>
+                                    <asp:TextBox ID="txtWarehouseIDItems" runat="server" ToolTip="Enter a warehouseID or 0 to un-assign" Width="100%" /></td>
                             </tr>
                             <tr>
                                 <td>Availability:</td>
@@ -239,8 +240,10 @@
                         <asp:GridView ID="gvItem" runat="server" AutoGenerateColumns="false">
                             <Columns>
                                 <asp:BoundField DataField="ItemID" HeaderText="Item ID" ItemStyle-Width="100" />
+                                <asp:BoundField DataField="ProductID" HeaderText="Product ID" ItemStyle-Width="100" />
                                 <asp:BoundField DataField="ProductName" HeaderText="Product Name" ItemStyle-Width="250" />
-                                <asp:BoundField DataField="IsAssigned" HeaderText="Assigned to Warehouse" ItemStyle-Width="150" />
+                                <asp:BoundField DataField="IsAssigned" HeaderText="Assigned To Warehouse" ItemStyle-Width="150" />
+                                <asp:BoundField DataField="WarehouseID" HeaderText="Warehouse ID" ItemStyle-Width="100" />
                                 <asp:BoundField DataField="IsSold" HeaderText="Availability for Sale" ItemStyle-Width="150" />
                             </Columns>
                         </asp:GridView>

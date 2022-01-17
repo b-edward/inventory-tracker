@@ -66,7 +66,43 @@ namespace InventoryTracker
         {
             Item newItem = new Item();
 
+            // Validate item ID
+            bool isInt = int.TryParse(txtItemId.Text, out int itemID);
+            if (isInt && itemID > 0)
+            {
+                // Set the item ID
+                newItem.ItemID = txtItemId.Text;
+            }
+            else
+            {
+                newItem.ItemID = "";
+            }
 
+            // Set the product name
+            newItem.ProductID = txtProductIDItems.Text;
+
+            // Set the isAssigned field (warehouse ID)
+            isInt = int.TryParse(txtWarehouseIDItems.Text, out int warehouseID);
+            if (isInt && warehouseID > 0)
+            {
+                // Convert active to tiny int true
+                newItem.IsAssigned = 1;
+            }
+            else if (warehouseID == 0)
+            {
+                newItem.IsAssigned = 0;
+            }
+
+            // Set the isSold field
+            if (ddlIsSold.SelectedValue != "0")
+            {
+                // Convert active to tiny int true
+                newItem.IsSold = 1;
+            }
+            else
+            {
+                newItem.IsSold = 0;
+            }
             return newItem;
         }
 

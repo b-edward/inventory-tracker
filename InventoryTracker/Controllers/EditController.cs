@@ -35,6 +35,10 @@ namespace InventoryTracker.Controllers
                 string query = tableEditor.BuildCUDQuery(table, command);
                 string queryResponse = SendQuery(query);
 
+                // If WarehouseItem edited, queryResponse code 200, customize queryResponse message
+                //
+
+
                 // Parse the response using ResponseHandler
                 response = responseHandler.ParseResponse(queryResponse);
             }

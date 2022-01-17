@@ -78,11 +78,13 @@ namespace InventoryTracker
             string serverResponse = "";
             if (modelToAdd != null)
             {
-
-                // For ITEMS, if warehouseID provided, must also send warehouseItem to add
-
                 // Send create request to server
                 serverResponse = editController.ExecuteCUD(modelToAdd, ADD, lblCurrentEditTable.Text);
+
+
+                // For ITEMS, if serverResponse 200, if warehouseID provided, must also send warehouseItem to INSERT new 
+
+
             }
             // Reload the editing screen
             ReloadEditScreen();
@@ -97,10 +99,12 @@ namespace InventoryTracker
             string serverResponse = "";
             if (modelToAdd != null)
             {
-                // For ITEMS, if warehouseID provided, must also send warehouseItem to add OR edit
-
                 // Send update/delete request(s) to server
                 serverResponse = editController.ExecuteCUD(modelToAdd, EDIT, lblCurrentEditTable.Text);
+
+
+                // For ITEMS, if serverResponse 200, if warehouseID provided, must also send warehouseItem to UPDATE existing
+
             }
             // Reload the editing screen
             ReloadEditScreen();

@@ -110,7 +110,7 @@ namespace InventoryTracker
             htmlControl = FindControl("editItem") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
             lblTableNote.Text = "Notes: An item is an individual unit of a product, for example 'Item #2006', which could be " +
-                                "one of many Snowboards. Items may be assigned to a warehouse, or may be left unassigned. " +
+                                "one of many Snowboards. Assign item by entering warehouse ID, or enter 0 to un-assign. " +
                                 "Sold items are no long shown in the Inventory table.";
             DisplayNavTables();
 

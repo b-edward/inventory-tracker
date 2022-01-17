@@ -168,13 +168,13 @@ namespace InventoryTracker
         protected global::System.Web.UI.WebControls.TextBox txtItemId;
 
         /// <summary>
-        /// txtProductNameItems control.
+        /// txtProductIDItems control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtProductNameItems;
+        protected global::System.Web.UI.WebControls.TextBox txtProductIDItems;
 
         /// <summary>
         /// txtWarehouseIDItems control.
