@@ -118,8 +118,8 @@
                                 <td>
                                     <asp:DropDownList ID="ddlIsSold" runat="server">
                                         <asp:ListItem Text=""></asp:ListItem>
-                                        <asp:ListItem Text="Sold" Value="0"></asp:ListItem>
-                                        <asp:ListItem Text="Available" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="Sold" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="Available" Value="0"></asp:ListItem>
                                     </asp:DropDownList>
                                 </td>
                             </tr>

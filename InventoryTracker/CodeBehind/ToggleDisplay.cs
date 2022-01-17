@@ -36,7 +36,18 @@ namespace InventoryTracker
         {
             txtProductID.Text = "";
             txtProductName.Text = "";
-
+            ddlProductActive.SelectedValue = "";
+            txtItemId.Text = "";
+            txtProductIDItems.Text = "";
+            txtWarehouseIDItems.Text = "";
+            ddlIsSold.SelectedValue = "";
+            txtWarehouseID.Text = "";
+            txtStreetAndNo.Text = "";
+            txtCity.Text = "";
+            txtProvinceOrState.Text = "";
+            txtCountry.Text = "";
+            txtPostalCode.Text = "";
+            ddlWarehouseActive.SelectedValue = "";
         }
 
 

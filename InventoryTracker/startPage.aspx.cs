@@ -102,9 +102,49 @@ namespace InventoryTracker
                 // Send update/delete request(s) to server
                 serverResponse = editController.ExecuteCUD(modelToAdd, EDIT, lblCurrentEditTable.Text);
 
-
                 // For ITEMS, if serverResponse 200, if warehouseID provided, must also send warehouseItem to UPDATE existing
+                if(lblCurrentEditTable.Text == "item" && serverResponse.Contains("200"))
+                {
+                    // Get the form input data
+                    modelToAdd = GetWarehouseItem();
 
+                    if(ddlIsSold.SelectedValue == "1")
+                    {
+                        // Delete if warehouseItem sold
+                        serverResponse = editController.ExecuteCUD(modelToAdd, DELETE, "warehouseItem");
+                        if(serverResponse.Contains("200"))
+                        {
+                            serverResponse = "Item updated successfully.";
+                        }
+                        else
+                        {
+                            serverResponse = "Something went wrong when removing sold item from warehouse inventory.";
+                        }
+                    }
+                    else
+                    {
+                        // POST if item reassigned
+                        serverResponse = editController.ExecuteCUD(modelToAdd, EDIT, "warehouseItem");
+                        if (!serverResponse.Contains("200"))
+                        {
+                            // PUT if warehouseItem not in table
+                            serverResponse = editController.ExecuteCUD(modelToAdd, ADD, "warehouseItem");
+
+                            if(!serverResponse.Contains("200"))
+                            {
+                                serverResponse = "Something went wrong when updating item warehouse assignment.";
+                            }
+                            else
+                            {
+                                serverResponse = "Item updated successfully.";
+                            }
+                        }
+                        else
+                        {
+                            serverResponse = "Item updated successfully.";
+                        }
+                    }
+                }
             }
             // Reload the editing screen
             ReloadEditScreen();

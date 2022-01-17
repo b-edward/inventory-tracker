@@ -36,11 +36,18 @@ namespace InventoryTracker.Controllers
                 string queryResponse = SendQuery(query);
 
                 // If WarehouseItem edited, queryResponse code 200, customize queryResponse message
-                //
-
-
-                // Parse the response using ResponseHandler
-                response = responseHandler.ParseResponse(queryResponse);
+                if(tableName.ToUpper() == "ITEM" || tableName.ToUpper() == "WAREHOUSEITEM")
+                {
+                    if(queryResponse.Contains("200"))
+                    {
+                        response = queryResponse;
+                    }
+                }
+                else
+                {
+                    // Parse the response using ResponseHandler
+                    response = responseHandler.ParseResponse(queryResponse);
+                }
             }
             // Return server response
             return response;
@@ -53,5 +60,6 @@ namespace InventoryTracker.Controllers
             string response = requestHandler.SendRequest(query);
             return response;
         }
+
     }
 }

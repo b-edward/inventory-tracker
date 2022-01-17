@@ -98,6 +98,8 @@ namespace InventoryTracker
             {
                 // Convert active to tiny int true
                 newItem.IsSold = 1;
+                // If sold, un-assign it
+                newItem.IsAssigned = 0;
             }
             else
             {
@@ -145,6 +147,29 @@ namespace InventoryTracker
         {
             WarehouseItem newWarehouseItem = new WarehouseItem();
 
+            // Validate item ID
+            bool isInt = int.TryParse(txtItemId.Text, out int itemID);
+            if (isInt && itemID > 0)
+            {
+                // Set the item ID
+                newWarehouseItem.ItemID = txtItemId.Text;
+            }
+            else
+            {
+                newWarehouseItem.ItemID = "";
+            }
+
+            // Validate the warehouse ID
+            isInt = int.TryParse(txtWarehouseIDItems.Text, out int warehouseID);
+            if (isInt && warehouseID > 0)
+            {
+                // Set the warehouse ID
+                newWarehouseItem.WarehouseItemID = txtWarehouseIDItems.Text;
+            }
+            else
+            {
+                newWarehouseItem.WarehouseItemID = "";
+            }
 
             return newWarehouseItem;
         }

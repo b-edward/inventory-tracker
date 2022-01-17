@@ -67,6 +67,9 @@ function validateEditItem() {
     return isValid;
 }
 
+function validateItem() {
+}
+
 
 function validateAddWarehouse() {
     // Validate non-id fields 

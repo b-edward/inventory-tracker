@@ -27,6 +27,9 @@ namespace InventoryTracker.Controllers
                 case "WAREHOUSE":
                     controller = new WarehouseController();
                     break;
+                case "WAREHOUSEITEM":
+                    controller = new WarehouseItemController();
+                    break;
                 default:
                     controller = null;
                     break;

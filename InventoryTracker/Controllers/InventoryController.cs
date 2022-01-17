@@ -25,7 +25,8 @@ namespace InventoryTracker.Controllers
             string query = "GET\nSELECT Item.itemID, Product.productName, Warehouse.city, Warehouse.warehouseID FROM Item " +
                             "LEFT JOIN Product ON Item.productID = Product.productID " +
                             "LEFT JOIN WarehouseItem ON Item.itemID = WarehouseItem.itemID " +
-                            "LEFT JOIN Warehouse ON WarehouseItem.warehouseID = Warehouse.warehouseID;";
+                            "LEFT JOIN Warehouse ON WarehouseItem.warehouseID = Warehouse.warehouseID " +
+                            "WHERE Item.isSold=0;";
 
             // Use IModel properties to build SQL query string
             // Need a join to get the item ID (Item), productName (Product), warehouseCity (Warehouse & WarehouseItem),
