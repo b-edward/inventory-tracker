@@ -5,7 +5,7 @@ const regexLettersNumbers = /^[a-zA-Z0-9 ]*$/;      // Regex used to filter for 
 
 
 function validateAddProduct() {
-    // Validate non-id fields
+    // Validate non-id fields only
     var isValid = validateProduct();
     return isValid;
 }
@@ -54,20 +54,64 @@ function validateProduct() {
 
 
 function validateAddItem() {
-    var isValid = true;
-
-
+    // Validate non-id fields only
+    var isValid = validateItem();
     return isValid;
 }
 
 function validateEditItem() {
-    var isValid = true;
+    // Validate non-id fields
+    var isValid = validateItem();
 
-
+    // Validate the item id           
+    var itemID = document.getElementById("txtItemId").value;
+    var errorMessage = document.getElementById("errorMessage").innerHTML;
+    if (!itemID.match(regexNumbers) || itemID < 1) {
+        if (errorMessage.length > 0) {
+            errorMessage += ", item ID";
+        } else {
+            errorMessage = "Invalid: item ID";
+        }
+        document.getElementById("errorMessage").innerHTML = errorMessage;
+        isValid = false;
+    }
     return isValid;
 }
 
 function validateItem() {
+    var isValid = true;
+    var errorMessage = "Invalid:"
+
+    // Clear error messages
+    document.getElementById("errorMessage").innerHTML = "";
+
+    // Validate the product id         
+    var productID = document.getElementById("txtProductIDItems").value;
+    if (!productID.match(regexNumbers) || productID < 1) {
+        errorMessage += " product ID,";
+        isValid = false;
+    }
+
+    // Validate the warehouse id         
+    var warehouseID = document.getElementById("txtWarehouseIDItems").value;
+    if (!warehouseID.match(regexNumbers) || warehouseID < 1) {
+        errorMessage += " warehouse ID,";
+        isValid = false;
+    }
+
+    // Validate availability
+    var isSold = document.getElementById("ddlIsSold").value;
+    if (!isSold.match(regexNumbers) || isSold > 1 || isSold < 0) {
+        errorMessage += " availability,";
+        isValid = false;
+    }
+
+    // Display error message if applicable
+    if (isValid == false) {
+        errorMessage = errorMessage.substring(0, errorMessage.length - 1);
+        document.getElementById("errorMessage").innerHTML = errorMessage;
+    }
+    return isValid;
 }
 
 

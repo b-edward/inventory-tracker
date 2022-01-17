@@ -29,7 +29,7 @@ namespace InventoryTracker
             htmlControl.Attributes["style"] = "display:flex;";
             // Update the table title
             lblTableTitle.Text = "Inventory";
-            lblTableNote.Text = "Note: To delete an item from inventory, edit item availability to 'sold'.";
+            lblTableNote.Text = "<b>Note:</b><br/>- To delete an item from inventory, edit item availability to 'sold'.";
         }
 
         protected void ClearInputs()
@@ -91,7 +91,7 @@ namespace InventoryTracker
             // Display edit product form
             htmlControl = FindControl("editProduct") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
-            lblTableNote.Text = "Note: A product is a type of item, for example 'Snowboard'";
+            lblTableNote.Text = "<b>Note:</b><br/>- A product is a type of item, for example 'Snowboard'";
             DisplayNavTables();
             // Get the Product data table and fill viewProducts
             DataTable productTable = readController.GetTable("Product");
@@ -120,9 +120,9 @@ namespace InventoryTracker
             // Display edit item form
             htmlControl = FindControl("editItem") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
-            lblTableNote.Text = "Notes: An item is an individual unit of a product, for example 'Item #2006', which could be " +
-                                "one of many Snowboards. Assign item by entering warehouse ID, or enter 0 to un-assign. " +
-                                "Sold items are no long shown in the Inventory table.";
+            lblTableNote.Text = "<b>Note:</b><br/>- An item is an individual unit of a product, for example 'Item #2006', which could be " +
+                                "one of many Snowboards.<br/>- Assign item by entering warehouse ID, or enter 0 to un-assign.<br/>" +
+                                "- Sold items are no long shown in the Inventory table.";
             DisplayNavTables();
 
             // Get the item data table and fill viewItems
