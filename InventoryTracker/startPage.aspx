@@ -33,10 +33,6 @@
                         </tr>
                     </table>
                 </div>            
-                <!-- Server Response Output -->
-                <div style="display: flex; justify-content: center; margin:15px;">
-                    <asp:Label ID="lblServerMessage" runat="server" Text="" Font-Bold="True" ForeColor="#0000CC" Font-Size="Large" ></asp:Label>
-                </div>
                 <!-- Table Navigation -->
                 <div id="navTables" class="centre-div" runat="server" style="display: none;">
                     <table>
@@ -187,7 +183,7 @@
                             </tr>
                         </table>
                     </div>
-                    <!-- Buttons for submitting Item form -->
+                    <!-- Buttons for submitting Warehouse form -->
                     <div id="submitWarehouse" class="centre-div" runat="server" style="display: none;">
                         <table>
                             <tr>
@@ -200,18 +196,21 @@
                         </table>
                     </div>
                 </div>
+
                 <!-- Track current table -->
                 <asp:Label ID="lblCurrentEditTable" runat="server" Text="" Visible="False"></asp:Label>
+
+                
+                <!-- Server Response Output -->
+                <div style="display: flex; justify-content: center; margin:15px;">
+                    <asp:Label ID="lblServerMessage" runat="server" Text="" Font-Bold="True" ForeColor="#0000CC" Font-Size="Large" ></asp:Label>
+                </div>
 
                 <!-- Display Input Error Message -->
                 <div class="error" style="display: flex; justify-content: center;">
                     <p id="errorMessage" style="color:red"></p>
                 </div>
 
-                <!-- Table note -->
-                <div style="display: flex; justify-content: center;">
-                    <asp:Label ID="lblTableNote" runat="server" Text="" Font-Size="Medium" Width="66%"></asp:Label>
-                </div>
                 <!-- Display Output -->
                 <div class="output">
                     <!-- View Inventory -->
@@ -250,7 +249,7 @@
                     <div id="viewWarehouses" class="centre-div" runat="server" style="display: none;">
                         <asp:GridView ID="gvWarehouse" runat="server" AutoGenerateColumns="false">
                             <Columns>
-                                <asp:BoundField DataField="WarehouseID" HeaderText="Item ID" ItemStyle-Width="100" />
+                                <asp:BoundField DataField="WarehouseID" HeaderText="Warehouse ID" ItemStyle-Width="100" />
                                 <asp:BoundField DataField="StreetAndNo" HeaderText="Street and Number" ItemStyle-Width="250" />
                                 <asp:BoundField DataField="City" HeaderText="City" ItemStyle-Width="150" />
                                 <asp:BoundField DataField="ProvinceOrState" HeaderText="Province or State" ItemStyle-Width="150" />
@@ -260,6 +259,10 @@
                             </Columns>
                         </asp:GridView>
                     </div>
+                </div>                
+                <!-- Table note -->
+                <div style="display: flex; justify-content: center; margin:15px">
+                    <asp:Label ID="lblTableNote" runat="server" Text="" Font-Size="Medium" Width="80%"></asp:Label>
                 </div>
             </div>
         </form>

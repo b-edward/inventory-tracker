@@ -104,17 +104,18 @@ namespace InventoryTracker
             // Get the form input data
             Object modelToAdd = GetModel();
 
-            if(modelToAdd != null)
+            string serverResponse = "";
+            if (modelToAdd != null)
             {
 
                 // For ITEMS, if warehouseID provided, must also send warehouseItem to add
 
                 // Send create request to server
-                string serverResponse = editController.ExecuteCUD(modelToAdd, ADD, lblCurrentEditTable.Text);
-                lblServerMessage.Text = serverResponse;
+                serverResponse = editController.ExecuteCUD(modelToAdd, ADD, lblCurrentEditTable.Text);
             }
             // Reload the editing screen
             ReloadEditScreen();
+            lblServerMessage.Text = serverResponse;
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
@@ -122,16 +123,17 @@ namespace InventoryTracker
             // Get the form input data
             Object modelToAdd = GetModel();
 
+            string serverResponse = "";
             if (modelToAdd != null)
             {
                 // For ITEMS, if warehouseID provided, must also send warehouseItem to add OR edit
 
                 // Send update/delete request(s) to server
-                string serverResponse = editController.ExecuteCUD(modelToAdd, EDIT, lblCurrentEditTable.Text);
-                lblServerMessage.Text = serverResponse;
+                serverResponse = editController.ExecuteCUD(modelToAdd, EDIT, lblCurrentEditTable.Text);
             }
             // Reload the editing screen
             ReloadEditScreen();
+            lblServerMessage.Text = serverResponse;
         }
 
 
