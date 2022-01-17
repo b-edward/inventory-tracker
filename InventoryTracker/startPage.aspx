@@ -2,6 +2,17 @@
 
 <!DOCTYPE html>
 
+<!--
+    FILE            : startPage.aspx
+    PROJECT         : Inventory Tracker
+    PROGRAMMERS     : Edward Boado 
+    FIRST VERSION   : 2022-01-08
+    DESCRIPTION     : This file contains the default ASP.NET page for the inventory tracker web application. It provides a user interface
+                      allowing the viewing of unsold inventory. The user may also view, or edit products, items, and warehouses. In addition,
+                      the user can assign (or un-assign) items to warehouses, which will add or update them in the warehouse inventory. Items
+                      that are sold are removed from the inventory. 
+-->
+
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head runat="server">    
 	    <script type="text/javascript" src="Scripts/InputValidation.js"></script>

@@ -1,4 +1,14 @@
-﻿using InventoryTracker.Controllers;
+﻿/*
+ * FILE             : startPage.aspx.cs
+ * PROJECT          : Inventory Tracker
+ * PROGRAMMER       : Edward Boado
+ * FIRST VERSION    : 2022 - 01 - 08
+ * DESCRIPTION      : This file contains the code behind to respond to user button click and page load events. It will
+ *                    control the functionality of the application, and utilize various functions in order to send/receive
+ *                    information to the DataServer database, and display feedback to the user.
+ */
+
+using InventoryTracker.Controllers;
 using InventoryTracker.Interfaces;
 using InventoryTracker.Models;
 using System;
@@ -19,6 +29,15 @@ namespace InventoryTracker
         const string EDIT = "POST";
         const string DELETE = "DELETE";
 
+
+        /*
+        *	NAME	:	Page_Load
+        *	PURPOSE	:	This method will be executed in response to the Page Load event in the page's life cycle.
+        *	            It will instantiate controllers for view and edit functionality, and display the inventory.
+        *	INPUTS	:	object sender       Reference to the object that triggered the event
+        *	            RoutedEventArgs e   The data identifying the event that was raised
+        *	RETURNS	:	None
+        */
         protected void Page_Load(object sender, EventArgs e)
         {
             readController = new ReadController();
@@ -30,12 +49,30 @@ namespace InventoryTracker
             }
         }
 
+
+        /*
+        *	NAME	:	btnView_Click
+        *	PURPOSE	:	This method will be executed in response to the btnView_Click event.
+        *	            It will hide the edit displays and show the current inventory.
+        *	INPUTS	:	object sender       Reference to the object that triggered the event
+        *	            RoutedEventArgs e   The data identifying the event that was raised
+        *	RETURNS	:	None
+        */
         protected void btnView_Click(object sender, EventArgs e)
         {
             HideDisplay();
             DisplayInventory();
         }
 
+
+        /*
+        *	NAME	:	btnEdit_Click
+        *	PURPOSE	:	This method will be executed in response to the btnEdit_Click event.
+        *	            It will hide the current display and show the navigational buttons for editing.
+        *	INPUTS	:	object sender       Reference to the object that triggered the event
+        *	            RoutedEventArgs e   The data identifying the event that was raised
+        *	RETURNS	:	None
+        */
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             HideDisplay();
@@ -43,6 +80,16 @@ namespace InventoryTracker
             DisplayNavTables();
         }
 
+
+        /*
+        *	NAME	:	btnProduct_Click
+        *	PURPOSE	:	This method will be executed in response to the btnProduct_Click event.
+        *	            It will hide the current display, clear inputs fields, display the product records, and
+        *	            display the product editing form.
+        *	INPUTS	:	object sender       Reference to the object that triggered the event
+        *	            RoutedEventArgs e   The data identifying the event that was raised
+        *	RETURNS	:	None
+        */
         protected void btnProduct_Click(object sender, EventArgs e)
         {
             // Reset the display
@@ -52,6 +99,15 @@ namespace InventoryTracker
             DisplayProductEdit();
         }
 
+        /*
+        *	NAME	:	btnItem_Click
+        *	PURPOSE	:	This method will be executed in response to the btnItem_Click event.
+        *	            It will hide the current display, clear inputs fields, display the item records, and
+        *	            display the item editing form.
+        *	INPUTS	:	object sender       Reference to the object that triggered the event
+        *	            RoutedEventArgs e   The data identifying the event that was raised
+        *	RETURNS	:	None
+        */
         protected void btnItem_Click(object sender, EventArgs e)
         {
             // Reset the display
@@ -61,6 +117,16 @@ namespace InventoryTracker
             DisplayItemEdit();
         }
 
+
+        /*
+        *	NAME	:	btnWarehouse_Click
+        *	PURPOSE	:	This method will be executed in response to the btnWarehouse_Click event.
+        *	            It will hide the current display, clear inputs fields, display the warehouse records, and
+        *	            display the warehouse editing form.
+        *	INPUTS	:	object sender       Reference to the object that triggered the event
+        *	            RoutedEventArgs e   The data identifying the event that was raised
+        *	RETURNS	:	None
+        */
         protected void btnWarehouse_Click(object sender, EventArgs e)
         {
             // Reset the display
@@ -70,6 +136,15 @@ namespace InventoryTracker
             DisplayWarehouseEdit();
         }
 
+
+        /*
+        *	NAME	:	btnAddNew_Click
+        *	PURPOSE	:	This method will be executed in response to the btnAddNew_Click event. It will take the
+        *	            user's input data and send a create request to the data server.
+        *	INPUTS	:	object sender       Reference to the object that triggered the event
+        *	            RoutedEventArgs e   The data identifying the event that was raised
+        *	RETURNS	:	None
+        */
         protected void btnAddNew_Click(object sender, EventArgs e)
         {
             // Get the form input data
@@ -92,6 +167,15 @@ namespace InventoryTracker
             lblServerMessage.Text = serverResponse;
         }
 
+
+        /*
+        *	NAME	:	btnUpdate_Click
+        *	PURPOSE	:	This method will be executed in response to the btnUpdate_Click event. It will take the
+        *	            user's input data and send a post request to the data server.
+        *	INPUTS	:	object sender       Reference to the object that triggered the event
+        *	            RoutedEventArgs e   The data identifying the event that was raised
+        *	RETURNS	:	None
+        */
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             // Get the form input data

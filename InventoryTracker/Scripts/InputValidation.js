@@ -94,7 +94,7 @@ function validateItem() {
 
     // Validate the warehouse id         
     var warehouseID = document.getElementById("txtWarehouseIDItems").value;
-    if (!warehouseID.match(regexNumbers) || warehouseID < 1) {
+    if (!warehouseID.match(regexNumbers) || warehouseID < 0) {
         errorMessage += " warehouse ID,";
         isValid = false;
     }

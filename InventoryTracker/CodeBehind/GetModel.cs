@@ -1,4 +1,13 @@
-﻿using InventoryTracker.Interfaces;
+﻿/*
+ * FILE             : GetModel.cs
+ * PROJECT          : Inventory Tracker
+ * PROGRAMMER       : Edward Boado
+ * FIRST VERSION    : 2022 - 01 - 16
+ * DESCRIPTION      : This file contains part of the code behind. It will take user input form data, and save it
+ *                    in a table model for use by the server.
+ */
+
+using InventoryTracker.Interfaces;
 using InventoryTracker.Models;
 using System;
 using System.Collections.Generic;
@@ -9,7 +18,13 @@ namespace InventoryTracker
 {
     public partial class startPage
     {
-        // Select a table model to be used and then use input form to fill it
+        /*
+        *	NAME	:	GetModel
+        *	PURPOSE	:	This method will select a model to be used and call a method to fill it
+        *	INPUTS	:	None
+        *	RETURNS	:	Object newModel - the selected model with the user input data
+        */
+
         protected Object GetModel()
         {
             Object newModel = null;
@@ -30,6 +45,12 @@ namespace InventoryTracker
             return newModel;
         }
 
+        /*
+        *	NAME	:	GetProduct
+        *	PURPOSE	:	This method will get user input and fill out a product model class
+        *	INPUTS	:	None
+        *	RETURNS	:	Product newProduct - the product model with the user input data
+        */
         protected Object GetProduct()
         {
             Product newProduct = new Product();
@@ -62,6 +83,12 @@ namespace InventoryTracker
             return newProduct;
         }
 
+        /*
+        *	NAME	:	GetItem
+        *	PURPOSE	:	This method will get user input and fill out an item model class
+        *	INPUTS	:	None
+        *	RETURNS	:	Product newItem - the item model with the user input data
+        */
         protected Object GetItem()
         {
             Item newItem = new Item();
@@ -108,6 +135,12 @@ namespace InventoryTracker
             return newItem;
         }
 
+        /*
+        *	NAME	:	GetWarehouse
+        *	PURPOSE	:	This method will get user input and fill out a warehouse model class
+        *	INPUTS	:	None
+        *	RETURNS	:	Product newWarehouse - the warehouse model with the user input data
+        */
         protected Object GetWarehouse()
         {
             ILocation newWarehouse = new Warehouse();
@@ -143,6 +176,12 @@ namespace InventoryTracker
             return newWarehouse;
         }
 
+        /*
+        *	NAME	:	GetWarehouseItem
+        *	PURPOSE	:	This method will get user input and fill out a warehouseItem model class
+        *	INPUTS	:	None
+        *	RETURNS	:	WarehouseItem newWarehouseItem - the warehouseItem model with the user input data
+        */
         protected Object GetWarehouseItem()
         {
             WarehouseItem newWarehouseItem = new WarehouseItem();
@@ -173,6 +212,5 @@ namespace InventoryTracker
 
             return newWarehouseItem;
         }
-
     }
 }

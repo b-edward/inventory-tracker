@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS `Product`;
 
 CREATE TABLE IF NOT EXISTS `Product` (
   `productID` INT NOT NULL AUTO_INCREMENT,
-  `productName` VARCHAR(255) NOT NULL,
+  `productName` VARCHAR(255) NOT NULL UNIQUE,
   `isActive` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`productID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `Warehouse` (
 
   CREATE TABLE IF NOT EXISTS `WarehouseItem` (
   `warehouseID` INT NOT NULL,  
-  `itemID` INT NOT NULL,
+  `itemID` INT NOT NULL UNIQUE,
   PRIMARY KEY (`warehouseID`, `itemID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -82,9 +82,7 @@ INSERT INTO `WarehouseItem` (`warehouseID`, `itemID`) VALUES
 	(5, 5),
 	(1, 6),
 	(1, 7),
-	(3, 8),
-	(9, 9),
-	(10, 10);
+	(3, 8);
     
     
 

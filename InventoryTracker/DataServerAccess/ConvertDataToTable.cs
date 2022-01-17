@@ -1,4 +1,13 @@
-﻿using System.Data;
+﻿/*
+ * FILE             : ConvertDataToTable.cs
+ * PROJECT          : Inventory Tracker
+ * PROGRAMMER       : Edward Boado
+ * FIRST VERSION    : 2022 - 01 - 14
+ * DESCRIPTION      : This file contains the ConvertDataToTable class, which will convert response data (ascii) strings
+ *                    into DataTable format for UI display.
+ */
+
+using System.Data;
 
 // A delegate for converting string to Datatable
 public delegate DataTable TableConverter(string data);
@@ -13,7 +22,14 @@ namespace InventoryTracker.DataServerAccess
         public static TableConverter itemConverter = new TableConverter(ConvertToItemTable);
         public static TableConverter warehouseConverter = new TableConverter(ConvertToWarehouseTable);
 
-        // Select a table converter based on first parameter
+
+        /*
+        *	NAME	:	GetDataTable
+        *	PURPOSE	:	This method will invoke a delegate method based on the provided tablename.
+        *	INPUTS	:	string tableName - the name of the table to be formatted
+        *	            string data - the ascii response data from the DataServer
+        *	RETURNS	:	DataTable dataTable - the return data formatted as DataTable
+        */
         public static DataTable GetDataTable(string tableName, string data)
         {
             DataTable newDataTable = new DataTable();
@@ -40,8 +56,12 @@ namespace InventoryTracker.DataServerAccess
             return newDataTable;
         }
 
-
-        // Convert to Inventory report
+        /*
+        *	NAME	:	ConvertToInventoryTable
+        *	PURPOSE	:	This method will take the inventory data and put it in a DataTable
+        *	            string data - the ascii response data from the DataServer
+        *	RETURNS	:	DataTable dataTable - the return data formatted as DataTable
+        */
         private static DataTable ConvertToInventoryTable(string data)
         {
             DataTable inventoryTable = new DataTable();
@@ -83,8 +103,12 @@ namespace InventoryTracker.DataServerAccess
         }
 
 
-
-        // Convert to Item report
+        /*
+        *	NAME	:	ConvertToItemTable
+        *	PURPOSE	:	This method will take the item data and put it in a DataTable
+        *	            string data - the ascii response data from the DataServer
+        *	RETURNS	:	DataTable dataTable - the return data formatted as DataTable
+        */
         private static DataTable ConvertToItemTable(string data)
         {
             DataTable itemTable = new DataTable();
@@ -138,7 +162,12 @@ namespace InventoryTracker.DataServerAccess
         }
 
 
-        // Convert to Product report
+        /*
+        *	NAME	:	ConvertToProductTable
+        *	PURPOSE	:	This method will take the product data and put it in a DataTable
+        *	            string data - the ascii response data from the DataServer
+        *	RETURNS	:	DataTable dataTable - the return data formatted as DataTable
+        */
         private static DataTable ConvertToProductTable(string data)
         {
             DataTable productTable = new DataTable();
@@ -176,7 +205,12 @@ namespace InventoryTracker.DataServerAccess
             return productTable;
         }
 
-        // Convert to Warehouse report
+        /*
+        *	NAME	:	ConvertToWarehouseTable
+        *	PURPOSE	:	This method will take the warehouse data and put it in a DataTable
+        *	            string data - the ascii response data from the DataServer
+        *	RETURNS	:	DataTable dataTable - the return data formatted as DataTable
+        */
         private static DataTable ConvertToWarehouseTable(string data)
         {
             DataTable warehouseTable = new DataTable();
@@ -224,6 +258,12 @@ namespace InventoryTracker.DataServerAccess
         }
 
 
+        /*
+        *	NAME	:	ParseData
+        *	PURPOSE	:	This method parse the individual table records
+        *	            string data - the ascii response data from the DataServer
+        *	RETURNS	:	string[] records - an array of record rows
+        */
         private static string[] ParseData(string data)
         {
             string[] records = data.Split('&');

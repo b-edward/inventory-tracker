@@ -1,4 +1,13 @@
-﻿using InventoryTracker.Models;
+﻿/*
+ * FILE             : UpdateWarehouseItems.cs
+ * PROJECT          : Inventory Tracker
+ * PROGRAMMER       : Edward Boado
+ * FIRST VERSION    : 2022 - 01 - 16
+ * DESCRIPTION      : This file contains part of the code behind. It will handle the editing of the warehouseItem table.
+ *                    The user does not directly edit this table, it happens automatically when the user edits items.
+ */
+
+using InventoryTracker.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +17,12 @@ namespace InventoryTracker
 {
     public partial class startPage
     {
+        /*
+        *	NAME	:	AssignItemAdd
+        *	PURPOSE	:	This method will add a new record in the WarehouseItem table
+        *	INPUTS	:	None
+        *	RETURNS	:	string serverResponse - server status message for user feedback
+        */
         protected string AssignItemAdd()
         {
             string serverResponse = "";
@@ -38,7 +53,12 @@ namespace InventoryTracker
         }
 
 
-
+        /*
+        *	NAME	:	AssignItemEdit
+        *	PURPOSE	:	This method will add, edit, or delete warehouseItems based on user form input
+        *	INPUTS	:	Object modelToAdd - the user's input data
+        *	RETURNS	:	string serverResponse - server status message for user feedback
+        */
         protected string AssignItemEdit(Object modelToAdd)
         {
             string serverResponse = "";
@@ -68,6 +88,7 @@ namespace InventoryTracker
                     // PUT if warehouseItem was not already in the table
                     serverResponse = editController.ExecuteCUD(modelToAdd, ADD, "warehouseItem");
 
+                    // Update response
                     if (serverResponse.Contains("200"))
                     {
                         serverResponse = "Item updated successfully.";

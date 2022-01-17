@@ -1,4 +1,13 @@
-﻿using InventoryTracker.Interfaces;
+﻿/*
+ * FILE             : ServerHandler.cs
+ * PROJECT          : Inventory Tracker
+ * PROGRAMMER       : Edward Boado
+ * FIRST VERSION    : 2022 - 01 - 12
+ * DESCRIPTION      : This file contains the ServerHandler class, which will implements the IServerHandler interface.
+ *                    It will connect to the DataServer, send and receive messages by TCP/IP.
+ */
+
+using InventoryTracker.Interfaces;
 using System;
 using System.Net.Sockets;
 
@@ -28,7 +37,7 @@ namespace InventoryTracker.DataServerAccess
                 try
                 {
                     // Create a new TCP Client
-                    TcpClient client = new TcpClient("127.0.0.1", 13000);    //13.92.120.219
+                    TcpClient client = new TcpClient("13.92.120.219", 13000);
 
                     // Translate the passed message into ASCII and store it as a Byte array.
                     byte[] data = System.Text.Encoding.ASCII.GetBytes(stringToSend);

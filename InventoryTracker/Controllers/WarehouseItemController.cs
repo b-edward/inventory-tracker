@@ -1,19 +1,38 @@
-﻿using InventoryTracker.Interfaces;
+﻿/*
+ * FILE             : WarehouseItemController.cs
+ * PROJECT          : Inventory Tracker
+ * PROGRAMMER       : Edward Boado
+ * FIRST VERSION    : 2022 - 01 - 14
+ * DESCRIPTION      : This file contains the WarehouseItemController class, which implements the ITableRead and ITableCUD interfaces. 
+ *                    It will provide SQL queries for accessing the warehouseItem data table.
+ */
+
+using InventoryTracker.Interfaces;
 using InventoryTracker.Models;
 
 namespace InventoryTracker.Controllers
 {
-    // This class will be used when user wants to assign an item to a warehouse
-    // it will create, update, or delete warehouseItems
     public class WarehouseItemController : ITableRead, ITableCUD
     {
         private WarehouseItem warehouseItemTable;
 
+        /*
+        *	NAME	:	WarehouseItemController -- Constructor
+        *	PURPOSE	:	Default constructor.
+        *	INPUTS	:	None
+        *	RETURNS	:	None
+        */
         public WarehouseItemController()
         {
         }
 
-        // Create SQL query to execute the command in the warehouse table
+        /*
+        *	NAME	:	BuildCUDQuery
+        *	PURPOSE	:	This method will call a method to get the correct query based on the command
+        *	INPUTS	:	object table - the user input data to be sent
+        *	            string command -  the create, update, or delete command
+        *	RETURNS	:	string query - the SQL query
+        */
         public string BuildCUDQuery(object table, string command)
         {
             // Convert the object parameter into a warehouse
@@ -23,6 +42,14 @@ namespace InventoryTracker.Controllers
 
             return query;
         }
+
+        /*
+        *	NAME	:	GetQuery
+        *	PURPOSE	:	This method take the command and select a method to call
+        *	INPUTS	:	object table - the user input data to be sent
+        *	            string command -  the create, update, or delete command
+        *	RETURNS	:	string query - the SQL query
+        */
 
         private string GetQuery(object table, string command)
         {
@@ -43,6 +70,13 @@ namespace InventoryTracker.Controllers
             return query;
         }
 
+        /*
+        *	NAME	:	InsertQuery
+        *	PURPOSE	:	This method take the table data and build a SQL query for inserting into a table
+        *	INPUTS	:	object table - the user input data to be sent
+        *	            string command -  the create, update, or delete command
+        *	RETURNS	:	string query - the SQL query
+        */
         private string InsertQuery(object table, string command)
         {
             string query = "";
@@ -52,6 +86,13 @@ namespace InventoryTracker.Controllers
             return query;
         }
 
+        /*
+        *	NAME	:	UpdateQuery
+        *	PURPOSE	:	This method take the table data and build a SQL query for updating a table
+        *	INPUTS	:	object table - the user input data to be sent
+        *	            string command -  the create, update, or delete command
+        *	RETURNS	:	string query - the SQL query
+        */
         private string UpdateQuery(object table, string command)
         {
             string query = "";
@@ -61,6 +102,13 @@ namespace InventoryTracker.Controllers
             return query;
         }
 
+        /*
+        *	NAME	:	DeleteQuery
+        *	PURPOSE	:	This method take the table data and build a SQL query for deleting from a table
+        *	INPUTS	:	object table - the user input data to be sent
+        *	            string command -  the create, update, or delete command
+        *	RETURNS	:	string query - the SQL query
+        */
         private string DeleteQuery(object table, string command)
         {
             string query = "";
@@ -70,7 +118,7 @@ namespace InventoryTracker.Controllers
         }
 
 
-        // Read is not used in this release, but included for use is future features
+        // Read is not used in this release, but is included for use is future features
         // Create SQL query to get inventory of all WarehouseItems
         public string BuildReadQuery()
         {
