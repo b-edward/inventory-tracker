@@ -49,11 +49,11 @@ CREATE TABLE IF NOT EXISTS `Warehouse` (
 -- Insert initial data  
     
 INSERT INTO `Product` (`productName`, `isActive`) VALUES
-	('Yamok Sauce', 1),    
-	('Self-sealing stem bolt', 1),    
-	('Bajoran dirt', 1),    
-	('Latinum', 0),    
-	('Noh-Jay coffee mug', 1);
+	('Ghost Mango Sauce', 1),    
+	('Curried Pumpkin Soup', 1),    
+	('Dragon Breath Sauce', 1),    
+	('Quinoa Soup', 0),    
+	('Yamok Sauce', 1);
 
 INSERT INTO `Item` (`productID`, `isAssigned`) VALUES
 	(1, 1),    
@@ -68,10 +68,10 @@ INSERT INTO `Item` (`productID`, `isAssigned`) VALUES
 	(1, 0);
     
 INSERT INTO `Warehouse` (`streetAndNo`, `city`, `provinceOrState`, `country`, `postalCode`, `isActive`) VALUES
-	('9 Alpha Street', 'Jalanda City', 'DK', 'Bajor', 'STDS9', '1'),
-	('5 Yonge Street', 'Toronto', 'ON', 'Canada', 'M5E 1J1', '0'),
+	('5 Yonge Street', 'Toronto', 'ON', 'Canada', 'M5E 1J1', '1'),
 	('108 University Avenue', 'Waterloo', 'ON', 'Canada', 'N2J 2W2', '1'), 
-	('1280 Main Street West', 'Hamilton', 'ON', 'Canada', 'L8S 4K1', '1'),
+	('Tieckstraße 6', 'Leipzig', 'Saxony', 'Germany', '04275', '1'),
+	('9 Alpha Street', 'Jalanda City', 'DK', 'Bajor', 'STDS9', '0'),
 	('183 Thompson St', 'New York', 'NY', 'USA', '10012', '1');
     
 INSERT INTO `WarehouseItem` (`warehouseID`, `itemID`) VALUES

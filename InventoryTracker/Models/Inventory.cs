@@ -1,4 +1,12 @@
-﻿using InventoryTracker.Interfaces;
+﻿/*
+ * FILE             : Inventory.cs
+ * PROJECT          : Inventory Tracker
+ * PROGRAMMER       : Edward Boado
+ * FIRST VERSION    : 2022 - 01 - 14
+ * DESCRIPTION      : This file contains the Inventory class, which models a database inventory report. This class
+ *                    implements the IInventory and IModel interfaces.
+ */
+using InventoryTracker.Interfaces;
 
 namespace InventoryTracker.Models
 {

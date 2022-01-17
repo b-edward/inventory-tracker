@@ -36,13 +36,13 @@ namespace InventoryTracker
             {
                 gvInventory.DataSource = inventoryTable;
                 gvInventory.DataBind();
-                // Update the table title
-                lblTableTitle.Text = "Inventory";
-                lblTableNote.Text = "<b>Note:</b><br/>- To delete an item from inventory, edit item availability to 'sold'.";
                 // Get the viewInventory div and display it
                 HideDisplay();
                 htmlControl = FindControl("viewInventory") as HtmlControl;
                 htmlControl.Attributes["style"] = "display:flex;";
+                // Update the table title
+                lblTableTitle.Text = "Inventory";
+                lblTableNote.Text = "<b>Note:</b><br/>- To delete an item from inventory, edit item availability to 'sold'.";
             }
             else
             {

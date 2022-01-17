@@ -1,6 +1,7 @@
 ## Inventory Tracker Web Application
 
-The Inventory Tracker is a web application for a logistics company. It was developed in ASP.NET and is hosted on Microsoft Azure App Service. It presents the user interface, allowing basic CRUD Functionality. The application will validate user input, create SQL queries, send the query requests to the DataServer via TCP/IP, parse the response and display it.
+The Inventory Tracker is a web application for a logistics company. It was developed in ASP.NET and is hosted on Microsoft Azure App Service. It presents the user interface, allowing basic CRUD Functionality. The application will validate user input, create SQL queries, send the query requests to the DataServer via TCP/IP, parse the response and display it. 
+For best results, please use a full screen web browser (mobile styling not supported at this time).
 
 The user is able to:
 * Add new products, items, and warehouses
@@ -22,7 +23,7 @@ Notes:
 
 The data access component is accomplished by the DataServer web API service. It was developed as a .NET console application, hosted on a Microsoft Azure Virtual Machine. This multi-threaded server allows multiple simultaneous clients to access the MySQL database via TCP/IP. 
 
-The DataServer has a custom protocol, loosely based on REST/HTTP. 
+The DataServer transfers data using a custom protocol, loosely based on REST/HTTP. 
 
 Requests must:
 * Start with a verb command followed by a new line character (\n)
@@ -35,3 +36,5 @@ Responses:
 * If returning a read request, the data content follows
 	* Read data is formatted with an ampersand '&' separating each record, and a comma ',' separating each field
 	* For example: "200\n1,Surfboard,1" 
+	
+	

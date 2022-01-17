@@ -22,7 +22,7 @@
                 margin: 20px;   
             }
         </style>
-        <title>Noh-Jay Consortium</title>
+        <title>EB Logistics Corp.</title>
     </head>
     <body style="background: #95BF47; padding: 1%;">
         <form id="mainUI" runat="server" style="display: flex; justify-content: center; background: white;">
@@ -277,6 +277,12 @@
                 <!-- Table note -->
                 <div style="display: flex; justify-content: center; margin:15px">
                     <asp:Label ID="lblTableNote" runat="server" Text="" Font-Size="Medium" Width="80%"></asp:Label>
+                </div>
+                <!-- Help Button -->
+                <div>                
+                    <a href="https://github.com/b-edward/inventory-tracker/blob/main/README.md" target="_blank">
+                        <img src="Images/help.png" alt="Help" id="helpButton" style="height:30px; width:30px; position: fixed; top: 7%; left: 3%;">
+                    </a>   
                 </div>
             </div>
         </form>

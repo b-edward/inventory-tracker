@@ -1,8 +1,14 @@
-﻿
+﻿/*
+ * FILE             : InputValidation.js
+ * PROJECT          : Inventory Tracker
+ * PROGRAMMER       : Edward Boado
+ * FIRST VERSION    : 2022 - 01 - 14
+ * DESCRIPTION      : This file contains JavaScript code which is responsible for input-level validation.
+ */
+
 const regexNumbers = /^[0-9]+$/;                    // Regex used to filter for valid integers
 const regexLetters = /^[A-Za-z ]+$/;                // Regex used to filter for valid alpha chars
 const regexLettersNumbers = /^[a-zA-Z0-9 ]*$/;      // Regex used to filter for valid alpha and integer chars
-
 
 function validateAddProduct() {
     // Validate non-id fields only

@@ -1,4 +1,12 @@
-﻿using InventoryTracker.Interfaces;
+﻿/*
+ * FILE             : Warehouse.cs
+ * PROJECT          : Inventory Tracker
+ * PROGRAMMER       : Edward Boado
+ * FIRST VERSION    : 2022 - 01 - 14
+ * DESCRIPTION      : This file contains the Warehouse class, which models a database Warehouse record. This class
+ *                    implements the IWarehouse and IModel interfaces.
+ */
+using InventoryTracker.Interfaces;
 
 namespace InventoryTracker.Models
 {
