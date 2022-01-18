@@ -131,7 +131,8 @@ namespace InventoryTracker
             // Display edit product form
             htmlControl = FindControl("editProduct") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
-            lblTableNote.Text = "<b>Note:</b><br/>- A product is a type of item, for example 'Snowboard'";
+            lblTableNote.Text = "<b>Note:</b><br/>- A product is a type of item, for example 'Snowboard'<br/>" +
+                "- When adding a new product, the ID is not required because the database automatically assigns the ID";
             DisplayNavTables();
             // Track which table is being edited
             lblCurrentEditTable.Text = "product";
@@ -171,9 +172,13 @@ namespace InventoryTracker
             // Display edit item form
             htmlControl = FindControl("editItem") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
-            lblTableNote.Text = "<b>Note:</b><br/>- An item is an individual unit of a product, for example 'Item #2006', which could be " +
-                                "one of many Snowboards.<br/>- Assign item by entering warehouse ID, or enter 0 to un-assign.<br/>" +
-                                "- Sold items are no long shown in the Inventory table.";
+            lblTableNote.Text = "<b>Notes:</b><br/>1) An item is an individual unit of a product, for example 'Item #2006', which could be " +
+                                "one of many Snowboards.<br/> " +
+                                "2) Assign an item by entering an existing warehouse ID, or enter 0 to un-assign.<br/>" +
+                                "3) Sold items are no long shown in the Inventory table.<br/>" +
+                                "4) When adding a new item, the ID is not required because the database automatically assigns the ID.<br/>" +
+                                "5) The product ID must also match a product that already exists in the database.<br/>" +
+                                "6) When assigning a new item, the warehouse ID must match one of warehouses in the database.";
             DisplayNavTables();
             // Track which table is being edited
             lblCurrentEditTable.Text = "item";
@@ -213,7 +218,7 @@ namespace InventoryTracker
             // Display edit warehouse form
             htmlControl = FindControl("editWarehouse") as HtmlControl;
             htmlControl.Attributes["style"] = "display:flex;";
-            lblTableNote.Text = "";
+            lblTableNote.Text = "<b>Note:</b><br/>- When adding a new warehouse, the ID is not required because the database automatically assigns the ID";
             DisplayNavTables();
             // Track which table is being edited
             lblCurrentEditTable.Text = "warehouse";

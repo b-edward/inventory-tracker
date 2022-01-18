@@ -4,12 +4,12 @@ The Inventory Tracker is a web application for a logistics company. It was devel
 For best results, please use a full screen web browser (mobile styling not supported at this time).
 
 The user is able to:
-* Add new products, items, and warehouses
+* Create new products, items, and warehouses
 * View a list of all inventory
 	* View a list products, items, or warehouses
 * Edit products, items, or warehouses
 	* Assign or un-assign an item to a warehouse
-	* Set an item to sold (to remove from inventory)
+	* Set an item to sold (to remove from active inventory)
 * Delete products, items, or warehouses
 	* Items, products and warehouses are not actually deleted, but set to inactive (or sold)
 

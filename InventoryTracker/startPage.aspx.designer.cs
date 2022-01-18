@@ -339,6 +339,15 @@ namespace InventoryTracker
         protected global::System.Web.UI.WebControls.Label lblServerMessage;
 
         /// <summary>
+        /// lblTableNote control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTableNote;
+
+        /// <summary>
         /// viewInventory control.
         /// </summary>
         /// <remarks>
@@ -409,14 +418,5 @@ namespace InventoryTracker
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvWarehouse;
-
-        /// <summary>
-        /// lblTableNote control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTableNote;
     }
 }

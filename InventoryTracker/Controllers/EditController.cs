@@ -67,6 +67,11 @@ namespace InventoryTracker.Controllers
                     {
                         response = queryResponse;
                     }
+                    else
+                    {
+                        // Parse the response using ResponseHandler
+                        response = responseHandler.ParseResponse(queryResponse);
+                    }
                 }
                 else
                 {

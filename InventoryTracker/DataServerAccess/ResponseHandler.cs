@@ -54,6 +54,14 @@ namespace InventoryTracker.DataServerAccess
             {
                 response = "Request executed successfully.";
             }
+            else if (serverResponse[0].StartsWith("5"))
+            {
+                response = "Server could not complete that request.";
+            }
+            else if (serverResponse[0].StartsWith("4"))
+            {
+                response = "Invalid request.";
+            }
             else
             {
                 // Keep the server's message

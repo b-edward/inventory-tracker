@@ -24,7 +24,7 @@
         </style>
         <title>EB Logistics Corp.</title>
     </head>
-    <body style="background: #95BF47; padding: 1%;">
+    <body style="background: #5E8E3E; padding: 1%;">
         <form id="mainUI" runat="server" style="display: flex; justify-content: center; background: white;">
             <div>
                 <div class="nav" style="display: flex; justify-content: center;">
@@ -36,28 +36,37 @@
                         <tr>
                             <td></td>
                             <td>
-                                <asp:Button ID="btnView" runat="server" Text="View Inventory" Width="150px" OnClick="btnView_Click" /></td>
+                                <asp:Button ID="btnView" runat="server" Text="View Inventory" ToolTip="View all unsold items" Width="150px" OnClick="btnView_Click" /></td>
                             <td></td>
                             <td>
-                                <asp:Button ID="btnEdit" runat="server" Text="Edit Inventory" Width="150px" OnClick="btnEdit_Click" /></td>
+                                <asp:Button ID="btnEdit" runat="server" Text="Edit Inventory" ToolTip="Edit inventory tables" Width="150px" OnClick="btnEdit_Click" /></td>
                             <td></td>
                         </tr>
                     </table>
                 </div>            
                 <!-- Table Navigation -->
-                <div id="navTables" class="centre-div" runat="server" style="display: none;">
-                    <table>
-                        <tr>
-                            <td>
-                                <asp:Button ID="btnProduct" runat="server" Text="Products" Width="150px" OnClick="btnProduct_Click" /></td>
-                            <td></td>
-                            <td>
-                                <asp:Button ID="btnItem" runat="server" Text="Items" Width="150px" OnClick="btnItem_Click" /></td>
-                            <td></td>
-                            <td>
-                                <asp:Button ID="btnWarehouse" runat="server" Text="Warehouses" Width="150px" OnClick="btnWarehouse_Click" /></td>
-                        </tr>
-                    </table>
+                <div id="navTables" class="centre-div" runat="server" style="display: none;"> 
+                    <div style="float:left"> 
+                        <table>
+                            <tr>
+                                <td>
+                                    <asp:Button ID="btnProduct" runat="server" Text="Products" Tooltip="Select a data table to edit" Width="150px" OnClick="btnProduct_Click" /></td>
+                                <td></td>
+                                <td>
+                                    <asp:Button ID="btnItem" runat="server" Text="Items" Tooltip="Select a data table to edit" Width="150px" OnClick="btnItem_Click" /></td>
+                                <td></td>
+                                <td>
+                                    <asp:Button ID="btnWarehouse" runat="server" Text="Warehouses" Tooltip="Select a data table to edit" Width="150px" OnClick="btnWarehouse_Click" /></td>
+                            </tr>
+                        </table>
+                    </div>
+            
+                </div>
+                <!-- Help Button -->
+                <div>                
+                    <a href="https://github.com/b-edward/inventory-tracker/blob/main/README.md" target="_blank">
+                        <img src="Images/help.png" alt="Help" id="helpButton" style="height:30px; width:30px; position: fixed; top: 7%; left: 3%;">
+                    </a>   
                 </div>
                 <!-- Table title -->
                 <div style="display: flex; justify-content: center;">
@@ -70,7 +79,7 @@
                             <tr>
                                 <td>Product ID:</td>
                                 <td>
-                                    <asp:TextBox ID="txtProductID" runat="server" ToolTip="Enter the product ID" Width="100%" /></td>
+                                    <asp:TextBox ID="txtProductID" runat="server" ToolTip="Product ID not required for Add New, as database automatically assigns a new ID" Width="100%" /></td>
                                 <td>
                             </tr>
                             <tr>
@@ -95,10 +104,10 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:Button ID="btnAddProduct" runat="server" Text="Add New" Width="150px" OnClick="btnAddNew_Click" OnClientClick = "if (!validateAddProduct()) {return false;}" UseSubmitBehavior="False"/></td>
+                                    <asp:Button ID="btnAddProduct" runat="server" Text="Add New" ToolTip="Create a new product in the database" Width="150px" OnClick="btnAddNew_Click" OnClientClick = "if (!validateAddProduct()) {return false;}" UseSubmitBehavior="False"/></td>
                                 <td>
                             
-                                    <asp:Button ID="btnUpdateProduct" runat="server" Text="Update" Width="150px" OnClick="btnUpdate_Click" OnClientClick = "if (!validateEditProduct()) {return false;}" UseSubmitBehavior="False"/></td>
+                                    <asp:Button ID="btnUpdateProduct" runat="server" Text="Update" ToolTip="Update a product currently in the database" Width="150px" OnClick="btnUpdate_Click" OnClientClick = "if (!validateEditProduct()) {return false;}" UseSubmitBehavior="False"/></td>
                             </tr>
                         </table>
                     </div>
@@ -110,24 +119,24 @@
                             <tr>
                                 <td>Item ID:</td>
                                 <td>
-                                    <asp:TextBox ID="txtItemId" runat="server" ToolTip="Enter the item ID" Width="100%" /></td>
+                                    <asp:TextBox ID="txtItemId" runat="server" ToolTip="Item ID not required for Add New, as database automatically assigns a new ID" Width="100%" /></td>
                             </tr>
                             <tr>
                                 <td>Product ID:</td>
                                 <td>
-                                    <asp:TextBox ID="txtProductIDItems" runat="server" ToolTip="Enter the product ID" Width="100%" /></td>
+                                    <asp:TextBox ID="txtProductIDItems" runat="server" ToolTip="Enter a product ID that already exists in the database!" Width="100%" /></td>
                                 <td>
                             </tr>
                             <tr>
                                 <td>Warehouse ID:</td>
                                 <!-- Selecting a location sets item as assigned, and creates a new warehouseItem -->
                                 <td>
-                                    <asp:TextBox ID="txtWarehouseIDItems" runat="server" ToolTip="Enter a warehouseID or 0 to un-assign" Width="100%" /></td>
+                                    <asp:TextBox ID="txtWarehouseIDItems" runat="server" ToolTip="Enter a warehouseID or 0 to un-assign. Warehouse must already exist in the database!" Width="100%" /></td>
                             </tr>
                             <tr>
                                 <td>Availability:</td>
                                 <td>
-                                    <asp:DropDownList ID="ddlIsSold" runat="server">
+                                    <asp:DropDownList ID="ddlIsSold" runat="server" ToolTip="Select 'Sold' will remove this item from the total inventory">
                                         <asp:ListItem Text=""></asp:ListItem>
                                         <asp:ListItem Text="Sold" Value="1"></asp:ListItem>
                                         <asp:ListItem Text="Available" Value="0"></asp:ListItem>
@@ -141,10 +150,10 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:Button ID="btnAddItem" runat="server" Text="Add New" Width="150px" OnClick="btnAddNew_Click" OnClientClick = "if (!validateAddItem()) {return false;}" UseSubmitBehavior="False"/></td>
+                                    <asp:Button ID="btnAddItem" runat="server" Text="Add New" ToolTip="Create a new item in the database" Width="150px" OnClick="btnAddNew_Click" OnClientClick = "if (!validateAddItem()) {return false;}" UseSubmitBehavior="False"/></td>
                                 <td>
                             
-                                    <asp:Button ID="btnEditItem" runat="server" Text="Update" Width="150px" OnClick="btnUpdate_Click" OnClientClick = "if (!validateEditItem()) {return false;}" UseSubmitBehavior="False"/></td>
+                                    <asp:Button ID="btnEditItem" runat="server" Text="Update" ToolTip="Update an item currently in the database" Width="150px" OnClick="btnUpdate_Click" OnClientClick = "if (!validateEditItem()) {return false;}" UseSubmitBehavior="False"/></td>
                             </tr>
                         </table>
                     </div>
@@ -156,7 +165,7 @@
                             <tr>
                                 <td>Warehouse ID:</td>
                                 <td>
-                                    <asp:TextBox ID="txtWarehouseID" runat="server" ToolTip="Enter the warehouse ID" Width="100%" /></td>
+                                    <asp:TextBox ID="txtWarehouseID" runat="server" ToolTip="Warehouse ID not required for Add New, as database automatically assigns a new ID" Width="100%" /></td>
                             </tr>
                             <tr>
                                 <td>Street and Number:</td>
@@ -200,10 +209,10 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:Button ID="btnAddWarehouse" runat="server" Text="Add New" Width="150px" OnClick="btnAddNew_Click" OnClientClick = "if (!validateAddWarehouse()) {return false;}" UseSubmitBehavior="False"/></td>
+                                    <asp:Button ID="btnAddWarehouse" runat="server" Text="Add New" ToolTip="Create a new warehouse location in the database" Width="150px" OnClick="btnAddNew_Click" OnClientClick = "if (!validateAddWarehouse()) {return false;}" UseSubmitBehavior="False"/></td>
                                 <td>
                             
-                                    <asp:Button ID="btnEditWarehouse" runat="server" Text="Update" Width="150px" OnClick="btnUpdate_Click" OnClientClick = "if (!validateEditWarehouse()) {return false;}" UseSubmitBehavior="False"/></td>
+                                    <asp:Button ID="btnEditWarehouse" runat="server" Text="Update" ToolTip="Update a warehouse currently in the database" Width="150px" OnClick="btnUpdate_Click" OnClientClick = "if (!validateEditWarehouse()) {return false;}" UseSubmitBehavior="False"/></td>
                             </tr>
                         </table>
                     </div>
@@ -211,7 +220,6 @@
 
                 <!-- Track current table -->
                 <asp:Label ID="lblCurrentEditTable" runat="server" Text="" Visible="False"></asp:Label>
-
                 
                 <!-- Server Response Output -->
                 <div style="display: flex; justify-content: center; margin:15px;">
@@ -221,6 +229,11 @@
                 <!-- Display Input Error Message -->
                 <div class="error" style="display: flex; justify-content: center;">
                     <p id="errorMessage" style="color:red"></p>
+                </div>
+                               
+                <!-- Table note -->
+                <div style="display: flex; justify-content: center; margin:15px">
+                    <asp:Label ID="lblTableNote" runat="server" Text="" Font-Size="Medium" Width="100%"></asp:Label>
                 </div>
 
                 <!-- Display Output -->
@@ -273,17 +286,7 @@
                             </Columns>
                         </asp:GridView>
                     </div>
-                </div>                
-                <!-- Table note -->
-                <div style="display: flex; justify-content: center; margin:15px">
-                    <asp:Label ID="lblTableNote" runat="server" Text="" Font-Size="Medium" Width="80%"></asp:Label>
-                </div>
-                <!-- Help Button -->
-                <div>                
-                    <a href="https://github.com/b-edward/inventory-tracker/blob/main/README.md" target="_blank">
-                        <img src="Images/help.png" alt="Help" id="helpButton" style="height:30px; width:30px; position: fixed; top: 7%; left: 3%;">
-                    </a>   
-                </div>
+                </div> 
             </div>
         </form>
     </body>
