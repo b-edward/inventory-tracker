@@ -22,7 +22,7 @@
 
 2. To edit the inventory, click `Edit Inventory`. Then click on a data table to edit.	
 	
-	> `Products` are types (e.g. Snowboard)
+	> `Products` are types (e.g. Snowboard)	
 	> `Items` are individual units of a product type (e.g. Snowboard #231)
 	> `Warehouses` are locations where an item unit can be assigned (e.g. Waterloo #12)
 
