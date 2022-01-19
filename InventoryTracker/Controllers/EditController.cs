@@ -25,12 +25,12 @@ namespace InventoryTracker.Controllers
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         public EditController()
         {
             requestHandler = new RequestHandler();
             responseHandler = new ResponseHandler();
         }
-
 
         /*
         *	NAME	:	ExecuteCUD
@@ -40,6 +40,7 @@ namespace InventoryTracker.Controllers
         *	            string tableName - the name of the table to be edited
         *	RETURNS	:	string response - server status message for user feedback
         */
+
         public string ExecuteCUD(object table, string command, string tableName)
         {
             string response = "";
@@ -61,9 +62,9 @@ namespace InventoryTracker.Controllers
                 string queryResponse = SendQuery(query);
 
                 // If WarehouseItem edited, queryResponse code 200, customize queryResponse message
-                if(tableName.ToUpper() == "ITEM" || tableName.ToUpper() == "WAREHOUSEITEM")
+                if (tableName.ToUpper() == "ITEM" || tableName.ToUpper() == "WAREHOUSEITEM")
                 {
-                    if(queryResponse.Contains("200"))
+                    if (queryResponse.Contains("200"))
                     {
                         response = queryResponse;
                     }
@@ -83,19 +84,18 @@ namespace InventoryTracker.Controllers
             return response;
         }
 
-
         /*
         *	NAME	:	SendQuery
         *	PURPOSE	:	This method will send the query to the server.
         *	INPUTS	:	string query - the SQL query to be sent
         *	RETURNS	:	string response - server status message for user feedback
         */
+
         private string SendQuery(string query)
         {
             // Send the request and get server response
             string response = requestHandler.SendRequest(query);
             return response;
         }
-
     }
 }

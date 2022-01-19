@@ -27,6 +27,7 @@ namespace InventoryTracker.Controllers
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         public ReadController()
         {
             requestHandler = new RequestHandler();
@@ -36,9 +37,10 @@ namespace InventoryTracker.Controllers
         /*
         *	NAME	:	GetTable
         *	PURPOSE	:	This method will get a datatable with the records from the selected table
-        *	INPUTS	:	string tableName - the name of the database table 
+        *	INPUTS	:	string tableName - the name of the database table
         *	RETURNS	:	DataTable dataTable - the return data formatted as DataTable
         */
+
         public DataTable GetTable(string tableName)
         {
             DataTable dataTable = null;
@@ -52,7 +54,7 @@ namespace InventoryTracker.Controllers
 
             // Instantiate controller based on tableName
             tableRead = (ITableRead)SelectController.GetController(tableName);
-            if(tableRead != null)
+            if (tableRead != null)
             {
                 // Get the inventory query string and send it
                 string query = tableRead.BuildReadQuery();
@@ -69,7 +71,7 @@ namespace InventoryTracker.Controllers
                     dataTable = null;
                 }
             }
-            
+
             return dataTable;
         }
 
@@ -79,13 +81,13 @@ namespace InventoryTracker.Controllers
         *	INPUTS	:	string query - the SQL query to be sent
         *	RETURNS	:	string response - server status message for user feedback
         */
+
         private string SendQuery(string query)
         {
             // Send the request and get server response
             string response = requestHandler.SendRequest(query);
             return response;
         }
-
 
         /*
         *	NAME	:	ConvertTable
@@ -94,6 +96,7 @@ namespace InventoryTracker.Controllers
         *	            string data - the returned data in ascii string format
         *	RETURNS	:	DataTable dataTable - the return data formatted as DataTable
         */
+
         private DataTable ConvertTable(string tableName, string data)
         {
             // Split the status code from the response
@@ -109,9 +112,10 @@ namespace InventoryTracker.Controllers
         *	INPUTS	:	None
         *	RETURNS	:	string newItemID - the returned itemID
         */
+
         public string GetNewItemID()
         {
-            // Instantiate controller 
+            // Instantiate controller
             ItemController itemController = new ItemController();
 
             // Get the query string and send it

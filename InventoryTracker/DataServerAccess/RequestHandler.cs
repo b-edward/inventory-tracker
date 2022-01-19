@@ -20,13 +20,13 @@ namespace InventoryTracker.DataServerAccess
             serverHandler = new ServerHandler();
         }
 
-
         /*
         *	NAME	:	ConvertToInventoryTable
         *	PURPOSE	:	This method will take the inventory data and put it in a DataTable
         *	            string request - the request string using DataServer protocol
         *	RETURNS	:	string serverResponse - the server's response, status code and read data
         */
+
         public string SendRequest(string request)
         {
             string serverResponse = serverHandler.SendToServer(request);

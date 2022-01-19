@@ -10,11 +10,8 @@
 
 using InventoryTracker.Controllers;
 using InventoryTracker.Interfaces;
-using InventoryTracker.Models;
 using System;
-using System.Data;
 using System.Web.UI.HtmlControls;
-
 
 namespace InventoryTracker
 {
@@ -25,10 +22,10 @@ namespace InventoryTracker
         private HtmlControl htmlControl;
 
         // Constants for db execute commands
-        const string ADD = "PUT";
-        const string EDIT = "POST";
-        const string DELETE = "DELETE";
+        private const string ADD = "PUT";
 
+        private const string EDIT = "POST";
+        private const string DELETE = "DELETE";
 
         /*
         *	NAME	:	Page_Load
@@ -38,17 +35,17 @@ namespace InventoryTracker
         *	            RoutedEventArgs e   The data identifying the event that was raised
         *	RETURNS	:	None
         */
+
         protected void Page_Load(object sender, EventArgs e)
         {
             readController = new ReadController();
             editController = new EditController();
             // Display the inventory if this is the first render of the page
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 DisplayInventory();
             }
         }
-
 
         /*
         *	NAME	:	btnView_Click
@@ -58,12 +55,12 @@ namespace InventoryTracker
         *	            RoutedEventArgs e   The data identifying the event that was raised
         *	RETURNS	:	None
         */
+
         protected void btnView_Click(object sender, EventArgs e)
         {
             HideDisplay();
             DisplayInventory();
         }
-
 
         /*
         *	NAME	:	btnEdit_Click
@@ -73,13 +70,13 @@ namespace InventoryTracker
         *	            RoutedEventArgs e   The data identifying the event that was raised
         *	RETURNS	:	None
         */
+
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             HideDisplay();
             // Get the navTables div and display it
             DisplayNavTables();
         }
-
 
         /*
         *	NAME	:	btnProduct_Click
@@ -90,6 +87,7 @@ namespace InventoryTracker
         *	            RoutedEventArgs e   The data identifying the event that was raised
         *	RETURNS	:	None
         */
+
         protected void btnProduct_Click(object sender, EventArgs e)
         {
             // Reset the display
@@ -108,6 +106,7 @@ namespace InventoryTracker
         *	            RoutedEventArgs e   The data identifying the event that was raised
         *	RETURNS	:	None
         */
+
         protected void btnItem_Click(object sender, EventArgs e)
         {
             // Reset the display
@@ -116,7 +115,6 @@ namespace InventoryTracker
             // Display the item editing screen
             DisplayItemEdit();
         }
-
 
         /*
         *	NAME	:	btnWarehouse_Click
@@ -127,6 +125,7 @@ namespace InventoryTracker
         *	            RoutedEventArgs e   The data identifying the event that was raised
         *	RETURNS	:	None
         */
+
         protected void btnWarehouse_Click(object sender, EventArgs e)
         {
             // Reset the display
@@ -136,7 +135,6 @@ namespace InventoryTracker
             DisplayWarehouseEdit();
         }
 
-
         /*
         *	NAME	:	btnAddNew_Click
         *	PURPOSE	:	This method will be executed in response to the btnAddNew_Click event. It will take the
@@ -145,6 +143,7 @@ namespace InventoryTracker
         *	            RoutedEventArgs e   The data identifying the event that was raised
         *	RETURNS	:	None
         */
+
         protected void btnAddNew_Click(object sender, EventArgs e)
         {
             // Get the form input data
@@ -156,7 +155,7 @@ namespace InventoryTracker
                 // Send create request to server
                 serverResponse = editController.ExecuteCUD(modelToAdd, ADD, lblCurrentEditTable.Text);
 
-                // For ITEMS, if serverResponse 200, if warehouseID provided, must also send warehouseItem to INSERT new 
+                // For ITEMS, if serverResponse 200, if warehouseID provided, must also send warehouseItem to INSERT new
                 if (lblCurrentEditTable.Text == "item" && serverResponse.Contains("200"))
                 {
                     serverResponse = AssignItemAdd();
@@ -167,7 +166,6 @@ namespace InventoryTracker
             lblServerMessage.Text = serverResponse;
         }
 
-
         /*
         *	NAME	:	btnUpdate_Click
         *	PURPOSE	:	This method will be executed in response to the btnUpdate_Click event. It will take the
@@ -176,6 +174,7 @@ namespace InventoryTracker
         *	            RoutedEventArgs e   The data identifying the event that was raised
         *	RETURNS	:	None
         */
+
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             // Get the form input data
@@ -188,7 +187,7 @@ namespace InventoryTracker
                 serverResponse = editController.ExecuteCUD(modelToAdd, EDIT, lblCurrentEditTable.Text);
 
                 // For ITEMS, if serverResponse 200, if warehouseID provided, must also send warehouseItem to UPDATE existing
-                if(lblCurrentEditTable.Text == "item" && serverResponse.Contains("200"))
+                if (lblCurrentEditTable.Text == "item" && serverResponse.Contains("200"))
                 {
                     serverResponse = AssignItemEdit(modelToAdd);
                 }

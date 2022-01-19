@@ -49,7 +49,5 @@ namespace InventoryTracker.Tests
             newItemID = readController.GetNewItemID();
             Assert.IsNotNull(newItemID);
         }
-
-
     }
 }

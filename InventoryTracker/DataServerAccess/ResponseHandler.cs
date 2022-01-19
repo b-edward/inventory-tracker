@@ -15,28 +15,18 @@ namespace InventoryTracker.DataServerAccess
     public class ResponseHandler : IResponseHandler
     {
         /*
-        *	NAME	:	WarehouseItemController -- Constructor
-        *	PURPOSE	:	Default constructor.
-        *	INPUTS	:	None
-        *	RETURNS	:	None
-        */
-        public ResponseHandler()
-        {
-        }
-
-        /*
         *	NAME	:	GetDataTable
         *	PURPOSE	:	This method will take the response data and return it in DataTable format
         *	INPUTS	:   string tableName - the name of the table to be edited
         *	        	string response - server status message for user feedback
         *	RETURNS	:	DataTable dataTable - the return data formatted as DataTable
         */
+
         public DataTable GetDataTable(string tableName, string response)
         {
             DataTable dataTable = ConvertDataToTable.GetDataTable(tableName, response);
             return dataTable;
         }
-
 
         /*
         *	NAME	:	ParseResponse
@@ -44,13 +34,14 @@ namespace InventoryTracker.DataServerAccess
         *	INPUTS	:	string queryResponse - server's response to the query
         *	RETURNS	:	string response - the response message
         */
+
         public string ParseResponse(string queryResponse)
         {
             string response = "";
             // Send string for parsing
             string[] serverResponse = ParseData(queryResponse);
             // Remove 200 status code
-            if(serverResponse[0].Contains("200"))
+            if (serverResponse[0].Contains("200"))
             {
                 response = "Request executed successfully.";
             }
@@ -76,6 +67,7 @@ namespace InventoryTracker.DataServerAccess
         *	INPUTS	:	string itemResponse - server's response to the query
         *	RETURNS	:	string itemID - the returned itemID
         */
+
         public string ParseItemID(string itemResponse)
         {
             string[] item = ParseData(itemResponse);
@@ -90,12 +82,11 @@ namespace InventoryTracker.DataServerAccess
         *	INPUTS	:	string queryResponse - server's response to the query
         *	RETURNS	:	string[] response - an array containing the status code and message
         */
+
         private string[] ParseData(string queryResponse)
         {
             string[] response = queryResponse.Split('\n');
             return response;
         }
-
-
     }
 }

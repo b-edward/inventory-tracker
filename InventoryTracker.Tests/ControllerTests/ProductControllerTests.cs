@@ -1,8 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using InventoryTracker.Controllers;
+﻿using InventoryTracker.Controllers;
 using InventoryTracker.Interfaces;
 using InventoryTracker.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace InventoryTracker.Tests
 {
@@ -17,7 +17,6 @@ namespace InventoryTracker.Tests
             returnedQuery = productController.BuildReadQuery();
             Assert.IsTrue(returnedQuery.Contains("GET\nSELECT"));
         }
-
 
         [TestMethod]
         public void TestBuildCUDQueryPUT()
@@ -48,7 +47,5 @@ namespace InventoryTracker.Tests
             string returnedQuery = productController.BuildCUDQuery(productTable, "POST");
             Assert.IsTrue(returnedQuery.Contains("POST\nUPDATE"));
         }
-
-
     }
 }

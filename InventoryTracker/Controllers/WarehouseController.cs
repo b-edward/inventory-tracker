@@ -3,7 +3,7 @@
  * PROJECT          : Inventory Tracker
  * PROGRAMMER       : Edward Boado
  * FIRST VERSION    : 2022 - 01 - 14
- * DESCRIPTION      : This file contains the WarehouseController class, which implements the ITableRead and ITableCUD interfaces. 
+ * DESCRIPTION      : This file contains the WarehouseController class, which implements the ITableRead and ITableCUD interfaces.
  *                    It will provide SQL queries for accessing the warehouse data table.
  */
 
@@ -18,22 +18,13 @@ namespace InventoryTracker.Controllers
         private ILocation warehouseTable;
 
         /*
-        *	NAME	:	WarehouseController -- Constructor
-        *	PURPOSE	:	Default constructor.
-        *	INPUTS	:	None
-        *	RETURNS	:	None
-        */
-        public WarehouseController()
-        {
-        }
-
-        /*
         *	NAME	:	BuildCUDQuery
         *	PURPOSE	:	This method will call a method to get the correct query based on the command
         *	INPUTS	:	object table - the user input data to be sent
         *	            string command -  the create, update, or delete command
         *	RETURNS	:	string query - the SQL query
         */
+
         public string BuildCUDQuery(object table, string command)
         {
             // Convert the object parameter into a warehouse
@@ -51,6 +42,7 @@ namespace InventoryTracker.Controllers
         *	            string command -  the create, update, or delete command
         *	RETURNS	:	string query - the SQL query
         */
+
         private string GetQuery(object table, string command)
         {
             string query = "";
@@ -60,6 +52,7 @@ namespace InventoryTracker.Controllers
                 case "PUT":
                     query = InsertQuery(table, command);
                     break;
+
                 case "POST":
                     query = UpdateQuery(table, command);
                     break;
@@ -74,6 +67,7 @@ namespace InventoryTracker.Controllers
         *	            string command -  the create, update, or delete command
         *	RETURNS	:	string query - the SQL query
         */
+
         private string InsertQuery(object table, string command)
         {
             string query = "";
@@ -92,6 +86,7 @@ namespace InventoryTracker.Controllers
         *	            string command -  the create, update, or delete command
         *	RETURNS	:	string query - the SQL query
         */
+
         private string UpdateQuery(object table, string command)
         {
             string query = "";
@@ -103,13 +98,13 @@ namespace InventoryTracker.Controllers
             return query;
         }
 
-
         /*
         *	NAME	:	BuildReadQuery
         *	PURPOSE	:	This method provide a SQL query to get an inventory of all warehouses
         *	INPUTS	:	None
         *	RETURNS	:	string query - the SQL query
         */
+
         public string BuildReadQuery()
         {
             string query = "GET\nSELECT * FROM `Warehouse`;";

@@ -9,9 +9,6 @@
 
 using InventoryTracker.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace InventoryTracker
 {
@@ -23,6 +20,7 @@ namespace InventoryTracker
         *	INPUTS	:	None
         *	RETURNS	:	string serverResponse - server status message for user feedback
         */
+
         protected string AssignItemAdd()
         {
             string serverResponse = "";
@@ -52,13 +50,13 @@ namespace InventoryTracker
             return serverResponse;
         }
 
-
         /*
         *	NAME	:	AssignItemEdit
         *	PURPOSE	:	This method will add, edit, or delete warehouseItems based on user form input
         *	INPUTS	:	Object modelToAdd - the user's input data
         *	RETURNS	:	string serverResponse - server status message for user feedback
         */
+
         protected string AssignItemEdit(Object modelToAdd)
         {
             string serverResponse = "";

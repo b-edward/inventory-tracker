@@ -3,7 +3,7 @@
  * PROJECT          : Inventory Tracker
  * PROGRAMMER       : Edward Boado
  * FIRST VERSION    : 2022 - 01 - 13
- * DESCRIPTION      : This file contains the ItemController class, which implements the ITableRead and ITableCUD interfaces. 
+ * DESCRIPTION      : This file contains the ItemController class, which implements the ITableRead and ITableCUD interfaces.
  *                    It will provide SQL queries for accessing the item data table.
  */
 
@@ -18,22 +18,13 @@ namespace InventoryTracker.Controllers
         private Item itemTable;
 
         /*
-        *	NAME	:	ItemController -- Constructor
-        *	PURPOSE	:	Default constructor.
-        *	INPUTS	:	None
-        *	RETURNS	:	None
-        */
-        public ItemController()
-        {
-        }
-
-        /*
         *	NAME	:	BuildCUDQuery
         *	PURPOSE	:	This method will call a method to get the correct query based on the command
         *	INPUTS	:	object table - the user input data to be sent
         *	            string command -  the create, update, or delete command
         *	RETURNS	:	string query - the SQL query
         */
+
         public string BuildCUDQuery(object table, string command)
         {
             // Convert the object parameter into a Product
@@ -50,6 +41,7 @@ namespace InventoryTracker.Controllers
         *	            string command -  the create, update, or delete command
         *	RETURNS	:	string query - the SQL query
         */
+
         private string GetQuery(object table, string command)
         {
             string query = "";
@@ -59,6 +51,7 @@ namespace InventoryTracker.Controllers
                 case "PUT":
                     query = InsertQuery(table, command);
                     break;
+
                 case "POST":
                     query = UpdateQuery(table, command);
                     break;
@@ -73,6 +66,7 @@ namespace InventoryTracker.Controllers
         *	            string command -  the create, update, or delete command
         *	RETURNS	:	string query - the SQL query
         */
+
         private string InsertQuery(object table, string command)
         {
             string query = "";
@@ -89,6 +83,7 @@ namespace InventoryTracker.Controllers
         *	            string command -  the create, update, or delete command
         *	RETURNS	:	string query - the SQL query
         */
+
         private string UpdateQuery(object table, string command)
         {
             string query = "";
@@ -104,6 +99,7 @@ namespace InventoryTracker.Controllers
         *	INPUTS	:	None
         *	RETURNS	:	string query - the SQL query
         */
+
         public string BuildReadQuery()
         {
             string query = "GET\nSELECT Item.itemID, Product.productID, Product.productName, Item.isAssigned, " +
@@ -119,6 +115,7 @@ namespace InventoryTracker.Controllers
         *	INPUTS	:	None
         *	RETURNS	:	string query - the SQL query
         */
+
         public string BuildReadNewestQuery()
         {
             string query = "GET\nSELECT * FROM `Item` ORDER BY itemID DESC LIMIT 1;";

@@ -1,8 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using InventoryTracker.Controllers;
+﻿using InventoryTracker.Controllers;
 using InventoryTracker.Interfaces;
 using InventoryTracker.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace InventoryTracker.Tests
 {

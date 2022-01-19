@@ -15,17 +15,12 @@ namespace InventoryTracker.DataServerAccess
 {
     public class ServerHandler : IServerHandler
     {
-        public ServerHandler()
-        {
-        }
-
         /*
         *	NAME	:	SendToServer
-        *	PURPOSE	:	This method will establish a connection with the server, and build a package string to send a request.
-        *	            It will use the established package protocol to send and receive data from the server, then call a method
-        *	            to process the response.
-        *	INPUTS	:	None
-        *	RETURNS	:	void
+        *	PURPOSE	:	This method will establish a connection with the server, and send it a request string.
+        *	            It will convert ascii strings to byte arrays for transferring over TCP.
+        *	INPUTS	:	string stringToSend
+        *	RETURNS	:	string response - the response from the server
         */
 
         public string SendToServer(string stringToSend)

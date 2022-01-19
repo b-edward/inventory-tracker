@@ -1,7 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using InventoryTracker.DataServerAccess;
+﻿using InventoryTracker.DataServerAccess;
 using InventoryTracker.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace InventoryTracker.Tests
 {

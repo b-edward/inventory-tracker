@@ -1,7 +1,5 @@
 ﻿using InventoryTracker.Controllers;
-using InventoryTracker.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Data;
 
 namespace InventoryTracker.Tests
 {

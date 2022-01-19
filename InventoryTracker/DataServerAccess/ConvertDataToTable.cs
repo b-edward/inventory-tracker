@@ -22,14 +22,14 @@ namespace InventoryTracker.DataServerAccess
         public static TableConverter itemConverter = new TableConverter(ConvertToItemTable);
         public static TableConverter warehouseConverter = new TableConverter(ConvertToWarehouseTable);
 
-
         /*
         *	NAME	:	GetDataTable
-        *	PURPOSE	:	This method will invoke a delegate method based on the provided tablename.
+        *	PURPOSE	:	This method will invoke a delegate method based on the provided table name.
         *	INPUTS	:	string tableName - the name of the table to be formatted
         *	            string data - the ascii response data from the DataServer
         *	RETURNS	:	DataTable dataTable - the return data formatted as DataTable
         */
+
         public static DataTable GetDataTable(string tableName, string data)
         {
             DataTable newDataTable = new DataTable();
@@ -40,15 +40,19 @@ namespace InventoryTracker.DataServerAccess
                 case "INVENTORY":
                     newDataTable = inventoryConverter(data);
                     break;
+
                 case "ITEM":
                     newDataTable = itemConverter(data);
                     break;
+
                 case "PRODUCT":
                     newDataTable = productConverter(data);
                     break;
+
                 case "WAREHOUSE":
                     newDataTable = warehouseConverter(data);
                     break;
+
                 default:
                     newDataTable = null;
                     break;
@@ -62,6 +66,7 @@ namespace InventoryTracker.DataServerAccess
         *	            string data - the ascii response data from the DataServer
         *	RETURNS	:	DataTable dataTable - the return data formatted as DataTable
         */
+
         private static DataTable ConvertToInventoryTable(string data)
         {
             DataTable inventoryTable = new DataTable();
@@ -102,13 +107,13 @@ namespace InventoryTracker.DataServerAccess
             return inventoryTable;
         }
 
-
         /*
         *	NAME	:	ConvertToItemTable
         *	PURPOSE	:	This method will take the item data and put it in a DataTable
         *	            string data - the ascii response data from the DataServer
         *	RETURNS	:	DataTable dataTable - the return data formatted as DataTable
         */
+
         private static DataTable ConvertToItemTable(string data)
         {
             DataTable itemTable = new DataTable();
@@ -161,13 +166,13 @@ namespace InventoryTracker.DataServerAccess
             return itemTable;
         }
 
-
         /*
         *	NAME	:	ConvertToProductTable
         *	PURPOSE	:	This method will take the product data and put it in a DataTable
         *	            string data - the ascii response data from the DataServer
         *	RETURNS	:	DataTable dataTable - the return data formatted as DataTable
         */
+
         private static DataTable ConvertToProductTable(string data)
         {
             DataTable productTable = new DataTable();
@@ -190,7 +195,7 @@ namespace InventoryTracker.DataServerAccess
                 string activeStatus = fields[2];
 
                 // Convert active status for display
-                if(activeStatus == "0")
+                if (activeStatus == "0")
                 {
                     activeStatus = "Discontinued";
                 }
@@ -211,6 +216,7 @@ namespace InventoryTracker.DataServerAccess
         *	            string data - the ascii response data from the DataServer
         *	RETURNS	:	DataTable dataTable - the return data formatted as DataTable
         */
+
         private static DataTable ConvertToWarehouseTable(string data)
         {
             DataTable warehouseTable = new DataTable();
@@ -257,13 +263,13 @@ namespace InventoryTracker.DataServerAccess
             return warehouseTable;
         }
 
-
         /*
         *	NAME	:	ParseData
         *	PURPOSE	:	This method parse the individual table records
         *	            string data - the ascii response data from the DataServer
         *	RETURNS	:	string[] records - an array of record rows
         */
+
         private static string[] ParseData(string data)
         {
             string[] records = data.Split('&');

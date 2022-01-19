@@ -7,13 +7,7 @@
  *                    of UI components.
  */
 
-using InventoryTracker.Interfaces;
-using InventoryTracker.Models;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI.HtmlControls;
 
 namespace InventoryTracker
@@ -26,13 +20,14 @@ namespace InventoryTracker
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         protected void DisplayInventory()
         {
             // Get the inventory data table
             DataTable inventoryTable = readController.GetTable("Inventory");
 
             // Check table is not null, update lblServerMessage if error
-            if(inventoryTable != null)
+            if (inventoryTable != null)
             {
                 gvInventory.DataSource = inventoryTable;
                 gvInventory.DataBind();
@@ -56,13 +51,17 @@ namespace InventoryTracker
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         protected void ClearInputs()
         {
+            // Product form fields
             txtProductID.Text = "";
             txtProductName.Text = "";
             ddlProductActive.SelectedValue = "";
+            // Item form fields
             txtItemId.Text = "";
             txtProductIDItems.Text = "";
+            // Warehouse form fields
             txtWarehouseIDItems.Text = "";
             ddlIsSold.SelectedValue = "";
             txtWarehouseID.Text = "";
@@ -74,13 +73,13 @@ namespace InventoryTracker
             ddlWarehouseActive.SelectedValue = "";
         }
 
-
         /*
-        *	NAME	:	ClearInputs
+        *	NAME	:	DisplayNavTables
         *	PURPOSE	:	This method will display the table navigational buttons
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         protected void DisplayNavTables()
         {
             // Get the navTables div and display it
@@ -88,13 +87,13 @@ namespace InventoryTracker
             htmlControl.Attributes["style"] = "display:flex;";
         }
 
-
         /*
         *	NAME	:	ReloadEditScreen
         *	PURPOSE	:	This method will reload the current editing form to update data
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         protected void ReloadEditScreen()
         {
             // Find the screen to display
@@ -103,12 +102,15 @@ namespace InventoryTracker
                 case "PRODUCT":
                     DisplayProductEdit();
                     break;
+
                 case "ITEM":
                     DisplayItemEdit();
                     break;
+
                 case "WAREHOUSE":
                     DisplayWarehouseEdit();
                     break;
+
                 default:
                     // If something went wrong just display inventory
                     DisplayInventory();
@@ -116,13 +118,13 @@ namespace InventoryTracker
             }
         }
 
-
         /*
         *	NAME	:	DisplayProductEdit
         *	PURPOSE	:	This method will display the product editing form and product table data
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         protected void DisplayProductEdit()
         {
             // Display product buttons
@@ -163,6 +165,7 @@ namespace InventoryTracker
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         protected void DisplayItemEdit()
         {
             // Display item buttons
@@ -187,7 +190,7 @@ namespace InventoryTracker
             DataTable itemTable = readController.GetTable("Item");
 
             // Check table is not null, update lblServerMessage if error
-            if(itemTable != null)
+            if (itemTable != null)
             {
                 gvItem.DataSource = itemTable;
                 gvItem.DataBind();
@@ -209,6 +212,7 @@ namespace InventoryTracker
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         protected void DisplayWarehouseEdit()
         {
             // Display warehouse buttons
@@ -223,7 +227,7 @@ namespace InventoryTracker
             // Track which table is being edited
             lblCurrentEditTable.Text = "warehouse";
 
-            // Get the warehouse data table and fill 
+            // Get the warehouse data table and fill
             DataTable warehouseTable = readController.GetTable("Warehouse");
 
             // Check table is not null, update lblServerMessage if error
@@ -241,9 +245,7 @@ namespace InventoryTracker
             {
                 lblServerMessage.Text = "Could not retrieve warehouse table.";
             }
-
         }
-
 
         /*
         *	NAME	:	HideDisplay
@@ -251,6 +253,7 @@ namespace InventoryTracker
         *	INPUTS	:	None
         *	RETURNS	:	None
         */
+
         protected void HideDisplay()
         {
             // Get the navTables div and hide it

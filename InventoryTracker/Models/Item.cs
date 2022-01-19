@@ -13,17 +13,22 @@ namespace InventoryTracker.Models
 {
     public class Item : IItem, IModel
     {
+        // Data members
         private string itemID;
         private string productID;
         private int isAssigned;
         private int isSold;
 
+        // Properties
         public string ItemID
         { get { return itemID; } set { itemID = value; } }
+
         public string ProductID
         { get { return productID; } set { productID = value; } }
+
         public int IsAssigned
         { get { return isAssigned; } set { isAssigned = value; } }
+
         public int IsSold
         { get { return isSold; } set { isSold = value; } }
 

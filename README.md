@@ -5,7 +5,7 @@
 1. Test directly on live Azure website: [Inventory Tracker Web Application](https://inventory-tracker.azurewebsites.net).
 	* For best results, please use a full screen web browser.
 
-2. Test locally in Visual Studio.
+2. Test locally in [Visual Studio](https://visualstudio.microsoft.com/).
 	* Download or clone the inventory-tracker project from [GitHub](https://github.com/b-edward/inventory-tracker).
 	* Run the database server:
 		1. In the *DataServer* folder, open **DataServer.sln** in Visual Studio.

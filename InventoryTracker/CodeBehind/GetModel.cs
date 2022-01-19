@@ -10,9 +10,6 @@
 using InventoryTracker.Interfaces;
 using InventoryTracker.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace InventoryTracker
 {
@@ -35,9 +32,11 @@ namespace InventoryTracker
                 case "ITEM":
                     newModel = GetItem();
                     break;
+
                 case "PRODUCT":
                     newModel = GetProduct();
                     break;
+
                 case "WAREHOUSE":
                     newModel = GetWarehouse();
                     break;
@@ -51,6 +50,7 @@ namespace InventoryTracker
         *	INPUTS	:	None
         *	RETURNS	:	Product newProduct - the product model with the user input data
         */
+
         protected Object GetProduct()
         {
             Product newProduct = new Product();
@@ -89,6 +89,7 @@ namespace InventoryTracker
         *	INPUTS	:	None
         *	RETURNS	:	Product newItem - the item model with the user input data
         */
+
         protected Object GetItem()
         {
             Item newItem = new Item();
@@ -141,6 +142,7 @@ namespace InventoryTracker
         *	INPUTS	:	None
         *	RETURNS	:	Product newWarehouse - the warehouse model with the user input data
         */
+
         protected Object GetWarehouse()
         {
             ILocation newWarehouse = new Warehouse();
@@ -157,6 +159,7 @@ namespace InventoryTracker
                 newWarehouse.ID = "";
             }
 
+            // Set the atomized address fields
             newWarehouse.StreetAndNo = txtStreetAndNo.Text;
             newWarehouse.City = txtCity.Text;
             newWarehouse.ProvinceOrState = txtProvinceOrState.Text;
@@ -182,6 +185,7 @@ namespace InventoryTracker
         *	INPUTS	:	None
         *	RETURNS	:	WarehouseItem newWarehouseItem - the warehouseItem model with the user input data
         */
+
         protected Object GetWarehouseItem()
         {
             WarehouseItem newWarehouseItem = new WarehouseItem();
