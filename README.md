@@ -54,6 +54,8 @@ This application has two components:
 1. A web client application to handle business logic and present the UI.
 2. A web API service to access a MySQL database.
 
+The application has been designed with extensibility and mainainability in mind. In keeping with SOLID principles, I have made use of interfaces and delegates, with classes and methods having a single responsibility wherever possible. I created a secondary web API service to allow access from any browser, and to easily accommodate mobile or desktop versions of the application in the future.
+
 ### 1. Inventory Tracker Web Application
 
 The Inventory Tracker is the client web application for a logistics company. It was developed in ASP.NET and is hosted on Microsoft Azure App Service. It presents the user interface, allowing basic CRUD Functionality. The application will validate user input, create SQL queries, send the query requests to the DataServer via TCP/IP, parse the response and display it. 
