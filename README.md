@@ -82,4 +82,4 @@ Server responses:
 
 ### Questions or Comments?
 
-Please contact me at <edward@edwardboado.dev>. 	
+Please contact me at <eboado8862@conestogac.on.ca>. 	
